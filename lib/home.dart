@@ -1,4 +1,5 @@
 import 'package:expence_tracker/functionalities.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +17,30 @@ class Home extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Expanded(
+                    child: PieChart(
+                      duration: Duration(milliseconds: 1000),
+
+                      curve: Curves.bounceOut,
+                      PieChartData(
+                        centerSpaceColor: Colors.amber,
+                        sections: [
+                          PieChartSectionData(color: Colors.red, value: 150),
+                          PieChartSectionData(
+                            gradient: LinearGradient(
+                              colors: [Colors.brown, Colors.indigo],
+                            ),
+                            // color: Colors.blue,
+                            value: state.value.toDouble(),
+                          ),
+                          PieChartSectionData(color: Colors.green, value: 99),
+                        ],
+                        borderData: FlBorderData(border: Border.all(width: 1)),
+                        centerSpaceRadius: 80,
+                      ),
+                    ),
+                  ),
+
                   Text("Count:${state.value} "),
 
                   Checkbox(
