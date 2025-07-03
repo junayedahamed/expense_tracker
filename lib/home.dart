@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:expence_tracker/add_section.dart/add_dialogue.dart';
 import 'package:expence_tracker/functionalities.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +63,20 @@ class Home extends StatelessWidget {
               ),
             );
           },
+        ),
+
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            var val = showDialog(
+              context: context,
+              builder: (context) => AddDialogue(),
+            );
+
+            val.then((onValue) {
+              log(onValue.toString());
+            });
+          },
+          child: const Icon(Icons.add),
         ),
       ),
     );
