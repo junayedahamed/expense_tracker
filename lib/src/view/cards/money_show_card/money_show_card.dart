@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -22,7 +23,12 @@ class MoneyShowCard extends StatelessWidget {
                 ],
               ),
             ),
-            constraints: BoxConstraints(maxWidth: 400, maxHeight: 200),
+            constraints: BoxConstraints(
+              maxWidth: 400,
+              maxHeight: 200,
+              minHeight: 150,
+              minWidth: 200,
+            ),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -60,7 +66,7 @@ class MoneyShowCard extends StatelessWidget {
                       Row(
                         children: [
                           ...List.generate(5, (index) {
-                            return Icon(Icons.star_outline);
+                            return Icon(CupertinoIcons.star, size: 18);
                           }),
                         ],
                       ),
@@ -82,8 +88,8 @@ class MoneyShowCard extends StatelessWidget {
 
                       SvgPicture.asset(
                         "assets/icons/wallet.svg",
-                        height: 30,
-                        width: 30,
+                        height: 25,
+                        width: 25,
                       ),
                     ],
                   ),

@@ -1,5 +1,5 @@
 class ExpenceModel {
-  final int amount;
+  final double amount;
   final String reason;
   final DateTime costTime;
 
@@ -9,7 +9,11 @@ class ExpenceModel {
     required this.costTime,
   });
 
-  ExpenceModel copyWith(int? amounttk, String? reasoncp, DateTime? costTimecp) {
+  ExpenceModel copyWith(
+    double? amounttk,
+    String? reasoncp,
+    DateTime? costTimecp,
+  ) {
     return ExpenceModel(
       amount: amounttk ?? amount,
       reason: reasoncp ?? reason,

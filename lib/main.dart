@@ -1,6 +1,8 @@
 import 'package:expence_tracker/add_money_bloc.dart';
 import 'package:expence_tracker/functionalities.dart';
+import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/view/home/home_view.dart';
+import 'package:expence_tracker/src/view/tabs/tab_controller/my_tab_index_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +12,12 @@ void main() {
       providers: [
         BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
         BlocProvider<MyBloc>(create: (_) => MyBloc()),
+        BlocProvider<UpdateIncomingOutgingData>(
+          create: (_) => UpdateIncomingOutgingData(),
+        ),
+        BlocProvider<MyTabIndexController>(
+          create: (_) => MyTabIndexController(),
+        ),
       ],
       child: MyApp(),
     ),

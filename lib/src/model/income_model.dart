@@ -1,5 +1,5 @@
 class IncomeModel {
-  final int amount;
+  final double amount;
   final String sourceDetails;
   final DateTime addedAt;
 
@@ -10,7 +10,7 @@ class IncomeModel {
   });
 
   IncomeModel copyWith(
-    int? amounttk,
+    double? amounttk,
     String? sourceDetailscp,
     DateTime? addedAtcp,
   ) {

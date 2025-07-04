@@ -1,16 +1,163 @@
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
+import 'package:expence_tracker/src/view/tabs/tab_controller/my_tab_index_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Center(child: MoneyShowCard())],
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Center(child: MoneyShowCard()),
+          SizedBox(height: 15),
+          Row(
+            spacing: 5,
+            children: [
+              Text(
+                "I/O History",
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              Center(
+                child: Icon(Icons.history, size: 20, color: Colors.lightGreen),
+              ),
+            ],
+          ),
+
+          // Expanded(
+          //   child: ListView.builder(
+          //     physics: BouncingScrollPhysics(),
+          //     padding: EdgeInsets.symmetric(horizontal: 10),
+          //     // shrinkWrap: true,
+          //     itemCount: 10,
+          //     scrollDirection: Axis.vertical,
+          //     itemBuilder: (context, index) {
+          //       return HistoryCard();
+          //     },
+          //   ),
+          // ),
+          SizedBox(height: 5),
+          BlocBuilder<MyTabIndexController, int>(
+            builder: (context, state) => TabBar(
+              labelColor: Colors.orange,
+
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              // splashBorderRadius: BorderRadius.circular(1),
+              indicatorSize: TabBarIndicatorSize.tab,
+              tabAlignment: TabAlignment.start,
+              isScrollable: true,
+              indicatorAnimation: TabIndicatorAnimation.elastic,
+              dividerColor: Colors.transparent,
+              automaticIndicatorColorAdjustment: true,
+
+              physics: BouncingScrollPhysics(),
+
+              indicator: BoxDecoration(
+                border: Border.all(width: 2),
+
+                borderRadius: BorderRadius.circular(15),
+              ),
+              controller: tabController,
+
+              onTap: (value) {
+                context.read<MyTabIndexController>().changeTab(value);
+              },
+              tabs: [
+                SizedBox(
+                  height: 30,
+                  // width: ,
+                  child: Center(
+                    child: state == 0
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Icon(Icons.check), Text("All")],
+                          )
+                        : Text("All"),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                  child: Center(
+                    child: state == 1
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Icon(Icons.check), Text("In")],
+                          )
+                        : Text("In"),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                  child: Center(
+                    child: state == 2
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Icon(Icons.check), Text("Out")],
+                          )
+                        : Text("Out"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: tabController,
+              children: [
+                Tab(child: Text("data")),
+                Tab(child: Text("data")),
+                Tab(child: Text("data")),
+              ],
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: SizedBox(height: 50, width: 40),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: SizedBox(
+        height: kToolbarHeight,
+        child: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          color: Colors.amber,
+          shadowColor: Colors.grey,
+
+          // elevation: 10,
+          notchMargin: 10.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [SizedBox(width: 30), Icon(CupertinoIcons.home)],
+                ),
+              ),
+              GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Icon(CupertinoIcons.home), SizedBox(width: 30)],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
