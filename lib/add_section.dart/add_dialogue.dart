@@ -1,4 +1,6 @@
+import 'package:expence_tracker/add_money_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddDialogue extends StatelessWidget {
   AddDialogue({super.key});
@@ -23,7 +25,11 @@ class AddDialogue extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context, int.tryParse(moneyadd.text));
+                    // Navigator.pop(context, int.tryParse(moneyadd.text));
+                    context.read<AddMoneyBloc>().add(
+                      int.tryParse(moneyadd.text) ?? 0,
+                    );
+                    Navigator.pop(context);
                   },
                   child: Text("ADD"),
                 ),
