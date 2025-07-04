@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
@@ -45,6 +47,9 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                 labelStyle: TextStyle(fontWeight: FontWeight.bold),
                 // splashBorderRadius: BorderRadius.circular(1),
                 indicatorSize: TabBarIndicatorSize.tab,
+                onFocusChange: (value, index) {
+                  log(index.toString());
+                },
                 tabAlignment: TabAlignment.center,
                 isScrollable: true,
                 indicatorAnimation: TabIndicatorAnimation.elastic,
@@ -101,15 +106,15 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                 ],
               ),
             ),
-
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FilledButton(onPressed: () {}, child: Text("Ok")),
-                FilledButton(onPressed: () {}, child: Text("Ok")),
+                FilledButton(onPressed: () {}, child: Text("Cancel")),
               ],
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 10),
           ],
         ),
       ),
