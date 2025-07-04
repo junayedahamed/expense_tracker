@@ -1,6 +1,7 @@
-import 'package:expence_tracker/add_money_bloc.dart';
 import 'package:expence_tracker/add_section.dart/add_dialogue.dart';
-import 'package:expence_tracker/functionalities.dart';
+import 'package:expence_tracker/testing_phase/add_money_bloc.dart';
+import 'package:expence_tracker/testing_phase/functionalities.dart';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            BlocBuilder<AddMoneyBloc, int>(
+            BlocBuilder<AddMoneyBloc, double>(
               builder: (context, data) {
                 return Text(data.toString());
               },

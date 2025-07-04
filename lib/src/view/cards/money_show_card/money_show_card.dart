@@ -1,5 +1,7 @@
+import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MoneyShowCard extends StatelessWidget {
@@ -36,15 +38,20 @@ class MoneyShowCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Data",
+                          const Text(
+                            "Avilable Balance",
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
-                          Text("500000", style: TextStyle(fontSize: 18)),
+                          BlocBuilder<UpdateIncomingOutgingData, double>(
+                            builder: (context, state) => Text(
+                              state.toString(),
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                          ),
                         ],
                       ),
                     ],

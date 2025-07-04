@@ -2,6 +2,7 @@ class IncomeModel {
   final double amount;
   final String sourceDetails;
   final DateTime addedAt;
+  final bool isexpense = false;
 
   IncomeModel({
     required this.amount,

@@ -2,6 +2,7 @@ class ExpenceModel {
   final double amount;
   final String reason;
   final DateTime costTime;
+  final bool isexpense = true;
 
   ExpenceModel({
     required this.amount,

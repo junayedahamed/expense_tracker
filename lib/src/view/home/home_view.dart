@@ -1,5 +1,9 @@
+import 'package:expence_tracker/src/view/add_dialogue/add_expence_dialogue.dart';
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
-import 'package:expence_tracker/src/view/tabs/tab_controller/my_tab_index_controller.dart';
+import 'package:expence_tracker/src/view/tabs/all_tab_page.dart';
+import 'package:expence_tracker/src/view/tabs/incoming.dart';
+import 'package:expence_tracker/src/view/tabs/outgoing.dart';
+import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +34,7 @@ class _HomeViewState extends State<HomeView>
           Center(child: MoneyShowCard()),
           SizedBox(height: 15),
           Row(
-            spacing: 5,
+            spacing: 8,
             children: [
               Text(
                 "I/O History",
@@ -42,79 +46,73 @@ class _HomeViewState extends State<HomeView>
             ],
           ),
 
-          // Expanded(
-          //   child: ListView.builder(
-          //     physics: BouncingScrollPhysics(),
-          //     padding: EdgeInsets.symmetric(horizontal: 10),
-          //     // shrinkWrap: true,
-          //     itemCount: 10,
-          //     scrollDirection: Axis.vertical,
-          //     itemBuilder: (context, index) {
-          //       return HistoryCard();
-          //     },
-          //   ),
-          // ),
           SizedBox(height: 5),
           BlocBuilder<MyTabIndexController, int>(
-            builder: (context, state) => TabBar(
-              labelColor: Colors.orange,
+            builder: (context, state) => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TabBar(
+                  labelColor: Colors.orange,
 
-              labelStyle: TextStyle(fontWeight: FontWeight.bold),
-              // splashBorderRadius: BorderRadius.circular(1),
-              indicatorSize: TabBarIndicatorSize.tab,
-              tabAlignment: TabAlignment.start,
-              isScrollable: true,
-              indicatorAnimation: TabIndicatorAnimation.elastic,
-              dividerColor: Colors.transparent,
-              automaticIndicatorColorAdjustment: true,
+                  labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                  // splashBorderRadius: BorderRadius.circular(1),
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  tabAlignment: TabAlignment.start,
+                  isScrollable: true,
+                  indicatorAnimation: TabIndicatorAnimation.elastic,
+                  dividerColor: Colors.transparent,
+                  automaticIndicatorColorAdjustment: true,
 
-              physics: BouncingScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
 
-              indicator: BoxDecoration(
-                border: Border.all(width: 2),
+                  indicator: BoxDecoration(
+                    border: Border.all(width: 2),
 
-                borderRadius: BorderRadius.circular(15),
-              ),
-              controller: tabController,
-
-              onTap: (value) {
-                context.read<MyTabIndexController>().changeTab(value);
-              },
-              tabs: [
-                SizedBox(
-                  height: 30,
-                  // width: ,
-                  child: Center(
-                    child: state == 0
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Icon(Icons.check), Text("All")],
-                          )
-                        : Text("All"),
+                    borderRadius: BorderRadius.circular(15),
                   ),
+                  controller: tabController,
+
+                  onTap: (value) {
+                    context.read<MyTabIndexController>().changeTab(value);
+                  },
+                  tabs: [
+                    SizedBox(
+                      height: 30,
+                      // width: ,
+                      child: Center(
+                        child: state == 0
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Icon(Icons.check), Text("All")],
+                              )
+                            : Text("All"),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                      child: Center(
+                        child: state == 1
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Icon(Icons.check), Text("In")],
+                              )
+                            : Text("In"),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                      child: Center(
+                        child: state == 2
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Icon(Icons.check), Text("Out")],
+                              )
+                            : Text("Out"),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 30,
-                  child: Center(
-                    child: state == 1
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Icon(Icons.check), Text("In")],
-                          )
-                        : Text("In"),
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                  child: Center(
-                    child: state == 2
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Icon(Icons.check), Text("Out")],
-                          )
-                        : Text("Out"),
-                  ),
-                ),
+                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
               ],
             ),
           ),
@@ -122,21 +120,41 @@ class _HomeViewState extends State<HomeView>
             child: TabBarView(
               controller: tabController,
               children: [
-                Tab(child: Text("data")),
-                Tab(child: Text("data")),
-                Tab(child: Text("data")),
+                Tab(child: AllTabPage()),
+                Tab(child: InComingTab()),
+                Tab(child: OutGoingTab()),
               ],
             ),
           ),
         ],
       ),
-      floatingActionButton: SizedBox(height: 50, width: 40),
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) => AddExpenceDialogue(),
+          );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.blueGrey,
+            shape: BoxShape.circle,
+          ),
+          height: 50,
+          width: 40,
+          child: Icon(
+            CupertinoIcons.add,
+            size: 20,
+            color: Colors.lightGreenAccent,
+          ),
+        ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: SizedBox(
         height: kToolbarHeight,
         child: BottomAppBar(
           shape: CircularNotchedRectangle(),
-          color: Colors.amber,
+          color: Colors.grey,
           shadowColor: Colors.grey,
 
           // elevation: 10,
@@ -145,15 +163,17 @@ class _HomeViewState extends State<HomeView>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
+                onTap: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [SizedBox(width: 30), Icon(CupertinoIcons.home)],
                 ),
               ),
               GestureDetector(
+                onTap: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Icon(CupertinoIcons.home), SizedBox(width: 30)],
+                  children: [Icon(Icons.graphic_eq), SizedBox(width: 30)],
                 ),
               ),
             ],

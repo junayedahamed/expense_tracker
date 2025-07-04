@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HistoryCard extends StatelessWidget {
@@ -11,16 +10,25 @@ class HistoryCard extends StatelessWidget {
       child: ListTile(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("Hello"),
-            Text("data"),
-            // CupertinoDatePicker(onDateTimeChanged: (value) {
-
-            // }),
-          ],
+          children: [Text("Hello"), Text("500")],
         ),
 
-        subtitle: Text("07/04/2025"),
+        subtitle: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("07/04/2025"),
+            Row(
+              children: List.generate(5, (index) {
+                return Icon(
+                  // Icons.indeterminate_check_box_sharp,
+                  Icons.add_box,
+                  size: 12,
+                  color: Colors.green,
+                );
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }
