@@ -169,6 +169,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                     FilledButton(
                       onPressed: () {
                         Navigator.pop(context);
+                        context.read<DialogueTabController>().changeTab(0);
                       },
                       child: Text("Cancel"),
                     ),

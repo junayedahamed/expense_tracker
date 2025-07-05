@@ -44,9 +44,12 @@ class _HomeViewState extends State<HomeView>
           Row(
             spacing: 8,
             children: [
-              Text(
-                "I/O History",
-                style: TextStyle(fontWeight: FontWeight.w600),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  "I/O History",
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
               ),
               Center(
                 child: Icon(Icons.history, size: 20, color: Colors.lightGreen),
@@ -59,66 +62,69 @@ class _HomeViewState extends State<HomeView>
             builder: (context, state) => Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TabBar(
-                  labelColor: Colors.orange,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: TabBar(
+                    labelColor: Colors.orange,
 
-                  labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                  // splashBorderRadius: BorderRadius.circular(1),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  tabAlignment: TabAlignment.start,
-                  isScrollable: true,
-                  indicatorAnimation: TabIndicatorAnimation.elastic,
-                  dividerColor: Colors.transparent,
-                  automaticIndicatorColorAdjustment: true,
+                    labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                    // splashBorderRadius: BorderRadius.circular(1),
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    tabAlignment: TabAlignment.start,
+                    isScrollable: true,
+                    indicatorAnimation: TabIndicatorAnimation.elastic,
+                    dividerColor: Colors.transparent,
+                    automaticIndicatorColorAdjustment: true,
 
-                  physics: BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
 
-                  indicator: BoxDecoration(
-                    border: Border.all(width: 2),
+                    indicator: BoxDecoration(
+                      border: Border.all(width: 2),
 
-                    borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    controller: tabController,
+
+                    onTap: (value) {
+                      context.read<MyTabIndexController>().changeTab(value);
+                    },
+                    tabs: [
+                      SizedBox(
+                        height: 30,
+                        // width: ,
+                        child: Center(
+                          child: state == 0
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [Icon(Icons.check), Text("All")],
+                                )
+                              : Text("All"),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: Center(
+                          child: state == 1
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [Icon(Icons.check), Text("In")],
+                                )
+                              : Text("In"),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: Center(
+                          child: state == 2
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [Icon(Icons.check), Text("Out")],
+                                )
+                              : Text("Out"),
+                        ),
+                      ),
+                    ],
                   ),
-                  controller: tabController,
-
-                  onTap: (value) {
-                    context.read<MyTabIndexController>().changeTab(value);
-                  },
-                  tabs: [
-                    SizedBox(
-                      height: 30,
-                      // width: ,
-                      child: Center(
-                        child: state == 0
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Icon(Icons.check), Text("All")],
-                              )
-                            : Text("All"),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: state == 1
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Icon(Icons.check), Text("In")],
-                              )
-                            : Text("In"),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: state == 2
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Icon(Icons.check), Text("Out")],
-                              )
-                            : Text("Out"),
-                      ),
-                    ),
-                  ],
                 ),
                 IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
               ],

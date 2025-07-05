@@ -44,12 +44,19 @@ class MoneyShowCard extends StatelessWidget {
                         children: [
                           const Text(
                             "Avilable Balance",
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           BlocBuilder<UpdateIncomingOutgingData, double>(
                             builder: (context, state) => Text(
                               state.toString(),
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ],

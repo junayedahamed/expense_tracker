@@ -10,7 +10,11 @@ class InComingTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateIncomingOutgingData, double>(
       builder: (context, state) {
-        final allData = context.read<UpdateIncomingOutgingData>().incominglist;
+        final allData = context
+            .read<UpdateIncomingOutgingData>()
+            .incominglist
+            .reversed
+            .toList();
         return ListView.builder(
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: 10),
