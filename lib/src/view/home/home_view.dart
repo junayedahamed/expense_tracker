@@ -1,9 +1,9 @@
 import 'package:expence_tracker/src/view/add_dialogue/add_expence_dialogue.dart';
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
 
-import 'package:expence_tracker/src/view/tabs/all_tab_page.dart';
-import 'package:expence_tracker/src/view/tabs/incoming.dart';
-import 'package:expence_tracker/src/view/tabs/outgoing.dart';
+import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
+import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
+import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

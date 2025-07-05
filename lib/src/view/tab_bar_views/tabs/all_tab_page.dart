@@ -1,16 +1,16 @@
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
-import 'package:expence_tracker/src/view/cards/income_expense_details_card/history_card.dart';
+import 'package:expence_tracker/src/view/cards/income_expense_history_card/history_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class InComingTab extends StatelessWidget {
-  const InComingTab({super.key});
+class AllTabPage extends StatelessWidget {
+  const AllTabPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateIncomingOutgingData, double>(
       builder: (context, state) {
-        final allData = context.read<UpdateIncomingOutgingData>().incominglist;
+        final allData = context.read<UpdateIncomingOutgingData>().all;
         return ListView.builder(
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -20,11 +20,11 @@ class InComingTab extends StatelessWidget {
           itemBuilder: (context, index) {
             final dataUnit = allData[index];
             return HistoryCard(
-              amount: dataUnit.amount.toString(),
-              isexp: dataUnit.isexpense,
+              amount: dataUnit.allamount.toString(),
+              isexp: dataUnit.allisexpense,
               time:
-                  "${dataUnit.addedAt.day}-${dataUnit.addedAt.month}-${dataUnit.addedAt.year}",
-              title: dataUnit.sourceDetails,
+                  "${dataUnit.allcostTime.day}-${dataUnit.allcostTime.month}-${dataUnit.allcostTime.year}",
+              title: dataUnit.allreason,
             );
           },
         );
