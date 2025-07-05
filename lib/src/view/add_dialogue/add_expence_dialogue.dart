@@ -131,6 +131,8 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                             context.read<UpdateIncomingOutgingData>().addMoney(
                               data,
                             );
+                            Navigator.pop(context);
+                            context.read<DialogueTabController>().changeTab(0);
                             // log("1");
                           }
                         }
@@ -142,7 +144,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                             reason: reasonCost.text.isEmpty
                                 ? "Unknown"
                                 : reasonCost.text,
-                            isexpense: false,
+                            isexpense: true,
                           );
                           // context.read<UpdateIncomingOutgingData>().addMoney(
 
@@ -155,11 +157,11 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                             context.read<UpdateIncomingOutgingData>().costMoney(
                               data2,
                             );
+                            Navigator.pop(context);
+                            context.read<DialogueTabController>().changeTab(0);
                             // log("0");
                           }
                         }
-                        Navigator.pop(context);
-                        context.read<DialogueTabController>().changeTab(0);
                       },
                       child: Text("Ok"),
                     ),

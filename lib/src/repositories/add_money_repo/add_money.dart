@@ -36,10 +36,10 @@
 //   }
 // }
 
-import 'dart:developer';
-
+import 'package:expence_tracker/src/model/all_model.dart';
 import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateIncomingOutgingData extends Cubit<double> {
@@ -47,6 +47,7 @@ class UpdateIncomingOutgingData extends Cubit<double> {
 
   List<IncomeModel> incominglist = [];
   List<ExpenceModel> expencelist = [];
+  List<AllDataModel> all = [];
   double costedMoneyOnApp = 0;
   void addMoney(IncomeModel income) {
     if (income.amount <= 0) {
@@ -54,7 +55,23 @@ class UpdateIncomingOutgingData extends Cubit<double> {
     }
     emit(state + income.amount);
     incominglist.add(income);
-    log(expencelist.length.toString());
+    all.add(
+      AllDataModel(
+        allamount: income.amount,
+        allreason: income.sourceDetails,
+        allcostTime: income.addedAt,
+        allisexpense: income.isexpense,
+      ),
+    );
+    // log(expencelist.length.toString());
+    // expencelist.forEach((action) {
+    //   log(
+    //     action.reason +
+    //         " " +
+    //         action.costTime.toString() +
+    //         action.isexpense.toString(),
+    //   );
+    // });
   }
 
   void costMoney(ExpenceModel expence) {
@@ -65,10 +82,18 @@ class UpdateIncomingOutgingData extends Cubit<double> {
     }
     emit(state - expence.amount);
     expencelist.add(expence);
+    all.add(
+      AllDataModel(
+        allamount: expence.amount,
+        allreason: expence.reason,
+        allcostTime: expence.costTime,
+        allisexpense: expence.isexpense,
+      ),
+    );
     costedMoneyOnApp += expence.amount;
     // log(incominglist.length.toString());
-    incominglist.forEach((action) {
-      log(action.sourceDetails + " " + action.addedAt.toString());
-    });
+    // incominglist.forEach((action) {
+    //   log(action.sourceDetails + " " + action.addedAt.toString());
+    // });
   }
 }
