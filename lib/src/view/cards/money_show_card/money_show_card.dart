@@ -70,26 +70,114 @@ class MoneyShowCard extends StatelessWidget {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          ...List.generate(5, (index) {
-                            return Icon(CupertinoIcons.star, size: 18);
-                          }),
-                        ],
-                      ),
-                      RichText(
-                        text: TextSpan(
+                      BlocBuilder<UpdateIncomingOutgingData, double>(
+                        builder: (context, state) => Row(
                           children: [
-                            TextSpan(
-                              text: "CT: ",
-                              style: TextStyle(color: Colors.black),
-                            ),
+                            // ...List.generate(5, (index) {
 
-                            TextSpan(
-                              text: "General".toUpperCase(),
-                              style: TextStyle(color: Colors.black),
+                            //   return Icon(
+                            //     value >= 0 && value <= 5000
+                            //         ? CupertinoIcons.star_fill
+                            //         : CupertinoIcons.star,
+                            //     size: 18,
+                            //     color: value >= 0 && value <= 5000
+                            //         ? Colors.amber
+                            //         : null,
+                            //   );
+                            // }),
+                            Icon(
+                              CupertinoIcons.star_fill,
+                              size: 18,
+                              color: Colors.amber,
+                            ),
+                            Icon(
+                              context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      5000
+                                  ? CupertinoIcons.star_fill
+                                  : CupertinoIcons.star,
+                              size: 18,
+                              color:
+                                  context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      5000
+                                  ? Colors.amber
+                                  : null,
+                            ),
+                            Icon(
+                              context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      10000
+                                  ? CupertinoIcons.star_fill
+                                  : CupertinoIcons.star,
+                              size: 18,
+                              color:
+                                  context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      10000
+                                  ? Colors.amber
+                                  : null,
+                            ),
+                            Icon(
+                              context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      20000
+                                  ? CupertinoIcons.star_fill
+                                  : CupertinoIcons.star,
+                              size: 18,
+                              color:
+                                  context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      20000
+                                  ? Colors.amber
+                                  : null,
+                            ),
+                            Icon(
+                              context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      35000
+                                  ? CupertinoIcons.star_fill
+                                  : CupertinoIcons.star,
+                              size: 18,
+                              color:
+                                  context
+                                          .read<UpdateIncomingOutgingData>()
+                                          .costedMoneyOnApp >=
+                                      35000
+                                  ? Colors.amber
+                                  : null,
                             ),
                           ],
+                        ),
+                      ),
+                      BlocBuilder<UpdateIncomingOutgingData, double>(
+                        builder: (context, state) => RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "CT: ",
+                                style: TextStyle(color: Colors.black),
+                              ),
+
+                              TextSpan(
+                                text:
+                                    context
+                                            .read<UpdateIncomingOutgingData>()
+                                            .costedMoneyOnApp >
+                                        5000
+                                    ? "Epic".toUpperCase()
+                                    : "General".toUpperCase(),
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
 

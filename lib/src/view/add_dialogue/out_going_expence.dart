@@ -26,6 +26,14 @@ class ExpenceTab extends StatelessWidget {
           Text("Amount", style: TextStyle(fontWeight: FontWeight.w600)),
           TextFormField(
             controller: amountcontroller,
+            keyboardType: TextInputType.number,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Enter amount tk";
+              } else {
+                return null;
+              }
+            },
             decoration: InputDecoration(border: OutlineInputBorder()),
           ),
         ],

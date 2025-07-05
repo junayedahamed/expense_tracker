@@ -14,6 +14,7 @@ class AddIncoming extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisSize: MainAxisSize.min,
         spacing: 10,
@@ -26,6 +27,14 @@ class AddIncoming extends StatelessWidget {
           Text("Amount", style: TextStyle(fontWeight: FontWeight.w600)),
           TextFormField(
             controller: amountcontroller,
+            keyboardType: TextInputType.number,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Enter amount tk";
+              } else {
+                return null;
+              }
+            },
             decoration: InputDecoration(border: OutlineInputBorder()),
           ),
         ],
