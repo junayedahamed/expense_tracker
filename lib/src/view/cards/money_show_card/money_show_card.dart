@@ -71,114 +71,85 @@ class MoneyShowCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BlocBuilder<UpdateIncomingOutgingData, double>(
-                        builder: (context, state) => Row(
-                          children: [
-                            // ...List.generate(5, (index) {
-
-                            //   return Icon(
-                            //     value >= 0 && value <= 5000
-                            //         ? CupertinoIcons.star_fill
-                            //         : CupertinoIcons.star,
-                            //     size: 18,
-                            //     color: value >= 0 && value <= 5000
-                            //         ? Colors.amber
-                            //         : null,
-                            //   );
-                            // }),
-                            Icon(
-                              CupertinoIcons.star_fill,
-                              size: 18,
-                              color: Colors.amber,
-                            ),
-                            Icon(
-                              context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      5000
-                                  ? CupertinoIcons.star_fill
-                                  : CupertinoIcons.star,
-                              size: 18,
-                              color:
-                                  context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      5000
-                                  ? Colors.amber
-                                  : null,
-                            ),
-                            Icon(
-                              context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      10000
-                                  ? CupertinoIcons.star_fill
-                                  : CupertinoIcons.star,
-                              size: 18,
-                              color:
-                                  context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      10000
-                                  ? Colors.amber
-                                  : null,
-                            ),
-                            Icon(
-                              context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      20000
-                                  ? CupertinoIcons.star_fill
-                                  : CupertinoIcons.star,
-                              size: 18,
-                              color:
-                                  context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      20000
-                                  ? Colors.amber
-                                  : null,
-                            ),
-                            Icon(
-                              context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      35000
-                                  ? CupertinoIcons.star_fill
-                                  : CupertinoIcons.star,
-                              size: 18,
-                              color:
-                                  context
-                                          .read<UpdateIncomingOutgingData>()
-                                          .costedMoneyOnApp >=
-                                      35000
-                                  ? Colors.amber
-                                  : null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      BlocBuilder<UpdateIncomingOutgingData, double>(
-                        builder: (context, state) => RichText(
-                          text: TextSpan(
+                        builder: (context, state) {
+                          var value = context
+                              .read<UpdateIncomingOutgingData>()
+                              .costedMoneyOnApp;
+                          return Row(
                             children: [
-                              TextSpan(
-                                text: "CT: ",
-                                style: TextStyle(color: Colors.black),
+                              Icon(
+                                CupertinoIcons.star_fill,
+                                size: 18,
+                                color: Colors.amber,
                               ),
-
-                              TextSpan(
-                                text:
-                                    context
-                                            .read<UpdateIncomingOutgingData>()
-                                            .costedMoneyOnApp >
-                                        5000
-                                    ? "Epic".toUpperCase()
-                                    : "General".toUpperCase(),
-                                style: TextStyle(color: Colors.black),
+                              Icon(
+                                value >= 5000
+                                    ? CupertinoIcons.star_fill
+                                    : CupertinoIcons.star,
+                                size: 18,
+                                color: value >= 5000 ? Colors.amber : null,
+                              ),
+                              Icon(
+                                value >= 10000
+                                    ? CupertinoIcons.star_fill
+                                    : CupertinoIcons.star,
+                                size: 18,
+                                color: value >= 10000 ? Colors.amber : null,
+                              ),
+                              Icon(
+                                value >= 20000
+                                    ? CupertinoIcons.star_fill
+                                    : CupertinoIcons.star,
+                                size: 18,
+                                color: value >= 20000 ? Colors.amber : null,
+                              ),
+                              Icon(
+                                value >= 35000
+                                    ? CupertinoIcons.star_fill
+                                    : CupertinoIcons.star,
+                                size: 18,
+                                color: value >= 35000 ? Colors.amber : null,
                               ),
                             ],
-                          ),
-                        ),
+                          );
+                        },
+                      ),
+                      BlocBuilder<UpdateIncomingOutgingData, double>(
+                        builder: (context, state) {
+                          var value2 = context
+                              .read<UpdateIncomingOutgingData>()
+                              .costedMoneyOnApp;
+
+                          return RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "CT: ",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                  ),
+                                ),
+
+                                TextSpan(
+                                  text: value2 >= 5000 && value2 < 10000
+                                      ? "Elite".toUpperCase()
+                                      : value2 > 5000 && value2 <= 10000
+                                      ? "Legendary".toUpperCase()
+                                      : value2 > 10000 && value2 <= 20000
+                                      ? "Master"
+                                      : value2 > 20000 && value2 <= 35000
+                                      ? "Epic".toUpperCase()
+                                      : "General".toUpperCase(),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
 
                       SvgPicture.asset(
