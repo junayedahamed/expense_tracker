@@ -25,7 +25,7 @@ class ExpenceTab extends StatelessWidget {
           ),
           Text("Amount", style: TextStyle(fontWeight: FontWeight.w600)),
           TextFormField(
-            controller: reasonController,
+            controller: amountcontroller,
             decoration: InputDecoration(border: OutlineInputBorder()),
           ),
         ],

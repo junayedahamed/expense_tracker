@@ -30,7 +30,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
   Widget build(BuildContext context) {
     return Dialog(
       child: SizedBox(
-        height: 250,
+        height: 300,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

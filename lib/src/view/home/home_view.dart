@@ -1,5 +1,6 @@
 import 'package:expence_tracker/src/view/add_dialogue/add_expence_dialogue.dart';
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
+
 import 'package:expence_tracker/src/view/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tabs/outgoing.dart';
@@ -28,8 +29,15 @@ class _HomeViewState extends State<HomeView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "ExP Tracker",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+        ),
+        actions: [Icon(Icons.sunny)],
+      ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Center(child: MoneyShowCard()),
           SizedBox(height: 15),
@@ -118,6 +126,7 @@ class _HomeViewState extends State<HomeView>
           ),
           Expanded(
             child: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
               controller: tabController,
               children: [
                 Tab(child: AllTabPage()),
