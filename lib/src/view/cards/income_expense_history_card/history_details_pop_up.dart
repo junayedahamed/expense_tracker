@@ -23,7 +23,7 @@ class HistoryDetailsPopUp extends StatelessWidget {
               Text.rich(
                 TextSpan(
                   text: isExp ? "You Spent" : "You were added",
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
               RichText(
@@ -108,7 +108,7 @@ class HistoryDetailsPopUp extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Ok'),
+              child: const Text('Ok'),
             ),
           ),
         ],
