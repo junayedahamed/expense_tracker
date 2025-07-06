@@ -17,8 +17,8 @@ class OutGoingTab extends StatelessWidget {
             .toList();
 
         return ListView.builder(
-          physics: BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           // shrinkWrap: true,
           itemCount: allData.length,
           scrollDirection: Axis.vertical,
