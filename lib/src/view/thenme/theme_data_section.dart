@@ -5,10 +5,10 @@ class ThemeDataSection {
   static final lighttheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
     textTheme: TextTheme(
-      bodySmall: TextStyle(color: Colors.black),
-      bodyMedium: TextStyle(color: Colors.black),
+      bodySmall: const TextStyle(color: Colors.black),
+      bodyMedium: const TextStyle(color: Colors.black),
       // titleLarge: TextStyle(color: Colors.black),
-      bodyLarge: TextStyle(color: Colors.black),
+      bodyLarge: const TextStyle(color: Colors.black),
       // titleMedium: TextStyle(color: Colors.black),
       // titleSmall: TextStyle(color: Colors.black),
     ),
@@ -28,7 +28,7 @@ class ThemeDataSection {
     ),
 
     appBarTheme: AppBarTheme(
-      titleTextStyle: TextStyle(color: Colors.black),
+      titleTextStyle: const TextStyle(color: Colors.black),
       shape: BeveledRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(10),
       ),
@@ -36,7 +36,7 @@ class ThemeDataSection {
   );
 
   static final darktheme = ThemeData.dark().copyWith(
-    cardTheme: CardThemeData(
+    cardTheme: const CardThemeData(
       surfaceTintColor: Colors.limeAccent,
       clipBehavior: Clip.antiAliasWithSaveLayer,
     ),
@@ -54,6 +54,6 @@ class ThemeDataSection {
       labelColor: Colors.limeAccent,
     ),
 
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: const IconThemeData(color: Colors.black),
   );
 }
