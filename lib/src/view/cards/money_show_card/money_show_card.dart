@@ -41,7 +41,7 @@ class MoneyShowCard extends StatelessWidget {
                           ],
                         ),
                 ),
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 400,
                   maxHeight: 200,
                   minHeight: 150,
@@ -104,7 +104,7 @@ class MoneyShowCard extends StatelessWidget {
                                   .costedMoneyOnApp;
                               return Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     CupertinoIcons.star_fill,
                                     size: 18,
                                     color: Colors.amber,
@@ -152,7 +152,7 @@ class MoneyShowCard extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                       text: "CT: ",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 12,
                                       ),
@@ -188,7 +188,7 @@ class MoneyShowCard extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
