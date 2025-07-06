@@ -5,7 +5,7 @@ class ThemeDataSection {
   static final lighttheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
     textTheme: TextTheme(
-      // bodySmall: TextStyle(color: Colors.black),
+      bodySmall: TextStyle(color: Colors.black),
       bodyMedium: TextStyle(color: Colors.black),
       // titleLarge: TextStyle(color: Colors.black),
       bodyLarge: TextStyle(color: Colors.black),

@@ -29,10 +29,23 @@ class HistoryDetailsPopUp extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   children: [
-                    TextSpan(text: "On: ", style: TextStyle(fontSize: 13)),
+                    TextSpan(
+                      text: "On: ",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
                     TextSpan(
                       text: date,
-                      style: TextStyle(fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -42,13 +55,21 @@ class HistoryDetailsPopUp extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: isExp ? "Reason " : "Source: ",
-                      style: TextStyle(fontSize: 13),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
                     TextSpan(
                       text: reason,
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
                       ),
                     ),
                   ],
@@ -57,10 +78,22 @@ class HistoryDetailsPopUp extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   children: [
-                    TextSpan(text: "Amount: "),
+                    TextSpan(
+                      text: "Amount: ",
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
                     TextSpan(
                       text: amount,
-                      style: TextStyle(fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
                   ],
                 ),
