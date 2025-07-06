@@ -17,7 +17,7 @@ class AddIncoming extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisSize: MainAxisSize.min,
-        spacing: 10,
+        spacing: 5,
         children: [
           Text("Source name", style: TextStyle(fontWeight: FontWeight.w600)),
           TextFormField(

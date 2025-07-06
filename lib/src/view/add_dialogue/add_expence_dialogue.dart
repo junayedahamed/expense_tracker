@@ -6,6 +6,7 @@ import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,14 +48,14 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                   onTap: (value) {
                     context.read<DialogueTabController>().changeTab(value);
                   },
-                  dividerColor: Colors.lightGreen,
+                  // dividerColor: Colors.lightGreen,
                   controller: tabController,
-                  labelColor: Colors.green,
 
+                  // labelColor: Colors.green,
                   labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                  // splashBorderRadius: BorderRadius.circular(1),
-                  indicatorSize: TabBarIndicatorSize.tab,
 
+                  // splashBorderRadius: BorderRadius.circular(1),
+                  // indicatorSize: TabBarIndicatorSize.tab,
                   tabAlignment: TabAlignment.center,
                   isScrollable: true,
                   indicatorAnimation: TabIndicatorAnimation.elastic,
@@ -63,11 +64,11 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
 
                   physics: BouncingScrollPhysics(),
 
-                  indicator: BoxDecoration(
-                    border: Border.all(width: 2),
+                  // indicator: BoxDecoration(
+                  //   border: Border.all(width: 2),
 
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                  //   borderRadius: BorderRadius.circular(15),
+                  // ),
                   tabs: [
                     SizedBox(
                       height: 30,
@@ -75,7 +76,12 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                         child: state == 0
                             ? Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Icon(Icons.check), Text("Cost")],
+
+                                children: [
+                                  Icon(Icons.check, size: 20),
+                                  Text("Cost", style: TextStyle(fontSize: 13)),
+                                  SizedBox(width: 4),
+                                ],
                               )
                             : Text("Cost"),
                       ),
@@ -87,7 +93,11 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                         child: state == 1
                             ? Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Icon(Icons.check), Text("Add")],
+                                children: [
+                                  Icon(Icons.check, size: 20),
+                                  Text("Add", style: TextStyle(fontSize: 13)),
+                                  SizedBox(width: 4),
+                                ],
                               )
                             : Text("Add"),
                       ),

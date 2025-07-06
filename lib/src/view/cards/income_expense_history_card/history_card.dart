@@ -1,3 +1,5 @@
+import 'package:expence_tracker/src/view/cards/income_expense_history_card/history_details_pop_up.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HistoryCard extends StatelessWidget {
@@ -12,12 +14,36 @@ class HistoryCard extends StatelessWidget {
   final bool isexp;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Card(
-      surfaceTintColor: Colors.lightGreenAccent,
       child: ListTile(
+        onTap: () {
+          showCupertinoDialog(
+            context: context,
+            builder: (context) => HistoryDetailsPopUp(
+              amount: amount,
+              date: time,
+              isExp: isexp,
+              reason: title,
+            ),
+          );
+        },
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text(title), Text(amount)],
+          children: [
+            SizedBox(
+              width: width * 0.5,
+              child: Text(title, overflow: TextOverflow.ellipsis),
+            ),
+            Flexible(
+              flex: 2,
+              child: Text(
+                amount,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
 
         subtitle: Row(

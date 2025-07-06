@@ -65,24 +65,22 @@ class _HomeViewState extends State<HomeView>
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: TabBar(
-                    labelColor: Colors.orange,
-
                     labelStyle: TextStyle(fontWeight: FontWeight.bold),
                     // splashBorderRadius: BorderRadius.circular(1),
-                    indicatorSize: TabBarIndicatorSize.tab,
+                    // indicatorSize: TabBarIndicatorSize.tab,
                     tabAlignment: TabAlignment.start,
                     isScrollable: true,
-                    indicatorAnimation: TabIndicatorAnimation.elastic,
-                    dividerColor: Colors.transparent,
+                    // indicatorAnimation: TabIndicatorAnimation.elastic,
+                    // dividerColor: Colors.transparent,
                     automaticIndicatorColorAdjustment: true,
 
                     physics: BouncingScrollPhysics(),
 
-                    indicator: BoxDecoration(
-                      border: Border.all(width: 2),
+                    // indicator: BoxDecoration(
+                    //   border: Border.all(width: 2),
 
-                      borderRadius: BorderRadius.circular(15),
-                    ),
+                    //   borderRadius: BorderRadius.circular(15),
+                    // ),
                     controller: tabController,
 
                     onTap: (value) {

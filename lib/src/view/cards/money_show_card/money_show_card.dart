@@ -40,22 +40,29 @@ class MoneyShowCard extends StatelessWidget {
                     children: [
                       const SizedBox(height: 10),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        spacing: 5,
                         children: [
                           const Text(
                             "Avilable Balance",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          Spacer(),
                           BlocBuilder<UpdateIncomingOutgingData, double>(
-                            builder: (context, state) => Text(
-                              state.toString(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                            builder: (context, state) => Flexible(
+                              flex: 2,
+                              child: Text(
+                                overflow: TextOverflow.ellipsis,
+                                state.toString(),
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),

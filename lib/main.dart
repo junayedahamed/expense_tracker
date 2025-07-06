@@ -2,6 +2,7 @@ import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/home/home_view.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
+import 'package:expence_tracker/src/view/thenme/theme_data_section.dart';
 import 'package:expence_tracker/testing_phase/add_money_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,9 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: ThemeDataSection.darktheme,
       home: HomeView(),
     );
   }
