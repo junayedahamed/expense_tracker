@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/money_show_card_gradient_handler/card_gradient_handler.dart';
 import 'package:flutter/cupertino.dart';

@@ -24,6 +24,8 @@ class ThemeChanger extends Cubit<ThemeData> {
       emit(ThemeDataSection.darktheme);
       currentTheme = ThemeDataSection.darktheme;
     }
+    // box.deleteAt(0);
+    // box.putAt(0, currentTheme);
     themeIcon();
   }
 }

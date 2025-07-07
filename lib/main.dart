@@ -40,8 +40,13 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<ThemeChanger, ThemeData>(
       builder: (context, state) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'ExP Tracker',
         theme: state,
+        themeMode: state == ThemeDataSection.darktheme
+            ? ThemeMode.dark
+            : state == ThemeDataSection.lighttheme
+            ? ThemeMode.light
+            : ThemeMode.system,
         home: HomeView(),
       ),
     );
