@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ThemeDataSection {
-  ThemeDataSection._();
+  // ThemeDataSection._();
+
+  static ThemeData initalTheme() {
+    Brightness bightns =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+
+    return bightns == Brightness.dark ? darktheme : lighttheme;
+  }
+
   static final lighttheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
     textTheme: TextTheme(
@@ -14,6 +22,7 @@ class ThemeDataSection {
     ),
     tabBarTheme: TabBarThemeData(
       dividerColor: Colors.transparent,
+
       indicatorColor: Colors.black,
       indicator: BoxDecoration(
         border: Border.all(width: 2, color: Colors.black),
@@ -36,6 +45,7 @@ class ThemeDataSection {
   );
 
   static final darktheme = ThemeData.dark().copyWith(
+    brightness: Brightness.dark,
     cardTheme: const CardThemeData(
       surfaceTintColor: Colors.limeAccent,
       clipBehavior: Clip.antiAliasWithSaveLayer,

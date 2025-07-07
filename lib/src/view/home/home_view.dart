@@ -5,6 +5,7 @@ import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
+import 'package:expence_tracker/src/view/thenme/theme_changer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,16 @@ class _HomeViewState extends State<HomeView>
           "ExP Tracker",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
         ),
-        actions: [Icon(Icons.sunny)],
+        actions: [
+          BlocBuilder<ThemeChanger, ThemeData>(
+            builder: (context, state) => IconButton(
+              onPressed: () {
+                context.read<ThemeChanger>().toggleTheme();
+              },
+              icon: Icon(context.read<ThemeChanger>().themeIcon()),
+            ),
+          ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,

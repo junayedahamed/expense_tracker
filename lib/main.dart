@@ -3,6 +3,7 @@ import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue
 import 'package:expence_tracker/src/repositories/money_show_card_gradient_handler/card_gradient_handler.dart';
 import 'package:expence_tracker/src/view/home/home_view.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
+import 'package:expence_tracker/src/view/thenme/theme_changer.dart';
 import 'package:expence_tracker/src/view/thenme/theme_data_section.dart';
 import 'package:expence_tracker/testing_phase/add_money_bloc.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ void main() {
           create: (_) => DialogueTabController(),
         ),
         BlocProvider<CardGradientHandler>(create: (_) => CardGradientHandler()),
+        BlocProvider<ThemeChanger>(create: (_) => ThemeChanger()),
       ],
       child: MyApp(),
     ),
@@ -35,11 +37,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeDataSection.darktheme,
-      home: HomeView(),
+    return BlocBuilder<ThemeChanger, ThemeData>(
+      builder: (context, state) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: state,
+        home: HomeView(),
+      ),
     );
   }
 }
