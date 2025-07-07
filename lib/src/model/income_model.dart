@@ -1,3 +1,5 @@
+import 'package:expence_tracker/src/model/all_model.dart';
+
 class IncomeModel {
   final double amount;
   final String sourceDetails;
@@ -22,6 +24,15 @@ class IncomeModel {
       sourceDetails: sourceDetailscp ?? sourceDetails,
       addedAt: addedAtcp ?? addedAt,
       isexpense: isexpensecp ?? isexpense,
+    );
+  }
+
+  static IncomeModel parse(AllDataModel data) {
+    return IncomeModel(
+      amount: data.allamount,
+      sourceDetails: data.allreason,
+      addedAt: data.allcostTime,
+      isexpense: data.allisexpense,
     );
   }
 }

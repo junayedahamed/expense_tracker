@@ -56,12 +56,13 @@ class UpdateIncomingOutgingData extends Cubit<double> {
     emit(state + income.amount);
     incominglist.add(income);
     all.add(
-      AllDataModel(
-        allamount: income.amount,
-        allreason: income.sourceDetails,
-        allcostTime: income.addedAt,
-        allisexpense: income.isexpense,
-      ),
+      // AllDataModel(
+      //   allamount: income.amount,
+      //   allreason: income.sourceDetails,
+      //   allcostTime: income.addedAt,
+      //   allisexpense: income.isexpense,
+      // ),
+      AllDataModel.parse(income)!,
     );
     // log(expencelist.length.toString());
     // expencelist.forEach((action) {
@@ -83,12 +84,13 @@ class UpdateIncomingOutgingData extends Cubit<double> {
     emit(state - expence.amount);
     expencelist.add(expence);
     all.add(
-      AllDataModel(
-        allamount: expence.amount,
-        allreason: expence.reason,
-        allcostTime: expence.costTime,
-        allisexpense: expence.isexpense,
-      ),
+      // AllDataModel(
+      //   allamount: expence.amount,
+      //   allreason: expence.reason,
+      //   allcostTime: expence.costTime,
+      //   allisexpense: expence.isexpense,
+      // ),
+      AllDataModel.parse(expence)!,
     );
     costedMoneyOnApp += expence.amount;
     // log(incominglist.length.toString());
