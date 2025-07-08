@@ -1,3 +1,4 @@
+import 'package:expence_tracker/src/model/all_data_adapter.dart';
 import 'package:expence_tracker/src/model/all_model.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
@@ -14,8 +15,9 @@ import 'package:hive_flutter/adapters.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  // Hive.registerAdapter(AllDataModel());
-  await Hive.openBox<List<AllDataModel>>("allData");
+  Hive.registerAdapter(AllDataModelAdapter());
+
+  // await Hive.openBox<List<AllDataModel>>('alldata');
   await Hive.openBox<int>("gradientposition");
   await Hive.openBox<double>("costedBalance");
   runApp(

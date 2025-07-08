@@ -1,3 +1,5 @@
+import 'package:expence_tracker/src/data/cache_data.dart';
+import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_expence_dialogue.dart';
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
 
@@ -20,12 +22,25 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  final CacheData cacheData = CacheData();
 
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
+
     super.initState();
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   // Safe to access context, Hive, etc.
+    cacheData.getAllData();
+    // });
   }
+
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   cacheData.getAllData();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +71,7 @@ class _HomeViewState extends State<HomeView>
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Center(child: MoneyShowCard()),
+          // Text(cacheData.gradientPosition.toString()),
           SizedBox(height: 15),
           Row(
             spacing: 8,
@@ -199,7 +215,9 @@ class _HomeViewState extends State<HomeView>
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  // context.read<UpdateIncomingOutgingData>().getdata();
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [Icon(Icons.graphic_eq), SizedBox(width: 30)],

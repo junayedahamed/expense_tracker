@@ -51,9 +51,7 @@
 
 import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
-import 'package:hive/hive.dart';
-
-// part 'all_data_model.g.dart';
+import 'package:hive_flutter/adapters.dart';
 
 @HiveType(typeId: 0) // ⬅️ must be unique
 class AllDataModel extends HiveObject {

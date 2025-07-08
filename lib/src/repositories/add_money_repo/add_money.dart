@@ -36,6 +36,8 @@
 //   }
 // }
 
+import 'dart:developer';
+
 import 'package:expence_tracker/src/model/all_model.dart';
 import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
@@ -45,7 +47,7 @@ import 'package:hive_flutter/adapters.dart';
 
 class UpdateIncomingOutgingData extends Cubit<double> {
   UpdateIncomingOutgingData() : super(0.0);
-  final databox = Hive.box<List<AllDataModel>>("allData");
+  // final databox = Hive.box<List<AllDataModel>>('alldata');
   final costBalance = Hive.box<double>("costedBalance");
   List<IncomeModel> incominglist = [];
   List<ExpenceModel> expencelist = [];
@@ -57,25 +59,9 @@ class UpdateIncomingOutgingData extends Cubit<double> {
     }
     emit(state + income.amount);
     incominglist.add(income);
-    all.add(
-      // AllDataModel(
-      //   allamount: income.amount,
-      //   allreason: income.sourceDetails,
-      //   allcostTime: income.addedAt,
-      //   allisexpense: income.isexpense,
-      // ),
-      AllDataModel.parse(income)!,
-    );
-    // log(expencelist.length.toString());
-    // expencelist.forEach((action) {
-    //   log(
-    //     action.reason +
-    //         " " +
-    //         action.costTime.toString() +
-    //         action.isexpense.toString(),
-    //   );
-    // });
-    databox.put("alldata", all);
+    all.add(AllDataModel.parse(income)!);
+
+    // databox.put("alldata", all);
   }
 
   void costMoney(ExpenceModel expence) {
@@ -86,21 +72,14 @@ class UpdateIncomingOutgingData extends Cubit<double> {
     }
     emit(state - expence.amount);
     expencelist.add(expence);
-    all.add(
-      // AllDataModel(
-      //   allamount: expence.amount,
-      //   allreason: expence.reason,
-      //   allcostTime: expence.costTime,
-      //   allisexpense: expence.isexpense,
-      // ),
-      AllDataModel.parse(expence)!,
-    );
+    all.add(AllDataModel.parse(expence)!);
     costedMoneyOnApp += expence.amount;
-    // log(incominglist.length.toString());
-    // incominglist.forEach((action) {
-    //   log(action.sourceDetails + " " + action.addedAt.toString());
-    // });
-    databox.put("alldata", all);
+
+    // await databox.put("alldata", all);
     costBalance.put("totalCost", costedMoneyOnApp);
   }
+
+  // void getdata() {
+  //   log(databox.get("alldata")!.reversed.toList().toString());
+  // }
 }
