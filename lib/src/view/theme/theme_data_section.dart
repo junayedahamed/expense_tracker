@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 class ThemeDataSection {
   // ThemeDataSection._();
 
-  static ThemeData initalTheme() {
-    Brightness bightns =
-        WidgetsBinding.instance.platformDispatcher.platformBrightness;
-
-    return bightns == Brightness.dark ? darktheme : lighttheme;
-  }
-
   static final lighttheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
     textTheme: TextTheme(
@@ -63,7 +56,5 @@ class ThemeDataSection {
       indicatorAnimation: TabIndicatorAnimation.elastic,
       labelColor: Colors.limeAccent,
     ),
-
-    iconTheme: const IconThemeData(color: Colors.black),
   );
 }
