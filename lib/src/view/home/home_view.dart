@@ -5,7 +5,7 @@ import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
-import 'package:expence_tracker/src/view/thenme/theme_changer.dart';
+import 'package:expence_tracker/src/view/theme/theme_changer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +29,7 @@ class _HomeViewState extends State<HomeView>
 
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.platformBrightnessOf(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -36,12 +37,17 @@ class _HomeViewState extends State<HomeView>
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
         ),
         actions: [
-          BlocBuilder<ThemeChanger, ThemeData>(
+          BlocBuilder<ThemeChanger, ThemeMode>(
             builder: (context, state) => IconButton(
               onPressed: () {
                 context.read<ThemeChanger>().toggleTheme();
               },
-              icon: Icon(context.read<ThemeChanger>().themeIcon()),
+              icon: Icon(
+                state == ThemeMode.system && brightness == Brightness.dark ||
+                        state == ThemeMode.dark
+                    ? Icons.dark_mode
+                    : Icons.light_mode,
+              ),
             ),
           ),
         ],
