@@ -14,7 +14,7 @@ class CacheData {
   final List<ExpenceModel> _expenceData = [];
   final List<IncomeModel> _incomeData = [];
   final int _cardGradientHandler = 0;
-  final double _totalcost = 0;
+  double _totalcost = 0;
   // ThemeMode _systemTheme = ThemeMode.system;
 
   List<AllDataModel> get allModelData => _allModelData;
@@ -26,6 +26,13 @@ class CacheData {
   void getAllData() {
     final costTotal = costBalance.get("totalCost");
     final gradient = gradientBox.get("gradposition");
+
+    if (costTotal == null) {
+      log("null");
+    } else {
+      _totalcost = costTotal;
+      log(_totalcost.toString());
+    }
 
     // final data = databox.get("alldata");
     log(costTotal.toString());

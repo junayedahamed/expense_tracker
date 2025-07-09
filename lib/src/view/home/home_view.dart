@@ -2,6 +2,7 @@ import 'package:expence_tracker/src/data/cache_data.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_expence_dialogue.dart';
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
+import 'package:expence_tracker/src/view/tab_bar_views/tab_builder.dart';
 
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
@@ -30,17 +31,8 @@ class _HomeViewState extends State<HomeView>
 
     super.initState();
 
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   // Safe to access context, Hive, etc.
     cacheData.getAllData();
-    // });
   }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   cacheData.getAllData();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -90,73 +82,40 @@ class _HomeViewState extends State<HomeView>
           ),
 
           SizedBox(height: 5),
+
           BlocBuilder<MyTabIndexController, int>(
             builder: (context, state) => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: TabBar(
-                    labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                    // splashBorderRadius: BorderRadius.circular(1),
-                    // indicatorSize: TabBarIndicatorSize.tab,
-                    tabAlignment: TabAlignment.start,
-                    isScrollable: true,
-                    // indicatorAnimation: TabIndicatorAnimation.elastic,
-                    // dividerColor: Colors.transparent,
-                    automaticIndicatorColorAdjustment: true,
-
-                    physics: BouncingScrollPhysics(),
-
-                    // indicator: BoxDecoration(
-                    //   border: Border.all(width: 2),
-
-                    //   borderRadius: BorderRadius.circular(15),
-                    // ),
-                    controller: tabController,
-
-                    onTap: (value) {
-                      context.read<MyTabIndexController>().changeTab(value);
-                    },
-                    tabs: [
-                      SizedBox(
-                        height: 30,
-                        // width: ,
-                        child: Center(
-                          child: state == 0
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Icon(Icons.check), Text("All")],
-                                )
-                              : Text("All"),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                        child: Center(
-                          child: state == 1
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Icon(Icons.check), Text("In")],
-                                )
-                              : Text("In"),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                        child: Center(
-                          child: state == 2
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Icon(Icons.check), Text("Out")],
-                                )
-                              : Text("Out"),
-                        ),
-                      ),
-                    ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TabBar(
+                      labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                      tabAlignment: TabAlignment.start,
+                      isScrollable: true,
+                      automaticIndicatorColorAdjustment: true,
+                      physics: BouncingScrollPhysics(),
+                      controller: tabController,
+                      onTap: (value) {
+                        context.read<MyTabIndexController>().changeTab(value);
+                      },
+                      tabs: [
+                        TabBuilder(isSelected: state == 0, label: "All"),
+                        TabBuilder(isSelected: state == 1, label: "In"),
+                        TabBuilder(isSelected: state == 2, label: "Out"),
+                      ],
+                    ),
                   ),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
+
+                // 🔍 Search Button on the right
+                IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    // Your search action here
+                    // print("Search pressed");
+                  },
+                ),
               ],
             ),
           ),

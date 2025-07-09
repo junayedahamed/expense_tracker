@@ -38,6 +38,7 @@
 
 import 'dart:developer';
 
+import 'package:expence_tracker/src/data/cache_data.dart';
 import 'package:expence_tracker/src/model/all_model.dart';
 import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
@@ -46,8 +47,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class UpdateIncomingOutgingData extends Cubit<double> {
-  UpdateIncomingOutgingData() : super(0.0);
+  UpdateIncomingOutgingData() : super(CacheData().totalcost);
   // final databox = Hive.box<List<AllDataModel>>('alldata');
+  final t = CacheData().totalcost;
   final costBalance = Hive.box<double>("costedBalance");
   List<IncomeModel> incominglist = [];
   List<ExpenceModel> expencelist = [];
@@ -55,6 +57,7 @@ class UpdateIncomingOutgingData extends Cubit<double> {
   double costedMoneyOnApp = 0;
   void addMoney(IncomeModel income) {
     if (income.amount <= 0) {
+      log(t.toString());
       return;
     }
     emit(state + income.amount);
