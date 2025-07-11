@@ -12,8 +12,12 @@ class OutGoingTab extends StatelessWidget {
       builder: (context, state) {
         final allData = context
             .read<UpdateIncomingOutgingData>()
-            .expencelist
+            .transectionList
             .reversed
+            .toList()
+            .where((data) {
+              return data.isexpense == true;
+            })
             .toList();
 
         return ListView.builder(
@@ -28,8 +32,8 @@ class OutGoingTab extends StatelessWidget {
               amount: dataUnit.amount.toString(),
               isexp: dataUnit.isexpense,
               time:
-                  "${dataUnit.costTime.day}-${dataUnit.costTime.month}-${dataUnit.costTime.year}",
-              title: dataUnit.reason,
+                  "${dataUnit.addedAt.day}-${dataUnit.addedAt.month}-${dataUnit.addedAt.year}",
+              title: dataUnit.sourceDetails,
             );
           },
         );

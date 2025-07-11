@@ -12,7 +12,7 @@ class AllTabPage extends StatelessWidget {
       builder: (context, state) {
         final allData = context
             .read<UpdateIncomingOutgingData>()
-            .all
+            .transectionList
             .reversed
             .toList();
         return ListView.builder(
@@ -24,11 +24,11 @@ class AllTabPage extends StatelessWidget {
           itemBuilder: (context, index) {
             final dataUnit = allData[index];
             return HistoryCard(
-              amount: dataUnit.allamount.toString(),
-              isexp: dataUnit.allisexpense,
+              amount: dataUnit.amount.toString(),
+              isexp: dataUnit.isexpense,
               time:
-                  "${dataUnit.allcostTime.day}-${dataUnit.allcostTime.month}-${dataUnit.allcostTime.year}",
-              title: dataUnit.allreason,
+                  "${dataUnit.addedAt.day}-${dataUnit.addedAt.month}-${dataUnit.addedAt.year}",
+              title: dataUnit.sourceDetails,
             );
           },
         );

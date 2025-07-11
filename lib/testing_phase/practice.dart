@@ -1,11 +1,11 @@
-void main() {
-  final myList = List.generate(15, (index) {
-    return index * 2;
-  });
+// void main() {
+//   final myList = List.generate(15, (index) {
+//     return index * 2;
+//   });
 
-  final map = myList.map((e) {
-    return e;
-  });
+//   final map = myList.map((e) {
+//     return e;
+//   });
 
-  print(map);
-}
+//   // print(map);
+// }

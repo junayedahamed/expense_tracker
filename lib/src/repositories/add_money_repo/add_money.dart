@@ -36,53 +36,33 @@
 //   }
 // }
 
-import 'dart:developer';
-
-import 'package:expence_tracker/src/data/cache_data.dart';
-import 'package:expence_tracker/src/model/all_model.dart';
-import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
 
 class UpdateIncomingOutgingData extends Cubit<double> {
-  UpdateIncomingOutgingData() : super(CacheData().totalcost);
-  // final databox = Hive.box<List<AllDataModel>>('alldata');
-  final t = CacheData().totalcost;
-  final costBalance = Hive.box<double>("costedBalance");
-  List<IncomeModel> incominglist = [];
-  List<ExpenceModel> expencelist = [];
-  List<AllDataModel> all = [];
+  UpdateIncomingOutgingData() : super(0);
+
+  List<TransectionModel> transectionList = [];
+
   double costedMoneyOnApp = 0;
-  void addMoney(IncomeModel income) {
+  void addMoney(TransectionModel income) {
     if (income.amount <= 0) {
-      log(t.toString());
       return;
     }
     emit(state + income.amount);
-    incominglist.add(income);
-    all.add(AllDataModel.parse(income)!);
-
-    // databox.put("alldata", all);
+    transectionList.add(income);
   }
 
-  void costMoney(ExpenceModel expence) {
+  void costMoney(TransectionModel expence) {
     if (state <= 0 || expence.amount <= 0) {
       return;
     } else if (state < expence.amount) {
       return;
     }
     emit(state - expence.amount);
-    expencelist.add(expence);
-    all.add(AllDataModel.parse(expence)!);
+    transectionList.add(expence);
+
     costedMoneyOnApp += expence.amount;
-
-    // await databox.put("alldata", all);
-    costBalance.put("totalCost", costedMoneyOnApp);
   }
-
-  // void getdata() {
-  //   log(databox.get("alldata")!.reversed.toList().toString());
-  // }
 }

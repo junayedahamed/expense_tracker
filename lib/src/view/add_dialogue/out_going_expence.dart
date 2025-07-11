@@ -18,23 +18,41 @@ class ExpenceTab extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: 5,
         children: [
-          Text("Reason", style: TextStyle(fontWeight: FontWeight.w600)),
-          TextFormField(
-            controller: reasonController,
-            decoration: InputDecoration(border: OutlineInputBorder()),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              "Reason",
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
           ),
-          Text("Amount", style: TextStyle(fontWeight: FontWeight.w600)),
-          TextFormField(
-            controller: amountcontroller,
-            keyboardType: TextInputType.number,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "Enter amount tk";
-              } else {
-                return null;
-              }
-            },
-            decoration: InputDecoration(border: OutlineInputBorder()),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextFormField(
+              controller: reasonController,
+              decoration: InputDecoration(border: OutlineInputBorder()),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              "Amount",
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextFormField(
+              controller: amountcontroller,
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Enter amount tk";
+                } else {
+                  return null;
+                }
+              },
+              decoration: InputDecoration(border: OutlineInputBorder()),
+            ),
           ),
         ],
       ),

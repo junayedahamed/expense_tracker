@@ -61,8 +61,8 @@ class MoneyShowCard extends StatelessWidget {
                                 "Avilable Balance",
                                 style: TextStyle(
                                   fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               Spacer(),
@@ -112,28 +112,36 @@ class MoneyShowCard extends StatelessWidget {
                                         ? CupertinoIcons.star_fill
                                         : CupertinoIcons.star,
                                     size: 18,
-                                    color: value >= 5000 ? Colors.amber : null,
+                                    color: value >= 5000
+                                        ? Colors.amber
+                                        : Colors.black,
                                   ),
                                   Icon(
                                     value >= 10000
                                         ? CupertinoIcons.star_fill
                                         : CupertinoIcons.star,
                                     size: 18,
-                                    color: value >= 10000 ? Colors.amber : null,
+                                    color: value >= 10000
+                                        ? Colors.amber
+                                        : Colors.black,
                                   ),
                                   Icon(
                                     value >= 20000
                                         ? CupertinoIcons.star_fill
                                         : CupertinoIcons.star,
                                     size: 18,
-                                    color: value >= 20000 ? Colors.amber : null,
+                                    color: value >= 20000
+                                        ? Colors.amber
+                                        : Colors.black,
                                   ),
                                   Icon(
                                     value >= 35000
                                         ? CupertinoIcons.star_fill
                                         : CupertinoIcons.star,
                                     size: 18,
-                                    color: value >= 35000 ? Colors.amber : null,
+                                    color: value >= 35000
+                                        ? Colors.amber
+                                        : Colors.black,
                                   ),
                                 ],
                               );

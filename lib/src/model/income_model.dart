@@ -1,25 +1,23 @@
-import 'package:expence_tracker/src/model/all_model.dart';
-
-class IncomeModel {
+class TransectionModel {
   final double amount;
   final String sourceDetails;
   final DateTime addedAt;
   final bool isexpense;
 
-  IncomeModel({
+  TransectionModel({
     required this.amount,
     required this.sourceDetails,
     required this.addedAt,
     required this.isexpense,
   });
 
-  IncomeModel copyWith(
+  TransectionModel copyWith(
     double? amounttk,
     String? sourceDetailscp,
     DateTime? addedAtcp,
     bool? isexpensecp,
   ) {
-    return IncomeModel(
+    return TransectionModel(
       amount: amounttk ?? amount,
       sourceDetails: sourceDetailscp ?? sourceDetails,
       addedAt: addedAtcp ?? addedAt,
@@ -27,12 +25,12 @@ class IncomeModel {
     );
   }
 
-  static IncomeModel parse(AllDataModel data) {
-    return IncomeModel(
-      amount: data.allamount,
-      sourceDetails: data.allreason,
-      addedAt: data.allcostTime,
-      isexpense: data.allisexpense,
-    );
-  }
+  // static TransectionModel parse(AllDataModel data) {
+  //   return TransectionModel(
+  //     amount: data.allamount,
+  //     sourceDetails: data.allreason,
+  //     addedAt: data.allcostTime,
+  //     isexpense: data.allisexpense,
+  //   );
+  // }
 }
