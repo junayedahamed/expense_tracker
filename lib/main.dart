@@ -5,7 +5,6 @@ import 'package:expence_tracker/src/view/home/home_view.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
 import 'package:expence_tracker/src/view/theme/theme_changer.dart';
 import 'package:expence_tracker/src/view/theme/theme_data_section.dart';
-import 'package:expence_tracker/testing_phase/add_money_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,8 +12,7 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
-
+        // BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
         BlocProvider<UpdateIncomingOutgingData>(
           create: (_) => UpdateIncomingOutgingData(),
         ),

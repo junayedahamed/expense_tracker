@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllTabPage extends StatelessWidget {
-  const AllTabPage({super.key});
-
+  AllTabPage({super.key});
+  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateIncomingOutgingData, double>(
@@ -16,12 +16,14 @@ class AllTabPage extends StatelessWidget {
             .reversed
             .toList();
         return ListView.builder(
+          controller: scrollController,
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 10),
           // shrinkWrap: true,
           itemCount: allData.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
+            // log(scrollController.position.pixels.toString());
             final dataUnit = allData[index];
             return HistoryCard(
               amount: dataUnit.amount.toString(),
