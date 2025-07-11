@@ -1,12 +1,11 @@
 import 'dart:developer';
 
-import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -128,7 +127,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                     FilledButton(
                       onPressed: () {
                         if (state == 1) {
-                          var data = IncomeModel(
+                          var data = TransectionModel(
                             amount: double.tryParse(amountAdd.text) ?? 0.0,
                             addedAt: DateTime.now(),
                             sourceDetails: reasonAdd.text.isEmpty
@@ -148,10 +147,10 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                         }
 
                         if (state == 0) {
-                          var data2 = ExpenceModel(
+                          var data2 = TransectionModel(
                             amount: double.tryParse(amountCost.text) ?? 0.0,
-                            costTime: DateTime.now(),
-                            reason: reasonCost.text.isEmpty
+                            addedAt: DateTime.now(),
+                            sourceDetails: reasonCost.text.isEmpty
                                 ? "Unknown"
                                 : reasonCost.text,
                             isexpense: true,

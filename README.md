@@ -1,16 +1,55 @@
-# expence_tracker
+# Expence_tracker 💰
 
-A new Flutter project.
+A project to track users expence 
 
-## Getting Started
+## Incoming 
 
-This project is a starting point for a Flutter application.
+User added the amount that he/she get from any source  with particular date 
 
-A few resources to get you started if this is your first Flutter project:
+## Expence 
+User spent amount of money with a reason with particular date
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## All section
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+it will show all the incoming and outgoing history
+
+
+## Theme 
+
+initaly it will follow system theme and users can change theme with there preference in (dark/light)
+
+## money show card
+
+it will show the balance avilable among the the user were added 
+
+with real time update on spent or add money
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+# Upcoming Updates ⚒️
+
+## Chart 📊
+   ### Users can Select chart type from a dropdown
+   <br>
+
+  - **Daily :**    This section were show daily spent  & add of money on a graph  chart 
+  - **Weekly :**  This section were show weekly spent  & add of money on a graph  chart 
+  - **Monthly :**  This section were show monthly spent  & add of money on a graph  chart 
+  - **Yearly :**  This section were show yearly spent  & add of money on a graph  chart 
+
+  ## Data Backup ⬆️
+
+###  Users ca backup there data on a online db 
+
+  ## Taking Backup ⬇️
+
+ ### Users can take a backup there previous data if they needed
+
+    

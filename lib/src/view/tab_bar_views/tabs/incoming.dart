@@ -12,8 +12,12 @@ class InComingTab extends StatelessWidget {
       builder: (context, state) {
         final allData = context
             .read<UpdateIncomingOutgingData>()
-            .incominglist
+            .transectionList
             .reversed
+            .toList()
+            .where((data) {
+              return data.isexpense == false;
+            })
             .toList();
         return ListView.builder(
           physics: const BouncingScrollPhysics(),

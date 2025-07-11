@@ -36,66 +36,33 @@
 //   }
 // }
 
-import 'package:expence_tracker/src/model/all_model.dart';
-import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateIncomingOutgingData extends Cubit<double> {
-  UpdateIncomingOutgingData() : super(0.0);
+  UpdateIncomingOutgingData() : super(0);
 
-  List<IncomeModel> incominglist = [];
-  List<ExpenceModel> expencelist = [];
-  List<AllDataModel> all = [];
+  List<TransectionModel> transectionList = [];
+
   double costedMoneyOnApp = 0;
-  void addMoney(IncomeModel income) {
+  void addMoney(TransectionModel income) {
     if (income.amount <= 0) {
       return;
     }
     emit(state + income.amount);
-    incominglist.add(income);
-    all.add(
-      // AllDataModel(
-      //   allamount: income.amount,
-      //   allreason: income.sourceDetails,
-      //   allcostTime: income.addedAt,
-      //   allisexpense: income.isexpense,
-      // ),
-      AllDataModel.parse(income)!,
-    );
-    // log(expencelist.length.toString());
-    // expencelist.forEach((action) {
-    //   log(
-    //     action.reason +
-    //         " " +
-    //         action.costTime.toString() +
-    //         action.isexpense.toString(),
-    //   );
-    // });
+    transectionList.add(income);
   }
 
-  void costMoney(ExpenceModel expence) {
+  void costMoney(TransectionModel expence) {
     if (state <= 0 || expence.amount <= 0) {
       return;
     } else if (state < expence.amount) {
       return;
     }
     emit(state - expence.amount);
-    expencelist.add(expence);
-    all.add(
-      // AllDataModel(
-      //   allamount: expence.amount,
-      //   allreason: expence.reason,
-      //   allcostTime: expence.costTime,
-      //   allisexpense: expence.isexpense,
-      // ),
-      AllDataModel.parse(expence)!,
-    );
+    transectionList.add(expence);
+
     costedMoneyOnApp += expence.amount;
-    // log(incominglist.length.toString());
-    // incominglist.forEach((action) {
-    //   log(action.sourceDetails + " " + action.addedAt.toString());
-    // });
   }
 }
