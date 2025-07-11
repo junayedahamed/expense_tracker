@@ -87,6 +87,10 @@ class MoneyShowCard extends StatelessWidget {
                       "assets/icons/bg_tag.svg",
                       height: 100,
                       width: 100,
+                      colorFilter: ColorFilter.mode(
+                        CupertinoColors.separator,
+                        BlendMode.srcIn,
+                      ),
                     ),
                     Spacer(),
                     Padding(
