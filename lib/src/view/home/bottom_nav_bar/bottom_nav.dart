@@ -94,9 +94,12 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
                     currentIndex = 1;
                   });
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Icon(Icons.graphic_eq), SizedBox(width: 32)],
+                child: SizedBox(
+                  width: 40,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [Icon(Icons.graphic_eq)],
+                  ),
                 ),
               ),
             ],

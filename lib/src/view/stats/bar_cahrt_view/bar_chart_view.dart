@@ -40,7 +40,7 @@ class BarChartView extends StatelessWidget {
             ),
             SizedBox(height: 20),
             SizedBox(
-              height: 420,
+              height: 500,
               child: BlocBuilder<UpdateIncomingOutgingData, double>(
                 builder: (context, state) {
                   final allData = context
@@ -49,16 +49,22 @@ class BarChartView extends StatelessWidget {
                       .toList();
                   return BarChart(
                     BarChartData(
+                      barTouchData: BarTouchData(
+                        touchTooltipData: BarTouchTooltipData(
+                          direction: TooltipDirection.auto,
+                        ),
+                      ),
                       barGroups: allData.map((data) {
                         return BarChartGroupData(
                           x: data.addedAt.hour,
 
                           barRods: [
                             BarChartRodData(
+                              borderDashArray: [5, 2],
                               backDrawRodData: BackgroundBarChartRodData(
                                 show: true,
                                 toY: data.amount,
-                                color: Colors.grey.shade300,
+                                color: Colors.red.shade300,
                               ),
                               fromY: 0,
                               toY: data.amount,
