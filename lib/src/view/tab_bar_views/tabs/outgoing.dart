@@ -13,6 +13,7 @@ class OutGoingTab extends StatelessWidget {
       stream: context.read<TransactionsDao>().watchAllTransectionItems(),
       builder: (context, snapshot) {
         final allData = snapshot.data;
+
         if (snapshot.hasError) {
           return Center(child: Text("Error occoured"));
         }
@@ -21,7 +22,10 @@ class OutGoingTab extends StatelessWidget {
         }
 
         if (allData == null) {
-          return LinearProgressIndicator();
+          return Center(child: Text("No Data found"));
+        }
+        if (allData.isEmpty) {
+          return Center(child: Text("No Data found"));
         }
 
         final filteredData = allData

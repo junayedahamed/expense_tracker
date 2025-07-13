@@ -17,13 +17,14 @@ class AllTabPage extends StatelessWidget {
           return Center(child: Text("Error occoured"));
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return LinearProgressIndicator();
+          return CircularProgressIndicator();
         }
-
         if (allData == null) {
-          return LinearProgressIndicator();
+          return Center(child: Text("No Data found"));
         }
-
+        if (allData.isEmpty) {
+          return Center(child: Text("No Data found"));
+        }
         return ListView.builder(
           controller: scrollController,
           physics: const BouncingScrollPhysics(),

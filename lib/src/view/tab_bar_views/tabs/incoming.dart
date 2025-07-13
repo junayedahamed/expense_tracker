@@ -21,7 +21,10 @@ class InComingTab extends StatelessWidget {
         }
 
         if (allData == null) {
-          return LinearProgressIndicator();
+          return Center(child: Text("No Data found"));
+        }
+        if (allData.isEmpty) {
+          return Center(child: Text("No Data found"));
         }
 
         final filteredData = allData

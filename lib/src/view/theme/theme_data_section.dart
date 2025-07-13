@@ -8,10 +8,22 @@ class ThemeDataSection {
     textTheme: TextTheme(
       bodySmall: const TextStyle(color: Colors.black),
       bodyMedium: const TextStyle(color: Colors.black),
-      // titleLarge: TextStyle(color: Colors.black),
+      titleLarge: TextStyle(color: Colors.black),
       bodyLarge: const TextStyle(color: Colors.black),
-      // titleMedium: TextStyle(color: Colors.black),
-      // titleSmall: TextStyle(color: Colors.black),
+      titleMedium: TextStyle(color: Colors.black),
+      titleSmall: TextStyle(color: Colors.black),
+    ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      // backgroundColor: Color(0xffF5F5F5),
+      backgroundColor: Colors.grey.shade50,
+
+      selectedIconTheme: IconThemeData(
+        color: Colors.teal,
+        // selectedItemColor:,
+      ),
+      unselectedIconTheme: IconThemeData(color: Colors.black),
+      elevation: 10,
     ),
     tabBarTheme: TabBarThemeData(
       dividerColor: Colors.transparent,
@@ -42,6 +54,16 @@ class ThemeDataSection {
     cardTheme: const CardThemeData(
       surfaceTintColor: Colors.limeAccent,
       clipBehavior: Clip.antiAliasWithSaveLayer,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      // backgroundColor: Colors.black12,
+      backgroundColor: Color(0xff1E1E1F),
+      selectedIconTheme: IconThemeData(color: Colors.lightGreenAccent),
+      selectedItemColor: Colors.lightGreenAccent,
+
+      unselectedIconTheme: IconThemeData(color: Colors.white),
+      unselectedItemColor: Colors.white,
+      elevation: 10,
     ),
     tabBarTheme: TabBarThemeData(
       dividerColor: Colors.transparent,
