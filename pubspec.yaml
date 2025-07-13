@@ -40,6 +40,7 @@ dependencies:
   drift: ^2.26.1
   drift_flutter: ^0.2.4
   path_provider: ^2.1.5
+  provider: ^6.1.5
 
 dev_dependencies:
   hive_generator: ^2.0.1

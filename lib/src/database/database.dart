@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 part 'database.g.dart';
 
@@ -20,14 +24,11 @@ class AppDatabase extends _$AppDatabase {
 
   static QueryExecutor _openConnection() {
     return NativeDatabase.memory();
-    //  driftDatabase(
-    //   name: 'my_database',
-    //   native: const DriftNativeOptions(
-    //     // By default, `driftDatabase` from `package:drift_flutter` stores the
-    //     // database files in `getApplicationDocumentsDirectory()`.
-    //     databaseDirectory: getApplicationSupportDirectory,
-    //   ),
-    //   // If you need web support, see https://drift.simonbinder.eu/platforms/web/
-    // );
+    // return LazyDatabase(() async {
+    //   final dbFolder = await getApplicationDocumentsDirectory();
+    //   final file = File(p.join(dbFolder.path, 'db.sqlite'));
+
+    //   return NativeDatabase.createInBackground(file);
+    // });
   }
 }

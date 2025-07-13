@@ -1,6 +1,7 @@
-import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
+import 'package:expence_tracker/src/database/database.dart';
+import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/view/cards/income_expense_history_card/history_card.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllTabPage extends StatelessWidget {
@@ -8,13 +9,21 @@ class AllTabPage extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpdateIncomingOutgingData, double>(
-      builder: (context, state) {
-        final allData = context
-            .read<UpdateIncomingOutgingData>()
-            .transectionList
-            .reversed
-            .toList();
+    return StreamBuilder<List<TransectionItem>>(
+      stream: context.read<TransactionsDao>().watchAllTransectionItems(),
+      builder: (context, snapshot) {
+        final allData = snapshot.data;
+        if (snapshot.hasError) {
+          return Center(child: Text("Error occoured"));
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return LinearProgressIndicator();
+        }
+
+        if (allData == null) {
+          return LinearProgressIndicator();
+        }
+
         return ListView.builder(
           controller: scrollController,
           physics: const BouncingScrollPhysics(),
@@ -27,9 +36,9 @@ class AllTabPage extends StatelessWidget {
             final dataUnit = allData[index];
             return HistoryCard(
               amount: dataUnit.amount.toString(),
-              isexp: dataUnit.isexpense,
+              isexp: dataUnit.isExp,
               time:
-                  "${dataUnit.addedAt.day}-${dataUnit.addedAt.month}-${dataUnit.addedAt.year}",
+                  "${dataUnit.createdAt?.day}-${dataUnit.createdAt?.month}-${dataUnit.createdAt?.year}",
               title: dataUnit.sourceDetails,
             );
           },
