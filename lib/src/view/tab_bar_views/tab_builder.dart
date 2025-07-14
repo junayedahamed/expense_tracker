@@ -12,7 +12,7 @@ class TabBuilder extends StatelessWidget {
         child: isSelected
             ? Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [Icon(Icons.check, size: 16), Text(label)],
+                children: [const Icon(Icons.check, size: 16), Text(label)],
               )
             : Text(label),
       ),

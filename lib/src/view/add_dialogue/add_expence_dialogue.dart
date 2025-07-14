@@ -24,10 +24,21 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
   final TextEditingController amountCost = TextEditingController();
   final TextEditingController amountAdd = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    reasonCost.dispose();
+    reasonAdd.dispose();
+    amountCost.dispose();
+    amountAdd.dispose();
+    super.dispose();
   }
 
   @override
@@ -41,7 +52,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
             builder: (context, state) => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 5),
+                SizedBox(height: 10),
 
                 TabBar(
                   onTap: (value) {
@@ -69,36 +80,52 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                   //   borderRadius: BorderRadius.circular(15),
                   // ),
                   tabs: [
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: state == 0
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                    // SizedBox(
+                    //   height: 30,
+                    //   child: Center(
+                    //     child: state == 0
+                    //         ? Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
 
-                                children: [
-                                  Icon(Icons.check, size: 20),
-                                  Text("Cost", style: TextStyle(fontSize: 13)),
-                                  SizedBox(width: 4),
-                                ],
-                              )
-                            : Text("Cost"),
+                    //             children: [
+                    //               Icon(Icons.check, size: 20),
+                    //               Text("Cost", style: TextStyle(fontSize: 13)),
+                    //               SizedBox(width: 4),
+                    //             ],
+                    //           )
+                    //         : Text("Cost"),
+                    //   ),
+                    // ),
+                    // // SizedBox(width: 5),
+                    // SizedBox(
+                    //   height: 30,
+                    //   child: Center(
+                    //     child: state == 1
+                    //         ? Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Icon(Icons.check, size: 20),
+                    //               Text("Add", style: TextStyle(fontSize: 13)),
+                    //               SizedBox(width: 4),
+                    //             ],
+                    //           )
+                    //         : Text("Add"),
+                    //   ),
+                    // ),
+                    // TabBuilder(isSelected: state == 0, label: "Cost"),
+                    // TabBuilder(isSelected: state == 1, label: "Add"),
+                    Text(
+                      "Cost",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // SizedBox(width: 5),
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: state == 1
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.check, size: 20),
-                                  Text("Add", style: TextStyle(fontSize: 13)),
-                                  SizedBox(width: 4),
-                                ],
-                              )
-                            : Text("Add"),
+                    Text(
+                      "Add",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],

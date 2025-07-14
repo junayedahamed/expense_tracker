@@ -1,33 +1,47 @@
+import 'package:expence_tracker/src/database/database.dart';
+import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
+import 'package:expence_tracker/src/repositories/home_search_bar_controller/home_search_bar_show_controller.dart';
 import 'package:expence_tracker/src/repositories/money_show_card_gradient_handler/card_gradient_handler.dart';
-import 'package:expence_tracker/src/view/home/home_view.dart';
+import 'package:expence_tracker/src/view/home/bottom_nav_bar/bottom_nav.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
 import 'package:expence_tracker/src/view/theme/theme_changer.dart';
 import 'package:expence_tracker/src/view/theme/theme_data_section.dart';
-import 'package:expence_tracker/testing_phase/add_money_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
-void main() async {
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    MultiBlocProvider(
+    MultiProvider(
       providers: [
-        BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
-
-        BlocProvider<UpdateIncomingOutgingData>(
-          create: (_) => UpdateIncomingOutgingData(),
+        Provider<AppDatabase>(create: (context) => AppDatabase()),
+        Provider<TransactionsDao>(
+          create: (context) => TransactionsDao(context.read()),
         ),
-        BlocProvider<MyTabIndexController>(
-          create: (_) => MyTabIndexController(),
-        ),
-        BlocProvider<DialogueTabController>(
-          create: (_) => DialogueTabController(),
-        ),
-        BlocProvider<CardGradientHandler>(create: (_) => CardGradientHandler()),
-        BlocProvider<ThemeChanger>(create: (_) => ThemeChanger()),
       ],
-      child: MyApp(),
+      child: MultiBlocProvider(
+        providers: [
+          // BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
+          BlocProvider<UpdateIncomingOutgingData>(
+            create: (context) => UpdateIncomingOutgingData(context.read()),
+          ),
+          BlocProvider<SearchBarState>(create: (_) => SearchBarState()),
+          BlocProvider<MyTabIndexController>(
+            create: (_) => MyTabIndexController(),
+          ),
+          BlocProvider<DialogueTabController>(
+            create: (_) => DialogueTabController(),
+          ),
+          BlocProvider<CardGradientHandler>(
+            create: (_) => CardGradientHandler(),
+          ),
+          BlocProvider<ThemeChanger>(create: (_) => ThemeChanger()),
+        ],
+        child: MyApp(),
+      ),
     ),
   );
 }
@@ -44,7 +58,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeDataSection.lighttheme,
         darkTheme: ThemeDataSection.darktheme,
         themeMode: state,
-        home: HomeView(),
+        // home: HomeView(),
+        home: MyNavigationBar(),
       ),
     );
   }
