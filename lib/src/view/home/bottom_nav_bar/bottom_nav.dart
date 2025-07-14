@@ -45,6 +45,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       floatingActionButton: GestureDetector(
         onTap: () {
           showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) => AddExpenceDialogue(),
           );

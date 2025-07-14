@@ -26,7 +26,7 @@ void main() {
         providers: [
           // BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
           BlocProvider<UpdateIncomingOutgingData>(
-            create: (_) => UpdateIncomingOutgingData(),
+            create: (context) => UpdateIncomingOutgingData(context.read()),
           ),
           BlocProvider<SearchBarState>(create: (_) => SearchBarState()),
           BlocProvider<MyTabIndexController>(

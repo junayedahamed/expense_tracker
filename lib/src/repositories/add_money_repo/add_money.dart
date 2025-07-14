@@ -36,34 +36,40 @@
 // //   }
 // // }
 
+import 'dart:developer';
+
+import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateIncomingOutgingData extends Cubit<double> {
-  UpdateIncomingOutgingData() : super(0);
-  // final db = AppDatabase();
-  // final TransectionTableHelpher helpher = TransectionTableHelpher(db.);
+  UpdateIncomingOutgingData(this.transactions) : super(0);
+  // final AppDatabase db = AppDatabase();
+  final TransactionsDao transactions;
+
   List<TransectionModel> transectionList = [];
 
   double costedMoneyOnApp = 0;
-  void addMoney(TransectionModel income) {
+  void addMoney(TransectionModel income) async {
     if (income.amount <= 0) {
       return;
     }
     emit(state + income.amount);
     transectionList.add(income);
+    await transactions.insertTransection(income);
   }
 
-  void costMoney(TransectionModel expence) {
+  void costMoney(TransectionModel expence) async {
     if (state <= 0 || expence.amount <= 0) {
       return;
     } else if (state < expence.amount) {
       return;
     }
+    log(expence.amount.toString());
     emit(state - expence.amount);
     transectionList.add(expence);
-
+    await transactions.insertTransection(expence);
     costedMoneyOnApp += expence.amount;
   }
 }

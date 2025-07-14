@@ -2,6 +2,7 @@ import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class BarChartView extends StatelessWidget {
   BarChartView({super.key});
@@ -58,43 +59,97 @@ class BarChartView extends StatelessWidget {
                 if (allData.isEmpty) {
                   return Center(child: Text("No Data found"));
                 }
-                return BarChart(
-                  BarChartData(
-                    barTouchData: BarTouchData(
-                      touchTooltipData: BarTouchTooltipData(
-                        direction: TooltipDirection.auto,
+                return SizedBox(
+                  height: 450,
+                  child: BarChart(
+                    BarChartData(
+                      barTouchData: BarTouchData(
+                        touchTooltipData: BarTouchTooltipData(
+                          direction: TooltipDirection.auto,
+                        ),
                       ),
-                    ),
-                    barGroups: allData?.map((data) {
-                      return BarChartGroupData(
-                        x: data.createdAt!.hour,
+                      barGroups: allData.map((data) {
+                        return BarChartGroupData(
+                          x: data.createdAt!.hour,
 
-                        barRods: [
-                          BarChartRodData(
-                            borderDashArray: [5, 2],
-                            backDrawRodData: BackgroundBarChartRodData(
-                              show: true,
+                          barRods: [
+                            BarChartRodData(
+                              borderDashArray: [5, 2],
+                              backDrawRodData: BackgroundBarChartRodData(
+                                show: true,
+                                toY: data.amount,
+                                color: Colors.red.shade300,
+                              ),
+                              fromY: 0,
                               toY: data.amount,
-                              color: Colors.red.shade300,
+                              width: 15,
+                              borderRadius: BorderRadius.circular(5),
+                              // toY: data.amount,
+                              color: data.isExp == false
+                                  ? Colors.green
+                                  : Colors.red,
                             ),
-                            fromY: 0,
-                            toY: data.amount,
-                            width: 15,
-                            borderRadius: BorderRadius.circular(5),
-                            // toY: data.amount,
-                            color: data.isExp == false
-                                ? Colors.green
-                                : Colors.red,
-                          ),
-                        ],
-                      );
-                    }).toList(),
+                          ],
+                        );
+                      }).toList(),
+                    ),
                   ),
                 );
                 // log(allData.toString());
                 // return Text("data");
               },
             ),
+            SizedBox(height: 20),
+            //Dev Info
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            //   child: Container(
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(16),
+            //       border: Border.all(
+            //         width: 2,
+            //         color: Theme.of(context).iconTheme.color ?? Colors.black,
+            //       ),
+            //       color:
+            //           MediaQuery.of(context).platformBrightness ==
+            //               Brightness.light
+            //           ? Colors.blueGrey
+            //           : Colors.transparent,
+            //     ),
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Padding(
+            //           padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            //           child: Text(
+            //             "Developer Info",
+            //             style: TextStyle(
+            //               fontSize: 20,
+            //               fontWeight: FontWeight.w600,
+            //             ),
+            //           ),
+            //         ),
+            //         ExpansionTile(
+            //           leading: SvgPicture.asset(
+            //             'assets/icons/dev.svg',
+            //             colorFilter: ColorFilter.mode(
+            //               Theme.of(context).iconTheme.color ?? Colors.white,
+            //               BlendMode.srcIn,
+            //             ),
+            //           ),
+            //           shape: RoundedRectangleBorder(
+            //             // borderRadius: BorderRadiusGeometry.circular(16),
+            //           ),
+            //           title: Text("About Developer"),
+
+            //           children: [
+
+            //           ],
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

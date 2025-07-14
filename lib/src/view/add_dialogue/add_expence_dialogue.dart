@@ -168,7 +168,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                               data,
                             );
                             Navigator.pop(context);
-                            // context.read<DialogueTabController>().changeTab(0);
+                            context.read<DialogueTabController>().changeTab(0);
                             // log("1");
                           }
                         }
@@ -194,7 +194,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                               data2,
                             );
                             Navigator.pop(context);
-                            // context.read<DialogueTabController>().changeTab(0);
+                            context.read<DialogueTabController>().changeTab(0);
                             // log("0");
                           }
                         }
