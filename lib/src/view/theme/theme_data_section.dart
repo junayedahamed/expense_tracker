@@ -30,7 +30,7 @@ class ThemeDataSection {
 
       indicatorColor: Colors.black,
       indicator: BoxDecoration(
-        border: Border.all(width: 2, color: Colors.black),
+        border: Border.all(width: 2, color: Colors.teal),
 
         borderRadius: BorderRadius.circular(15),
       ),
@@ -38,7 +38,7 @@ class ThemeDataSection {
 
       indicatorAnimation: TabIndicatorAnimation.elastic,
       labelColor: Colors.black,
-      unselectedLabelColor: Colors.grey.shade800,
+      unselectedLabelColor: Colors.grey.shade700,
     ),
 
     appBarTheme: AppBarTheme(

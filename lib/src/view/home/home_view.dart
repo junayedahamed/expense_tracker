@@ -1,6 +1,5 @@
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
 import 'package:expence_tracker/src/view/home/home_search_on_history/home_search_bar_on_history.dart';
-import 'package:expence_tracker/src/view/tab_bar_views/tab_builder.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
@@ -79,9 +78,39 @@ class _HomeViewState extends State<HomeView>
                         context.read<MyTabIndexController>().changeTab(value);
                       },
                       tabs: [
-                        TabBuilder(isSelected: state == 0, label: "All"),
-                        TabBuilder(isSelected: state == 1, label: "In"),
-                        TabBuilder(isSelected: state == 2, label: "Out"),
+                        // TabBuilder(isSelected: state == 0, label: "All"),
+                        // TabBuilder(isSelected: state == 1, label: "In"),
+                        // TabBuilder(isSelected: state == 2, label: "Out"),\
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            "All",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            "In",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            "Out",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

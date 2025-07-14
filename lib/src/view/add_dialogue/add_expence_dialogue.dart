@@ -5,7 +5,6 @@ import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
-import 'package:expence_tracker/src/view/tab_bar_views/tab_builder.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +52,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
             builder: (context, state) => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 5),
+                SizedBox(height: 10),
 
                 TabBar(
                   onTap: (value) {
@@ -113,8 +112,22 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                     //         : Text("Add"),
                     //   ),
                     // ),
-                    TabBuilder(isSelected: state == 0, label: "Cost"),
-                    TabBuilder(isSelected: state == 1, label: "Add"),
+                    // TabBuilder(isSelected: state == 0, label: "Cost"),
+                    // TabBuilder(isSelected: state == 1, label: "Add"),
+                    Text(
+                      "Cost",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "Add",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
 
@@ -155,7 +168,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                               data,
                             );
                             Navigator.pop(context);
-                            context.read<DialogueTabController>().changeTab(0);
+                            // context.read<DialogueTabController>().changeTab(0);
                             // log("1");
                           }
                         }
@@ -181,7 +194,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                               data2,
                             );
                             Navigator.pop(context);
-                            context.read<DialogueTabController>().changeTab(0);
+                            // context.read<DialogueTabController>().changeTab(0);
                             // log("0");
                           }
                         }
