@@ -46,7 +46,7 @@ with real time update on spent or add money
 
   ## Data Backup ⬆️
 
-###  Users ca backup there data on a online db 
+###  Users can backup there data on a online db 
 
   ## Taking Backup ⬇️
 
