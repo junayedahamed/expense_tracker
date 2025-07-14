@@ -1,4 +1,5 @@
 import 'package:expence_tracker/src/database/transaction_dao.dart';
+import 'package:expence_tracker/src/view/pdf/download_ui/download_pdf.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +61,7 @@ class BarChartView extends StatelessWidget {
                   return Center(child: Text("No Data found"));
                 }
                 return SizedBox(
-                  height: 450,
+                  height: 500,
                   child: BarChart(
                     BarChartData(
                       barTouchData: BarTouchData(
@@ -99,6 +100,13 @@ class BarChartView extends StatelessWidget {
                 // return Text("data");
               },
             ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Divider(thickness: 2),
+            ),
+            SizedBox(height: 10),
+            PdfDownloadUi(),
             SizedBox(height: 20),
             //Dev Info
             // Padding(
@@ -143,7 +151,12 @@ class BarChartView extends StatelessWidget {
             //           title: Text("About Developer"),
 
             //           children: [
+            //             Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
 
+            //               ],
+            //             )
             //           ],
             //         ),
             //       ],
