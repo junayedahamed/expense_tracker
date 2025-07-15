@@ -32,26 +32,58 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeChanger extends Cubit<ThemeMode> {
-  ThemeChanger() : super(ThemeMode.system);
+  ThemeChanger() : super(ThemeMode.system) {
+    _onload();
+  }
   ThemeMode currentTheme = ThemeMode.system;
-  IconData themeIcon() {
-    if (currentTheme == ThemeMode.dark) {
-      return Icons.dark_mode;
+
+  Future<void> _onload() async {
+    final themeCache = await SharedPreferences.getInstance();
+    final themeIndex = themeCache.getInt("theme");
+    if (themeIndex == 1) {
+      currentTheme = ThemeMode.light;
+
+      emit(ThemeMode.light);
+    } else if (themeIndex == 2) {
+      currentTheme = ThemeMode.dark;
+
+      emit(ThemeMode.dark);
     } else {
-      return Icons.light_mode;
+      currentTheme = ThemeMode.system;
+      emit(ThemeMode.system);
     }
   }
 
-  void toggleTheme() {
-    if (currentTheme == ThemeMode.dark) {
+  Future<void> _saveTheme(int theme) async {
+    final themeCache = await SharedPreferences.getInstance();
+    await themeCache.setInt("theme", theme);
+  }
+
+  void toggleTheme(BuildContext context) async {
+    if (currentTheme == ThemeMode.system &&
+        MediaQuery.of(context).platformBrightness == Brightness.dark) {
       currentTheme = ThemeMode.light;
+
       emit(ThemeMode.light);
+      await _saveTheme(1);
+    } else if (currentTheme == ThemeMode.system &&
+        MediaQuery.of(context).platformBrightness == Brightness.light) {
+      currentTheme = ThemeMode.dark;
+
+      emit(ThemeMode.dark);
+      await _saveTheme(2);
+    } else if (currentTheme == ThemeMode.dark) {
+      currentTheme = ThemeMode.light;
+
+      emit(ThemeMode.light);
+      await _saveTheme(1);
     } else {
       currentTheme = ThemeMode.dark;
       emit(ThemeMode.dark);
+      await _saveTheme(2);
     }
-    themeIcon();
   }
 }

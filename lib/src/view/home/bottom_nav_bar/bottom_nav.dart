@@ -29,13 +29,13 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           BlocBuilder<ThemeChanger, ThemeMode>(
             builder: (context, state) => IconButton(
               onPressed: () {
-                context.read<ThemeChanger>().toggleTheme();
+                context.read<ThemeChanger>().toggleTheme(context);
               },
               icon: Icon(
                 state == ThemeMode.system && brightness == Brightness.dark ||
                         state == ThemeMode.dark
-                    ? Icons.dark_mode
-                    : Icons.light_mode,
+                    ? Icons.light_mode
+                    : Icons.dark_mode,
               ),
             ),
           ),
