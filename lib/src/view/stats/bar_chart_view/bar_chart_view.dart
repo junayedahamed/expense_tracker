@@ -2,7 +2,6 @@ import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class BarChartView extends StatelessWidget {
   BarChartView({super.key});
@@ -12,32 +11,37 @@ class BarChartView extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // SizedBox(height: 200),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Choose View Type"),
-                SizedBox(
-                  width: 150,
-                  child: DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    ),
-                    value: viewType[0],
-                    items: viewType.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value, style: TextStyle(fontSize: 12)),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      // Handle the change in view type
-                    },
-                  ),
-                ),
-              ],
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Text("Choose View Type"),
+            //     SizedBox(
+            //       width: 150,
+            //       child: DropdownButtonFormField<String>(
+            //         decoration: InputDecoration(
+            //           border: OutlineInputBorder(),
+            //           contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            //         ),
+            //         value: viewType[0],
+            //         items: viewType.map((String value) {
+            //           return DropdownMenuItem<String>(
+            //             value: value,
+            //             child: Text(value, style: TextStyle(fontSize: 12)),
+            //           );
+            //         }).toList(),
+            //         onChanged: (String? newValue) {
+            //           // Handle the change in view type
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            Text(
+              "History 📊",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
             ),
             SizedBox(height: 20),
             StreamBuilder(
@@ -77,11 +81,11 @@ class BarChartView extends StatelessWidget {
                               borderDashArray: [5, 2],
                               backDrawRodData: BackgroundBarChartRodData(
                                 show: true,
-                                toY: data.amount,
+                                toY: data.amount.abs(),
                                 color: Colors.red.shade300,
                               ),
                               fromY: 0,
-                              toY: data.amount,
+                              toY: data.amount.abs(),
                               width: 15,
                               borderRadius: BorderRadius.circular(5),
                               // toY: data.amount,

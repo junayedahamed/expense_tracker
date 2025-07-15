@@ -5,6 +5,10 @@ class ThemeDataSection {
 
   static final lighttheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
+    listTileTheme: ListTileThemeData(
+      textColor: Colors.black,
+      style: ListTileStyle.drawer,
+    ),
     textTheme: TextTheme(
       bodySmall: const TextStyle(color: Colors.black),
       bodyMedium: const TextStyle(color: Colors.black),
@@ -51,6 +55,10 @@ class ThemeDataSection {
 
   static final darktheme = ThemeData.dark().copyWith(
     brightness: Brightness.dark,
+    listTileTheme: ListTileThemeData(
+      textColor: Colors.white,
+      style: ListTileStyle.drawer,
+    ),
     cardTheme: const CardThemeData(
       surfaceTintColor: Colors.limeAccent,
       clipBehavior: Clip.antiAliasWithSaveLayer,
