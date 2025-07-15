@@ -112,6 +112,7 @@ class BarChartView extends StatelessWidget {
             SizedBox(height: 10),
             PdfDownloadUi(),
             SizedBox(height: 20),
+
             //Dev Info
             // Padding(
             //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
