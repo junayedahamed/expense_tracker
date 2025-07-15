@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CardGradientHandler extends Cubit<int> {
-  CardGradientHandler() : super(0);
+  CardGradientHandler() : super(1);
 
   void changeGradient(DragEndDetails details) {
     if (details.primaryVelocity! > 0) {
@@ -10,7 +10,5 @@ class CardGradientHandler extends Cubit<int> {
     } else {
       emit(1);
     }
-
-    // log(details.primaryVelocity!.toString());
   }
 }

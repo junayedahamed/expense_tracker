@@ -1,34 +1,46 @@
-import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
+import 'package:expence_tracker/src/database/database.dart';
+import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/view/cards/income_expense_history_card/history_card.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllTabPage extends StatelessWidget {
-  const AllTabPage({super.key});
-
+  AllTabPage({super.key});
+  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpdateIncomingOutgingData, double>(
-      builder: (context, state) {
-        final allData = context
-            .read<UpdateIncomingOutgingData>()
-            .all
-            .reversed
-            .toList();
+    return StreamBuilder<List<TransectionItem>>(
+      stream: context.read<TransactionsDao>().watchAllTransectionItems(),
+      builder: (context, snapshot) {
+        final allData = snapshot.data;
+        if (snapshot.hasError) {
+          return Center(child: Text("Error occoured"));
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+        if (allData == null) {
+          return Center(child: Text("No Data found"));
+        }
+        if (allData.isEmpty) {
+          return Center(child: Text("No Data found"));
+        }
         return ListView.builder(
+          controller: scrollController,
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 10),
           // shrinkWrap: true,
           itemCount: allData.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
+            // log(scrollController.position.pixels.toString());
             final dataUnit = allData[index];
             return HistoryCard(
-              amount: dataUnit.allamount.toString(),
-              isexp: dataUnit.allisexpense,
+              amount: dataUnit.amount.toString(),
+              isexp: dataUnit.isExp,
               time:
-                  "${dataUnit.allcostTime.day}-${dataUnit.allcostTime.month}-${dataUnit.allcostTime.year}",
-              title: dataUnit.allreason,
+                  "${dataUnit.createdAt?.day}-${dataUnit.createdAt?.month}-${dataUnit.createdAt?.year}",
+              title: dataUnit.sourceDetails,
             );
           },
         );

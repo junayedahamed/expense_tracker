@@ -1,12 +1,11 @@
 import 'dart:developer';
 
-import 'package:expence_tracker/src/model/expense_model.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,10 +24,21 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
   final TextEditingController amountCost = TextEditingController();
   final TextEditingController amountAdd = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    reasonCost.dispose();
+    reasonAdd.dispose();
+    amountCost.dispose();
+    amountAdd.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,7 +52,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
             builder: (context, state) => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 5),
+                SizedBox(height: 10),
 
                 TabBar(
                   onTap: (value) {
@@ -70,36 +80,52 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                   //   borderRadius: BorderRadius.circular(15),
                   // ),
                   tabs: [
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: state == 0
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                    // SizedBox(
+                    //   height: 30,
+                    //   child: Center(
+                    //     child: state == 0
+                    //         ? Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
 
-                                children: [
-                                  Icon(Icons.check, size: 20),
-                                  Text("Cost", style: TextStyle(fontSize: 13)),
-                                  SizedBox(width: 4),
-                                ],
-                              )
-                            : Text("Cost"),
+                    //             children: [
+                    //               Icon(Icons.check, size: 20),
+                    //               Text("Cost", style: TextStyle(fontSize: 13)),
+                    //               SizedBox(width: 4),
+                    //             ],
+                    //           )
+                    //         : Text("Cost"),
+                    //   ),
+                    // ),
+                    // // SizedBox(width: 5),
+                    // SizedBox(
+                    //   height: 30,
+                    //   child: Center(
+                    //     child: state == 1
+                    //         ? Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Icon(Icons.check, size: 20),
+                    //               Text("Add", style: TextStyle(fontSize: 13)),
+                    //               SizedBox(width: 4),
+                    //             ],
+                    //           )
+                    //         : Text("Add"),
+                    //   ),
+                    // ),
+                    // TabBuilder(isSelected: state == 0, label: "Cost"),
+                    // TabBuilder(isSelected: state == 1, label: "Add"),
+                    Text(
+                      "Cost",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // SizedBox(width: 5),
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: state == 1
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.check, size: 20),
-                                  Text("Add", style: TextStyle(fontSize: 13)),
-                                  SizedBox(width: 4),
-                                ],
-                              )
-                            : Text("Add"),
+                    Text(
+                      "Add",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -128,7 +154,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                     FilledButton(
                       onPressed: () {
                         if (state == 1) {
-                          var data = IncomeModel(
+                          var data = TransectionModel(
                             amount: double.tryParse(amountAdd.text) ?? 0.0,
                             addedAt: DateTime.now(),
                             sourceDetails: reasonAdd.text.isEmpty
@@ -148,10 +174,10 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                         }
 
                         if (state == 0) {
-                          var data2 = ExpenceModel(
+                          var data2 = TransectionModel(
                             amount: double.tryParse(amountCost.text) ?? 0.0,
-                            costTime: DateTime.now(),
-                            reason: reasonCost.text.isEmpty
+                            addedAt: DateTime.now(),
+                            sourceDetails: reasonCost.text.isEmpty
                                 ? "Unknown"
                                 : reasonCost.text,
                             isexpense: true,
