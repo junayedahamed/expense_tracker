@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:expence_tracker/src/model/income_model.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
@@ -23,6 +21,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
   final TextEditingController reasonAdd = TextEditingController();
   final TextEditingController amountCost = TextEditingController();
   final TextEditingController amountAdd = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -162,37 +161,34 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                                 : reasonAdd.text,
                             isexpense: false,
                           );
-                          // log("1");
+
                           if (_formKey.currentState!.validate()) {
-                            context.read<UpdateIncomingOutgingData>().addMoney(
-                              data,
-                            );
+                            context
+                                .read<UpdateIncomingOutgingData>()
+                                .addTransaction(data, context);
                             Navigator.pop(context);
                             context.read<DialogueTabController>().changeTab(0);
-                            // log("1");
                           }
                         }
 
                         if (state == 0) {
+                          final StringBuffer finalAmount = StringBuffer();
+                          finalAmount.write("-");
+                          finalAmount.write(amountCost.text);
                           var data2 = TransectionModel(
-                            amount: double.tryParse(amountCost.text) ?? 0.0,
+                            amount:
+                                double.tryParse(finalAmount.toString()) ?? 0.0,
                             addedAt: DateTime.now(),
                             sourceDetails: reasonCost.text.isEmpty
                                 ? "Unknown"
                                 : reasonCost.text,
                             isexpense: true,
                           );
-                          // context.read<UpdateIncomingOutgingData>().addMoney(
-
-                          // );
-                          // log("0");
-
-                          log(data2.amount.toString());
 
                           if (_formKey.currentState!.validate()) {
-                            context.read<UpdateIncomingOutgingData>().costMoney(
-                              data2,
-                            );
+                            context
+                                .read<UpdateIncomingOutgingData>()
+                                .addTransaction(data2, context);
                             Navigator.pop(context);
                             context.read<DialogueTabController>().changeTab(0);
                             // log("0");

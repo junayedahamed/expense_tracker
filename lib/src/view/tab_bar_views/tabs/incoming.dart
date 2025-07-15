@@ -12,7 +12,7 @@ class InComingTab extends StatelessWidget {
     return StreamBuilder<List<TransectionItem>>(
       stream: context.read<TransactionsDao>().watchAllTransectionItems(),
       builder: (context, snapshot) {
-        final allData = snapshot.data;
+        final allData = snapshot.data?.reversed.toList();
         if (snapshot.hasError) {
           return Center(child: Text("Error occoured"));
         }

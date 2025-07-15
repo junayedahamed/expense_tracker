@@ -36,115 +36,124 @@
 // //   }
 // // }
 
-import 'dart:developer';
-
 import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
+import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-class UpdateIncomingOutgingData extends Cubit<double> {
-  UpdateIncomingOutgingData(this.transactions) : super(0);
+class UpdateIncomingOutgingData {
+  // UpdateIncomingOutgingData(this.transactions) : super(0);
   // final AppDatabase db = AppDatabase();
+
+  UpdateIncomingOutgingData(this.transactions);
   final TransactionsDao transactions;
 
   List<TransectionModel> transectionList = [];
 
   double costedMoneyOnApp = 0;
-  void addMoney(TransectionModel income) async {
-    if (income.amount <= 0) {
-      return;
+  void addTransaction(TransectionModel income, context) async {
+    if (income.isexpense) {
+      var curr = await transactions.currentAvailableAmount();
+      // log(curr.toString());
+      if (income.amount.abs() == 0) {
+        showAnimatedTopSnackbar(context, "Amount should be greater that 0");
+        return;
+      }
+      if ((income.amount.abs()) > curr) {
+        showAnimatedTopSnackbar(
+          context,
+          "Choosen amount greater current Amount",
+        );
+        return;
+      }
+      // log("${(income.amount)} ");
+    } else {
+      if (income.amount <= 0) {
+        showAnimatedTopSnackbar(context, "Amount should be greater that 0");
+        return;
+      }
+
+      // log(income.amount.toString());
     }
-    emit(state + income.amount);
-    transectionList.add(income);
     await transactions.insertTransection(income);
   }
 
-  void costMoney(TransectionModel expence) async {
-    if (state <= 0 || expence.amount <= 0) {
-      return;
-    } else if (state < expence.amount) {
-      return;
-    }
-    log(expence.amount.toString());
-    emit(state - expence.amount);
-    transectionList.add(expence);
-    await transactions.insertTransection(expence);
-    costedMoneyOnApp += expence.amount;
+  void showAnimatedTopSnackbar(BuildContext context, String message) {
+    final overlay = Overlay.of(context);
+    late OverlayEntry entry;
+    final controller = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: Navigator.of(context),
+    );
+
+    final animation = CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeInOut,
+    );
+
+    entry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 16,
+        left: 0,
+        right: 0,
+        child: AnimatedBuilder(
+          animation: animation,
+          builder: (context, child) {
+            return Transform.translate(
+              offset: Offset(0, -100 + (animation.value * 100)),
+              child: Opacity(opacity: animation.value, child: child),
+            );
+          },
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0x553B2F63), // Deep Purple
+                        Color(0x332B2D42), // Charcoal Gray
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text(message, style: const TextStyle(fontSize: 16)),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    overlay.insert(entry);
+    controller.forward();
+
+    Future.delayed(const Duration(seconds: 3), () async {
+      await controller.reverse();
+      entry.remove();
+      controller.dispose();
+    });
   }
+
+  // void costMoney(TransectionModel expence) async {
+  //   // if (state <= 0 || expence.amount <= 0) {
+  //   //   return;
+  //   // } else if (state < expence.amount) {
+  //   //   return;
+  //   // }
+  //   ex
+
+  //     await transactions.insertTransection(expence);
+
+  //   // log(expence.amount.toString());
+  //   // emit(state - expence.amount);
+  //   // transectionList.add(expence);
+
+  //   costedMoneyOnApp += expence.amount;
+  // }
 }
-
-//------------------------------//
-
-//------------------------------//
-
-// import 'package:expence_tracker/src/database/database.dart';
-// import 'package:expence_tracker/src/database/transection_table_helpher.dart';
-// import 'package:expence_tracker/src/model/income_model.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
-// class UpdateIncomingOutgingData extends Cubit<double> {
-//   UpdateIncomingOutgingData() : super(0) {
-//     _loadInitialTransactions(); // Load at init
-//   }
-
-//   final AppDatabase db = AppDatabase();
-//   final List<TransectionModel> transectionList = [];
-//   final TransectionTableHelpher helpher = TransectionTableHelpher(
-//     AppDatabase(),
-//   );
-
-//   double costedMoneyOnApp = 0;
-
-//   // Add money and save to DB
-//   void addMoney(TransectionModel income) async {
-//     if (income.amount <= 0) return;
-
-//     emit(state + income.amount);
-//     transectionList.add(income);
-
-//     await helpher.insertTransactionData(
-//     transectionItems: income
-//     );
-//   }
-
-//   // Cost money and save to DB
-//   void costMoney(TransectionModel expense) async {
-//     if (state <= 0 || expense.amount <= 0 || state < expense.amount) return;
-
-//     emit(state - expense.amount);
-//     transectionList.add(expense);
-
-//     costedMoneyOnApp += expense.amount;
-
-//     await helpher.insertTransactionData(
-//      transectionItems: expense
-//     );
-//   }
-
-//   // Load existing transactions and calculate total
-//   Future<void> _loadInitialTransactions() async {
-//     final transactions = await helpher.getAllTransactions();
-
-//     double total = 0;
-
-//     for (var tx in transactions) {
-//       final model = TransectionModel(
-//         sourceDetails: tx.sourceDetails,
-//         amount: tx.amount,
-//         isExp: tx.isExp,
-//         addedAt: tx.createdAt ?? DateTime.now(),
-//       );
-
-//       transectionList.add(model);
-
-//       if (!tx.isExp) {
-//         total += tx.amount;
-//       } else {
-//         costedMoneyOnApp += tx.amount;
-//       }
-//     }
-
-//     emit(total);
-//   }
-// }

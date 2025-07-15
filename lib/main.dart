@@ -19,15 +19,16 @@ void main() {
       providers: [
         Provider<AppDatabase>(create: (context) => AppDatabase()),
         Provider<TransactionsDao>(
-          create: (context) => TransactionsDao(context.read()),
+          create: (context) => TransactionsDao(context.read<AppDatabase>()),
+        ),
+        Provider<UpdateIncomingOutgingData>(
+          create: (context) =>
+              UpdateIncomingOutgingData(context.read<TransactionsDao>()),
         ),
       ],
       child: MultiBlocProvider(
         providers: [
           // BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
-          BlocProvider<UpdateIncomingOutgingData>(
-            create: (context) => UpdateIncomingOutgingData(context.read()),
-          ),
           BlocProvider<SearchBarState>(create: (_) => SearchBarState()),
           BlocProvider<MyTabIndexController>(
             create: (_) => MyTabIndexController(),
