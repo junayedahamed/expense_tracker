@@ -33,7 +33,11 @@ class HistoryCard extends StatelessWidget {
           children: [
             SizedBox(
               width: width * 0.5,
-              child: Text(title, overflow: TextOverflow.ellipsis),
+              child: Text(
+                title,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
             ),
             Flexible(
               flex: 2,
