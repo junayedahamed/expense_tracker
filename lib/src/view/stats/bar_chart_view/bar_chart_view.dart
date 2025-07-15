@@ -78,7 +78,7 @@ class BarChartView extends StatelessWidget {
 
                           barRods: [
                             BarChartRodData(
-                              borderDashArray: [5, 2],
+                              borderDashArray: [1, 1],
                               backDrawRodData: BackgroundBarChartRodData(
                                 show: true,
                                 toY: data.amount.abs(),
@@ -86,8 +86,8 @@ class BarChartView extends StatelessWidget {
                               ),
                               fromY: 0,
                               toY: data.amount.abs(),
-                              width: 15,
-                              borderRadius: BorderRadius.circular(5),
+                              width: 16,
+                              borderRadius: BorderRadius.zero,
                               // toY: data.amount,
                               color: data.isExp == false
                                   ? Colors.green
