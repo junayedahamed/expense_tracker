@@ -41,20 +41,16 @@ class HomeSearchBarOnHistory extends StatelessWidget {
                           ),
                           focusColor: Colors.green.shade300,
                           //need to fix the focus border color of field TODO
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: foocus.hasFocus
-                                  ? Colors.green.shade300
-                                  : Colors.white,
-                            ),
-                          ),
+                          // focusedBorder: OutlineInputBorder(
+                          //   borderSide: BorderSide(
+                          //     color: foocus.hasFocus
+                          //         ? Colors.green.shade300
+                          //         : Colors.white,
+                          //   ),
+                          // ),
                           contentPadding: EdgeInsets.only(bottom: 8, left: 4),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: foocus.hasFocus
-                                  ? Colors.limeAccent
-                                  : Colors.white,
-                            ),
+                            borderSide: BorderSide(color: Colors.lime),
                           ),
                         ),
                       ),

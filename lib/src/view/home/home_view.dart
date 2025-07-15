@@ -58,7 +58,7 @@ class _HomeViewState extends State<HomeView>
               ),
             ],
           ),
-
+          Divider(),
           SizedBox(height: 5),
 
           BlocBuilder<MyTabIndexController, int>(
@@ -120,6 +120,7 @@ class _HomeViewState extends State<HomeView>
               ],
             ),
           ),
+          Divider(),
           Expanded(
             child: TabBarView(
               physics: NeverScrollableScrollPhysics(),

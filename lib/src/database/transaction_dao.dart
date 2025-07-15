@@ -22,6 +22,35 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase>
     return transectionItems.select().watch();
   }
 
+  Stream<double> averageItemLength() {
+    final avgLength = transectionItems.amount.sum();
+
+    final query = selectOnly(transectionItems)..addColumns([avgLength]);
+
+    return query.map((row) => row.read(avgLength)!).watchSingle();
+  }
+
+  Stream<double> expenceValues() {
+    final avgLength = transectionItems.amount.sum();
+
+    final query = selectOnly(transectionItems)
+      ..addColumns([avgLength])
+      ..where(transectionItems.amount.isSmallerThanValue(0));
+
+    // return
+    return query.map((row) => row.read(avgLength)!).watchSingle();
+  }
+
+  Future<double> currentAvailableAmount() async {
+    final sumAmount = transectionItems.amount.sum();
+
+    final query = selectOnly(transectionItems)..addColumns([sumAmount]);
+
+    final result = await query.map((row) => row.read(sumAmount)).getSingle();
+
+    return result ?? 0.0;
+  }
+
   Future<void> insertTransection(TransectionModel transection) async {
     await into(transectionItems).insert(
       TransectionItemsCompanion.insert(
