@@ -136,8 +136,12 @@ class PdfDownloadFunctionalities {
       }
 
       final downloadsPath = '/storage/emulated/0/Download';
-      final file = File('$downloadsPath/J_ExP_tracker_Alltransaction.pdf');
-
+      var file = File('$downloadsPath/J_ExP_tracker_Alltransaction.pdf');
+      if (await file.exists()) {
+        file = File(
+          '$downloadsPath/J_ExP_tracker_Alltransaction${DateTime.now().millisecondsSinceEpoch}.pdf',
+        );
+      }
       await file.writeAsBytes(pdfBytes);
 
       log(

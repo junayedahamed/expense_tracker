@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/repositories/pdf_functionalities/pdf_download_functionalities.dart';
 import 'package:expence_tracker/src/view/pdf/widgets/my_custom_button.dart';
@@ -31,24 +29,47 @@ class PdfDownloadUi extends StatelessWidget {
           buttonName: "PDF",
           iconpath: "assets/icons/dpf_download.svg",
           onPressed: () async {
-            // log(DateTime.now().second.toString());
-            final data = await context
-                .read<TransactionsDao>()
-                .getAllTransectionItems();
-            // final data = List.generate(10, (index) {
-            //   return "count $index";
-            // });
+            // // log(DateTime.now().second.toString());
+            // final data = await context
+            //     .read<TransactionsDao>()
+            //     .getAllTransectionItems();
+            // // final data = List.generate(10, (index) {
+            // //   return "count $index";
+            // // });
+            // if (data.isEmpty) {
+            //   ScaffoldMessenger.of(
+            //     context,
+            //   ).showSnackBar(SnackBar(content: Text("no data yet")));
+            //   return;
+            // }
+            // ScaffoldMessenger.of(
+            //   context,
+            // ).showSnackBar(SnackBar(content: Text("Wait for 3 seconds")));
+            // Future.delayed(Duration(seconds: 3));
+            // pdf.downloadPDF(data, context);
+            final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+            final dao = context.read<TransactionsDao>();
+
+            final data = await dao.getAllTransectionItems();
+
             if (data.isEmpty) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text("no data yet")));
+              scaffoldMessenger.showSnackBar(
+                SnackBar(content: Text("no data yet")),
+              );
               return;
             }
-            ScaffoldMessenger.of(
+
+            scaffoldMessenger.showSnackBar(
+              SnackBar(content: Text("Wait for 3 seconds")),
+            );
+
+            await Future.delayed(Duration(seconds: 3));
+            pdf.downloadPDF(
+              data,
+              // ignore: use_build_context_synchronously
               context,
-            ).showSnackBar(SnackBar(content: Text("Wait for 3 seconds")));
-            Future.delayed(Duration(seconds: 3));
-            pdf.downloadPDF(data, context);
+            );
           },
         ),
       ],
