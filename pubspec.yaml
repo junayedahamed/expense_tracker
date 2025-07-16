@@ -41,6 +41,9 @@ dependencies:
   drift_flutter: ^0.2.4
   path_provider: ^2.1.5
   provider: ^6.1.5
+  permission_handler: ^12.0.1
+  pdf: ^3.11.3
+  file_saver: ^0.3.1
 
 dev_dependencies:
   hive_generator: ^2.0.1
@@ -72,6 +75,9 @@ flutter:
     - assets/icons/wallet.svg
     - assets/icons/bg_tag.svg
     - assets/icons/dev.svg
+    - assets/icons/dpf_download.svg
+    - assets/icons/upload_cloud.svg
+    - assets/icons/verified.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -85,10 +91,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Schyler
+      fonts:
+        - asset: assets/fonts/noto_font.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
