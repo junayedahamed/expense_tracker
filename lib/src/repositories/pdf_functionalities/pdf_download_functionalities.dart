@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:expence_tracker/src/database/database.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,26 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 
 class PdfDownloadFunctionalities {
+  Future<bool> getPermission(int androidVersion) async {
+    if (androidVersion <= 12) {
+      final status = await Permission.storage.request();
+      if (status.isGranted) {
+        return true;
+      }
+
+      return false;
+    } else {
+      // final status = await Permission.manageExternalStorage.request();
+      // if (status.isGranted) {
+      //   return true;
+      // }
+
+      // return false;
+
+      return true;
+    }
+  }
+
   Future<void> downloadPDF(List<TransectionItem> data, context) async {
     final pdf = pw.Document();
 
@@ -127,30 +148,30 @@ class PdfDownloadFunctionalities {
 
     // Save to Downloads folder of android
     if (Platform.isAndroid) {
-      // Request permission
-      final status = await Permission.storage.request();
-      if (!status.isGranted) {
-        // print("Storage permission not granted.");
-        log("Permission denied");
-        return;
-      }
+      var androidInfo = await DeviceInfoPlugin().androidInfo;
+      var release = int.parse(androidInfo.version.release);
+      if (await getPermission(release)) {
+        final downloadsPath = '/storage/emulated/0/Download';
+        var file = File('$downloadsPath/J_ExP_tracker_Alltransaction.pdf');
+        if (await file.exists()) {
+          file = File(
+            '$downloadsPath/J_ExP_tracker_Alltransaction${DateTime.now().millisecondsSinceEpoch}.pdf',
+          );
+        }
+        await file.writeAsBytes(pdfBytes);
 
-      final downloadsPath = '/storage/emulated/0/Download';
-      var file = File('$downloadsPath/J_ExP_tracker_Alltransaction.pdf');
-      if (await file.exists()) {
-        file = File(
-          '$downloadsPath/J_ExP_tracker_Alltransaction${DateTime.now().millisecondsSinceEpoch}.pdf',
+        log(
+          '✅ PDF saved to Downloads folder at: $downloadsPath/J_ExP_All_Transaction.pdf',
         );
+
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Pdf Download Successful")));
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Permission denied")));
       }
-      await file.writeAsBytes(pdfBytes);
-
-      log(
-        '✅ PDF saved to Downloads folder at: $downloadsPath/J_ExP_All_Transaction.pdf',
-      );
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Pdf Download Successful")));
     }
 
     // ios document save

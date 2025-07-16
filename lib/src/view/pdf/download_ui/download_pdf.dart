@@ -54,17 +54,26 @@ class PdfDownloadUi extends StatelessWidget {
             final data = await dao.getAllTransectionItems();
 
             if (data.isEmpty) {
+              // if (Platform.isAndroid) {
+              //   log(Platform.version);
+              //   var androidInfo = await DeviceInfoPlugin().androidInfo;
+              //   var release = int.parse(androidInfo.version.release);
+              //   var sdkInt = androidInfo.version.sdkInt;
+              //   var manufacturer = androidInfo.manufacturer;
+              //   var model = androidInfo.model;
+              //   log('Android $release (SDK $sdkInt), $manufacturer $model');
+              // }
               scaffoldMessenger.showSnackBar(
                 SnackBar(content: Text("no data yet")),
               );
               return;
             }
 
-            scaffoldMessenger.showSnackBar(
-              SnackBar(content: Text("Wait for 3 seconds")),
-            );
+            // scaffoldMessenger.showSnackBar(
+            //   SnackBar(content: Text("Wait for 3 seconds")),
+            // );
 
-            await Future.delayed(Duration(seconds: 3));
+            // await Future.delayed(Duration(seconds: 3));
             pdf.downloadPDF(
               data,
               // ignore: use_build_context_synchronously
