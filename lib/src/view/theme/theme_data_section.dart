@@ -17,7 +17,10 @@ class ThemeDataSection {
       titleMedium: TextStyle(color: Colors.black),
       titleSmall: TextStyle(color: Colors.black),
     ),
-
+    cardTheme: const CardThemeData(
+      surfaceTintColor: Colors.limeAccent,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       // backgroundColor: Color(0xffF5F5F5),
       backgroundColor: Colors.grey.shade50,
@@ -57,7 +60,7 @@ class ThemeDataSection {
     brightness: Brightness.dark,
     listTileTheme: ListTileThemeData(
       textColor: Colors.white,
-      style: ListTileStyle.drawer,
+      style: ListTileStyle.list,
     ),
     cardTheme: const CardThemeData(
       surfaceTintColor: Colors.limeAccent,
