@@ -106,63 +106,71 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                   ),
                 ),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    DownloadUploadButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        context.read<DialogueTabController>().changeTab(0);
-                      },
-                      buttonName: "Cancel",
-                    ),
-                    DownloadUploadButton(
-                      onPressed: () {
-                        if (state == 1) {
-                          var data = TransectionModel(
-                            amount: double.tryParse(amountAdd.text) ?? 0.0,
-                            addedAt: DateTime.now(),
-                            sourceDetails: reasonAdd.text.isEmpty
-                                ? "Unknown Src"
-                                : reasonAdd.text,
-                            isexpense: false,
-                          );
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    spacing: 15,
+                    children: [
+                      DownloadUploadButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          context.read<DialogueTabController>().changeTab(0);
+                        },
+                        buttonName: "Cancel",
+                      ),
+                      DownloadUploadButton(
+                        onPressed: () {
+                          if (state == 1) {
+                            var data = TransectionModel(
+                              amount: double.tryParse(amountAdd.text) ?? 0.0,
+                              addedAt: DateTime.now(),
+                              sourceDetails: reasonAdd.text.isEmpty
+                                  ? "Unknown Src"
+                                  : reasonAdd.text,
+                              isexpense: false,
+                            );
 
-                          if (_formKey.currentState!.validate()) {
-                            context
-                                .read<UpdateIncomingOutgingData>()
-                                .addTransaction(data, context);
-                            Navigator.pop(context);
-                            context.read<DialogueTabController>().changeTab(0);
+                            if (_formKey.currentState!.validate()) {
+                              context
+                                  .read<UpdateIncomingOutgingData>()
+                                  .addTransaction(data, context);
+                              Navigator.pop(context);
+                              context.read<DialogueTabController>().changeTab(
+                                0,
+                              );
+                            }
                           }
-                        }
 
-                        if (state == 0) {
-                          final StringBuffer finalAmount = StringBuffer();
-                          finalAmount.write("-");
-                          finalAmount.write(amountCost.text);
-                          var data2 = TransectionModel(
-                            amount:
-                                double.tryParse(finalAmount.toString()) ?? 0.0,
-                            addedAt: DateTime.now(),
-                            sourceDetails: reasonCost.text.isEmpty
-                                ? "Unknown"
-                                : reasonCost.text,
-                            isexpense: true,
-                          );
+                          if (state == 0) {
+                            final StringBuffer finalAmount = StringBuffer();
+                            finalAmount.write("-");
+                            finalAmount.write(amountCost.text);
+                            var data2 = TransectionModel(
+                              amount:
+                                  double.tryParse(finalAmount.toString()) ??
+                                  0.0,
+                              addedAt: DateTime.now(),
+                              sourceDetails: reasonCost.text.isEmpty
+                                  ? "Unknown"
+                                  : reasonCost.text,
+                              isexpense: true,
+                            );
 
-                          if (_formKey.currentState!.validate()) {
-                            context
-                                .read<UpdateIncomingOutgingData>()
-                                .addTransaction(data2, context);
-                            Navigator.pop(context);
-                            context.read<DialogueTabController>().changeTab(0);
+                            if (_formKey.currentState!.validate()) {
+                              context
+                                  .read<UpdateIncomingOutgingData>()
+                                  .addTransaction(data2, context);
+                              Navigator.pop(context);
+                              context.read<DialogueTabController>().changeTab(
+                                0,
+                              );
+                            }
                           }
-                        }
-                      },
-                      buttonName: " Ok ",
-                    ),
-                  ],
+                        },
+                        buttonName: " Ok ",
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 10),
               ],
