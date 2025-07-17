@@ -45,7 +45,7 @@ class DownloadUploadButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 5,
             children: [
-              Text(buttonName, style: TextStyle(fontWeight: FontWeight.w500)),
+              Text(buttonName, style: TextStyle(fontWeight: FontWeight.w700)),
               iconpath != null
                   ? SvgPicture.asset(
                       iconpath ?? '',

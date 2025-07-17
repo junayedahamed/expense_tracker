@@ -42,6 +42,7 @@ class OutGoingTab extends StatelessWidget {
             // log(scrollController.position.pixels.toString());
             final dataUnit = filteredData[index];
             return HistoryCard(
+              idOfTransaction: dataUnit.id,
               amount: dataUnit.amount.toString(),
               isexp: dataUnit.isExp,
               time:

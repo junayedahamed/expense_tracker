@@ -13,6 +13,7 @@ class AllTabPage extends StatelessWidget {
       stream: context.read<TransactionsDao>().watchAllTransectionItems(),
       builder: (context, snapshot) {
         final allData = snapshot.data?.reversed.toList();
+
         if (snapshot.hasError) {
           return Center(child: Text("Error occoured"));
         }
@@ -36,6 +37,7 @@ class AllTabPage extends StatelessWidget {
             // log(scrollController.position.pixels.toString());
             final dataUnit = allData[index];
             return HistoryCard(
+              idOfTransaction: dataUnit.id,
               amount: dataUnit.amount.toString(),
               isexp: dataUnit.isExp,
               time:

@@ -29,6 +29,11 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase>
 
     return query.map((row) => row.read(avgLength)!).watchSingle();
   }
+  // delete the id given task
+
+  Future deleteTransaction(int id) {
+    return (delete(transectionItems)..where((t) => t.id.equals(id))).go();
+  }
 
   Stream<double> expenceValues() {
     final avgLength = transectionItems.amount.sum();
