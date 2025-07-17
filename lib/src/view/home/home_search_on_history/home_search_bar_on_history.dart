@@ -40,7 +40,7 @@ class HomeSearchBarOnHistory extends StatelessWidget {
                             icon: Icon(Icons.cancel, size: 18),
                           ),
                           focusColor: Colors.green.shade300,
-                          //need to fix the focus border color of field TODO
+                          //need to fix the focus border color of fiel
                           // focusedBorder: OutlineInputBorder(
                           //   borderSide: BorderSide(
                           //     color: foocus.hasFocus
@@ -65,7 +65,10 @@ class HomeSearchBarOnHistory extends StatelessWidget {
           return IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              context.read<SearchBarState>().showSearchField();
+              context.read<SearchBarState>().showSearchField(
+                // context.read<TabController>().index,
+                // context,
+              );
             },
           );
         }

@@ -5,10 +5,11 @@ class DownloadUploadButton extends StatelessWidget {
   const DownloadUploadButton({
     super.key,
     required this.buttonName,
-    required this.iconpath,
+    this.iconpath,
     required this.onPressed,
   });
-  final String buttonName, iconpath;
+  final String buttonName;
+  final String? iconpath;
   final VoidCallback onPressed;
 
   @override
@@ -45,13 +46,15 @@ class DownloadUploadButton extends StatelessWidget {
             spacing: 5,
             children: [
               Text(buttonName, style: TextStyle(fontWeight: FontWeight.w500)),
-              SvgPicture.asset(
-                iconpath,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).iconTheme.color ?? Colors.white,
-                  BlendMode.srcIn,
-                ),
-              ),
+              iconpath != null
+                  ? SvgPicture.asset(
+                      iconpath ?? '',
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).iconTheme.color ?? Colors.white,
+                        BlendMode.srcIn,
+                      ),
+                    )
+                  : SizedBox.shrink(),
             ],
           ),
         ),

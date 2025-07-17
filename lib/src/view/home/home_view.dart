@@ -76,6 +76,7 @@ class _HomeViewState extends State<HomeView>
                       controller: tabController,
                       onTap: (value) {
                         context.read<MyTabIndexController>().changeTab(value);
+                        // context.read<SearchBarState>().showSearchIcon();
                       },
                       tabs: [
                         // TabBuilder(isSelected: state == 0, label: "All"),

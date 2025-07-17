@@ -3,6 +3,7 @@ import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
+import 'package:expence_tracker/src/view/pdf/widgets/my_custom_button.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,84 +47,42 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
       key: _formKey,
       child: Dialog(
         child: SizedBox(
-          height: 300,
+          height: 280,
           child: BlocBuilder<DialogueTabController, int>(
             builder: (context, state) => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 10),
+                SizedBox(height: 20),
 
                 TabBar(
                   onTap: (value) {
                     context.read<DialogueTabController>().changeTab(value);
                   },
-                  // dividerColor: Colors.lightGreen,
+
                   controller: tabController,
 
-                  // labelColor: Colors.green,
                   labelStyle: TextStyle(fontWeight: FontWeight.bold),
 
-                  // splashBorderRadius: BorderRadius.circular(1),
-                  // indicatorSize: TabBarIndicatorSize.tab,
                   tabAlignment: TabAlignment.center,
                   isScrollable: true,
                   indicatorAnimation: TabIndicatorAnimation.elastic,
-                  // dividerColor: Colors.transparent,
+
                   automaticIndicatorColorAdjustment: true,
 
                   physics: BouncingScrollPhysics(),
 
-                  // indicator: BoxDecoration(
-                  //   border: Border.all(width: 2),
-
-                  //   borderRadius: BorderRadius.circular(15),
-                  // ),
                   tabs: [
-                    // SizedBox(
-                    //   height: 30,
-                    //   child: Center(
-                    //     child: state == 0
-                    //         ? Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-
-                    //             children: [
-                    //               Icon(Icons.check, size: 20),
-                    //               Text("Cost", style: TextStyle(fontSize: 13)),
-                    //               SizedBox(width: 4),
-                    //             ],
-                    //           )
-                    //         : Text("Cost"),
-                    //   ),
-                    // ),
-                    // // SizedBox(width: 5),
-                    // SizedBox(
-                    //   height: 30,
-                    //   child: Center(
-                    //     child: state == 1
-                    //         ? Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Icon(Icons.check, size: 20),
-                    //               Text("Add", style: TextStyle(fontSize: 13)),
-                    //               SizedBox(width: 4),
-                    //             ],
-                    //           )
-                    //         : Text("Add"),
-                    //   ),
-                    // ),
-                    // TabBuilder(isSelected: state == 0, label: "Cost"),
-                    // TabBuilder(isSelected: state == 1, label: "Add"),
                     Text(
                       "Cost",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       "Add",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -150,7 +109,14 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FilledButton(
+                    DownloadUploadButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        context.read<DialogueTabController>().changeTab(0);
+                      },
+                      buttonName: "Cancel",
+                    ),
+                    DownloadUploadButton(
                       onPressed: () {
                         if (state == 1) {
                           var data = TransectionModel(
@@ -191,19 +157,10 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                                 .addTransaction(data2, context);
                             Navigator.pop(context);
                             context.read<DialogueTabController>().changeTab(0);
-                            // log("0");
                           }
                         }
                       },
-                      child: Text("Ok"),
-                    ),
-
-                    FilledButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        context.read<DialogueTabController>().changeTab(0);
-                      },
-                      child: Text("Cancel"),
+                      buttonName: " Ok ",
                     ),
                   ],
                 ),
