@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllTabPage extends StatelessWidget {
-  AllTabPage({super.key});
+  AllTabPage({super.key, required this.query});
+  final String query;
+
   final ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<TransectionItem>>(
-      stream: context.read<TransactionsDao>().watchAllTransectionItems(),
+      stream: context.read<TransactionsDao>().watchAllTransectionItems(
+        query: query,
+      ),
       builder: (context, snapshot) {
         final allData = snapshot.data?.reversed.toList();
 

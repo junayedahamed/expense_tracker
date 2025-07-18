@@ -1,11 +1,19 @@
 import 'package:expence_tracker/src/repositories/home_search_bar_controller/home_search_bar_show_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeSearchBarOnHistory extends StatelessWidget {
-  HomeSearchBarOnHistory({super.key, required this.searchcontroller});
+  HomeSearchBarOnHistory({
+    super.key,
+    required this.searchcontroller,
+    this.onChanged,
+  });
   final foocus = FocusNode();
   final TextEditingController searchcontroller;
+  final void Function(String)? onChanged;
+  // all=AllTabPage()
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBarState, HomeSearchBarShowController>(
@@ -29,9 +37,7 @@ class HomeSearchBarOnHistory extends StatelessWidget {
                       child: TextFormField(
                         focusNode: foocus,
                         controller: searchcontroller,
-                        // onChanged: (value) {
-                        //   log(foocus.hasFocus.toString());
-                        // },
+                        onChanged: onChanged,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                             onPressed: () {
