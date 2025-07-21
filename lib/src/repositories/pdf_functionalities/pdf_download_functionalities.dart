@@ -124,19 +124,48 @@ class PdfDownloadFunctionalities {
                 ],
               ),
               pw.Divider(),
-              pw.ListView.builder(
-                itemBuilder: (context, index) {
-                  return pw.RichText(
-                    text: pw.TextSpan(
+
+              // pw.ListView.builder(
+              //   itemBuilder: (context, index) {
+              //     return
+              //   },
+              //   itemCount: data.length,
+              // ),
+              pw.Table(
+                border: pw.TableBorder.all(color: PdfColors.black),
+                children: [
+                  pw.TableRow(
+                    children: [
+                      pw.Center(
+                        child: pw.Text("Name", style: pw.TextStyle(font: ttf)),
+                      ),
+                      pw.Center(
+                        child: pw.Text("Id", style: pw.TextStyle(font: ttf)),
+                      ),
+                      pw.Center(
+                        child: pw.Text(
+                          "Address",
+                          style: pw.TextStyle(font: ttf),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  ...List.generate(data.length, (index) {
+                    return pw.TableRow(
+                      decoration: pw.BoxDecoration(
+                        color: data[index].isExp ? null : PdfColors.redAccent,
+                      ),
                       children: [
-                        pw.TextSpan(text: data[index].sourceDetails),
-                        pw.TextSpan(text: " ${data[index].amount}"),
-                        pw.TextSpan(text: " ${data[index].createdAt}"),
+                        pw.Text(data[index].sourceDetails),
+                        pw.Text(data[index].amount.toString()),
+                        pw.Text(
+                          '${data[index].createdAt?.day.toString()}-${data[index].createdAt?.month.toString()}-${data[index].createdAt?.year.toString()}',
+                        ),
                       ],
-                    ),
-                  );
-                },
-                itemCount: data.length,
+                    );
+                  }),
+                ],
               ),
             ],
           );
