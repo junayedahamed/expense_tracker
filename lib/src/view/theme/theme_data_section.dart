@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ThemeDataSection {
   // ThemeDataSection._();
 
-  static final lighttheme = ThemeData.light().copyWith(
+  static final lightTheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
     listTileTheme: ListTileThemeData(
       textColor: Colors.black,
@@ -56,7 +56,7 @@ class ThemeDataSection {
     ),
   );
 
-  static final darktheme = ThemeData.dark().copyWith(
+  static final darkTheme = ThemeData.dark().copyWith(
     brightness: Brightness.dark,
     listTileTheme: ListTileThemeData(
       textColor: Colors.white,

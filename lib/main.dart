@@ -1,7 +1,7 @@
 import 'package:expence_tracker/src/database/database.dart';
 import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
-import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
+import 'package:expence_tracker/src/repositories/dialogue_control_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/repositories/home_search_bar_controller/home_search_bar_show_controller.dart';
 import 'package:expence_tracker/src/repositories/money_show_card_gradient_handler/card_gradient_handler.dart';
 import 'package:expence_tracker/src/view/home/bottom_nav_bar/bottom_nav.dart';
@@ -21,9 +21,9 @@ void main() {
         Provider<TransactionsDao>(
           create: (context) => TransactionsDao(context.read<AppDatabase>()),
         ),
-        Provider<UpdateIncomingOutgingData>(
+        Provider<UpdateIncomingOutgoingData>(
           create: (context) =>
-              UpdateIncomingOutgingData(context.read<TransactionsDao>()),
+              UpdateIncomingOutgoingData(context.read<TransactionsDao>()),
         ),
       ],
       child: MultiBlocProvider(
@@ -56,8 +56,8 @@ class MyApp extends StatelessWidget {
       builder: (context, state) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'ExP Tracker',
-        theme: ThemeDataSection.lighttheme,
-        darkTheme: ThemeDataSection.darktheme,
+        theme: ThemeDataSection.lightTheme,
+        darkTheme: ThemeDataSection.darkTheme,
         themeMode: state,
         // home: HomeView(),
         home: MyNavigationBar(),

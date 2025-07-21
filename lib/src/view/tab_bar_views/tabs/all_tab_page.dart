@@ -4,17 +4,28 @@ import 'package:expence_tracker/src/view/cards/income_expense_history_card/histo
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AllTabPage extends StatelessWidget {
-  AllTabPage({super.key, required this.query});
+class AllTabPage extends StatefulWidget {
+  const AllTabPage({super.key, required this.query});
   final String query;
 
+  @override
+  State<AllTabPage> createState() => _AllTabPageState();
+}
+
+class _AllTabPageState extends State<AllTabPage> {
   final ScrollController scrollController = ScrollController();
+  StringBuffer finalQuery = StringBuffer();
+  void setQuery(String query) {
+    setState(() {
+      finalQuery.write(query);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<TransectionItem>>(
+    return StreamBuilder<List<TransactionItem>>(
       stream: context.read<TransactionsDao>().watchAllTransectionItems(
-        query: query,
+        query: finalQuery.toString(),
       ),
       builder: (context, snapshot) {
         final allData = snapshot.data?.reversed.toList();

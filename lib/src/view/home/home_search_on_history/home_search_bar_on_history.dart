@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeSearchBarOnHistory extends StatelessWidget {
   HomeSearchBarOnHistory({
     super.key,
-    required this.searchcontroller,
+    required this.searchController,
     this.onChanged,
   });
   final foocus = FocusNode();
-  final TextEditingController searchcontroller;
+  final TextEditingController searchController;
   final void Function(String)? onChanged;
   // all=AllTabPage()
 
@@ -36,12 +36,12 @@ class HomeSearchBarOnHistory extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 2.0),
                       child: TextFormField(
                         focusNode: foocus,
-                        controller: searchcontroller,
+                        controller: searchController,
                         onChanged: onChanged,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                             onPressed: () {
-                              searchcontroller.clear();
+                              searchController.clear();
                             },
                             icon: Icon(Icons.cancel, size: 18),
                           ),

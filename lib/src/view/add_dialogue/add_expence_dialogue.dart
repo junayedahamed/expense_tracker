@@ -1,6 +1,6 @@
 import 'package:expence_tracker/src/model/income_model.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
-import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
+import 'package:expence_tracker/src/repositories/dialogue_control_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
 import 'package:expence_tracker/src/view/pdf/widgets/my_custom_button.dart';
@@ -8,14 +8,14 @@ import 'package:expence_tracker/src/view/pdf/widgets/my_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddExpenceDialogue extends StatefulWidget {
-  const AddExpenceDialogue({super.key});
+class AddExpenseDialogue extends StatefulWidget {
+  const AddExpenseDialogue({super.key});
 
   @override
-  State<AddExpenceDialogue> createState() => _AddExpenceDialogueState();
+  State<AddExpenseDialogue> createState() => _AddExpenseDialogueState();
 }
 
-class _AddExpenceDialogueState extends State<AddExpenceDialogue>
+class _AddExpenseDialogueState extends State<AddExpenseDialogue>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   final TextEditingController reasonCost = TextEditingController();
@@ -94,13 +94,13 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                     physics: NeverScrollableScrollPhysics(),
                     controller: tabController,
                     children: [
-                      ExpenceTab(
+                      ExpenseTab(
                         reasonController: reasonCost,
-                        amountcontroller: amountCost,
+                        amountController: amountCost,
                       ),
                       AddIncoming(
                         reasonController: reasonAdd,
-                        amountcontroller: amountAdd,
+                        amountController: amountAdd,
                       ),
                     ],
                   ),
@@ -121,18 +121,18 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                       DownloadUploadButton(
                         onPressed: () {
                           if (state == 1) {
-                            var data = TransectionModel(
+                            var data = TransactionModel(
                               amount: double.tryParse(amountAdd.text) ?? 0.0,
                               addedAt: DateTime.now(),
                               sourceDetails: reasonAdd.text.isEmpty
                                   ? "Unknown Src"
                                   : reasonAdd.text,
-                              isexpense: false,
+                              isExpense: false,
                             );
 
                             if (_formKey.currentState!.validate()) {
                               context
-                                  .read<UpdateIncomingOutgingData>()
+                                  .read<UpdateIncomingOutgoingData>()
                                   .addTransaction(data, context);
                               Navigator.pop(context);
                               context.read<DialogueTabController>().changeTab(
@@ -145,7 +145,7 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                             final StringBuffer finalAmount = StringBuffer();
                             finalAmount.write("-");
                             finalAmount.write(amountCost.text);
-                            var data2 = TransectionModel(
+                            var data2 = TransactionModel(
                               amount:
                                   double.tryParse(finalAmount.toString()) ??
                                   0.0,
@@ -153,12 +153,12 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                               sourceDetails: reasonCost.text.isEmpty
                                   ? "Unknown"
                                   : reasonCost.text,
-                              isexpense: true,
+                              isExpense: true,
                             );
 
                             if (_formKey.currentState!.validate()) {
                               context
-                                  .read<UpdateIncomingOutgingData>()
+                                  .read<UpdateIncomingOutgoingData>()
                                   .addTransaction(data2, context);
                               Navigator.pop(context);
                               context.read<DialogueTabController>().changeTab(

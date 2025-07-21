@@ -11,11 +11,11 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase>
     with _$TransactionsDaoMixin {
   TransactionsDao(super.db);
 
-  Future<List<TransectionItem>> getAllTransectionItems() {
+  Future<List<TransactionItem>> getAllTransectionItems() {
     return transectionItems.select().get();
   }
 
-  Stream<List<TransectionItem>> watchAllTransectionItems({String? query}) {
+  Stream<List<TransactionItem>> watchAllTransectionItems({String? query}) {
     // log("message");
     final result = transectionItems.select().watch();
     if (query != null && query.isNotEmpty) {
@@ -69,12 +69,12 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase>
     return result ?? 0.0;
   }
 
-  Future<void> insertTransection(TransectionModel transection) async {
+  Future<void> insertTransection(TransactionModel transection) async {
     await into(transectionItems).insert(
       TransectionItemsCompanion.insert(
         sourceDetails: transection.sourceDetails,
         amount: transection.amount,
-        isExp: transection.isexpense,
+        isExp: transection.isExpense,
         createdAt: Value(transection.addedAt),
       ),
     );

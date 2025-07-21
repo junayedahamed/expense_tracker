@@ -31,7 +31,7 @@ class PdfDownloadFunctionalities {
     }
   }
 
-  Future<void> downloadPDF(List<TransectionItem> data, context) async {
+  Future<void> downloadPDF(List<TransactionItem> data, context) async {
     final pdf = pw.Document();
 
     // Load Unicode font
@@ -57,7 +57,7 @@ class PdfDownloadFunctionalities {
 
                     children: [
                       pw.Text(
-                        "Expence Tracker",
+                        "Expense Tracker",
                         style: pw.TextStyle(
                           font: ttf,
                           fontSize: 25,

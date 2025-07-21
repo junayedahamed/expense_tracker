@@ -40,18 +40,18 @@ import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/model/income_model.dart';
 import 'package:flutter/material.dart';
 
-class UpdateIncomingOutgingData {
+class UpdateIncomingOutgoingData {
   // UpdateIncomingOutgingData(this.transactions) : super(0);
   // final AppDatabase db = AppDatabase();
 
-  UpdateIncomingOutgingData(this.transactions);
+  UpdateIncomingOutgoingData(this.transactions);
   final TransactionsDao transactions;
 
-  List<TransectionModel> transectionList = [];
+  List<TransactionModel> transactionList = [];
 
   double costedMoneyOnApp = 0;
-  void addTransaction(TransectionModel income, context) async {
-    if (income.isexpense) {
+  void addTransaction(TransactionModel income, context) async {
+    if (income.isExpense) {
       var curr = await transactions.currentAvailableAmount();
       // log(curr.toString());
       if (income.amount.abs() == 0) {
