@@ -47,7 +47,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           showDialog(
             barrierDismissible: false,
             context: context,
-            builder: (context) => AddExpenceDialogue(),
+            builder: (context) => AddExpenseDialogue(),
           );
         },
         child: Container(

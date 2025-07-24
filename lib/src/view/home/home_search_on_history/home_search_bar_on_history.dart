@@ -1,11 +1,19 @@
 import 'package:expence_tracker/src/repositories/home_search_bar_controller/home_search_bar_show_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeSearchBarOnHistory extends StatelessWidget {
-  HomeSearchBarOnHistory({super.key, required this.searchcontroller});
+  HomeSearchBarOnHistory({
+    super.key,
+    required this.searchController,
+    this.onChanged,
+  });
   final foocus = FocusNode();
-  final TextEditingController searchcontroller;
+  final TextEditingController searchController;
+  final void Function(String)? onChanged;
+  // all=AllTabPage()
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBarState, HomeSearchBarShowController>(
@@ -28,19 +36,17 @@ class HomeSearchBarOnHistory extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 2.0),
                       child: TextFormField(
                         focusNode: foocus,
-                        controller: searchcontroller,
-                        // onChanged: (value) {
-                        //   log(foocus.hasFocus.toString());
-                        // },
+                        controller: searchController,
+                        onChanged: onChanged,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                             onPressed: () {
-                              searchcontroller.clear();
+                              searchController.clear();
                             },
                             icon: Icon(Icons.cancel, size: 18),
                           ),
                           focusColor: Colors.green.shade300,
-                          //need to fix the focus border color of field TODO
+                          //need to fix the focus border color of fiel
                           // focusedBorder: OutlineInputBorder(
                           //   borderSide: BorderSide(
                           //     color: foocus.hasFocus
@@ -65,7 +71,10 @@ class HomeSearchBarOnHistory extends StatelessWidget {
           return IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              context.read<SearchBarState>().showSearchField();
+              context.read<SearchBarState>().showSearchField(
+                // context.read<TabController>().index,
+                // context,
+              );
             },
           );
         }

@@ -1,20 +1,21 @@
 import 'package:expence_tracker/src/model/income_model.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
-import 'package:expence_tracker/src/repositories/dialogue_controll_repo/dialogue_tab_controller.dart';
+import 'package:expence_tracker/src/repositories/dialogue_control_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
 import 'package:expence_tracker/src/view/add_dialogue/out_going_expence.dart';
+import 'package:expence_tracker/src/view/pdf/widgets/my_custom_button.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddExpenceDialogue extends StatefulWidget {
-  const AddExpenceDialogue({super.key});
+class AddExpenseDialogue extends StatefulWidget {
+  const AddExpenseDialogue({super.key});
 
   @override
-  State<AddExpenceDialogue> createState() => _AddExpenceDialogueState();
+  State<AddExpenseDialogue> createState() => _AddExpenseDialogueState();
 }
 
-class _AddExpenceDialogueState extends State<AddExpenceDialogue>
+class _AddExpenseDialogueState extends State<AddExpenseDialogue>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   final TextEditingController reasonCost = TextEditingController();
@@ -46,84 +47,42 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
       key: _formKey,
       child: Dialog(
         child: SizedBox(
-          height: 300,
+          height: 280,
           child: BlocBuilder<DialogueTabController, int>(
             builder: (context, state) => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 10),
+                SizedBox(height: 20),
 
                 TabBar(
                   onTap: (value) {
                     context.read<DialogueTabController>().changeTab(value);
                   },
-                  // dividerColor: Colors.lightGreen,
+
                   controller: tabController,
 
-                  // labelColor: Colors.green,
                   labelStyle: TextStyle(fontWeight: FontWeight.bold),
 
-                  // splashBorderRadius: BorderRadius.circular(1),
-                  // indicatorSize: TabBarIndicatorSize.tab,
                   tabAlignment: TabAlignment.center,
                   isScrollable: true,
                   indicatorAnimation: TabIndicatorAnimation.elastic,
-                  // dividerColor: Colors.transparent,
+
                   automaticIndicatorColorAdjustment: true,
 
                   physics: BouncingScrollPhysics(),
 
-                  // indicator: BoxDecoration(
-                  //   border: Border.all(width: 2),
-
-                  //   borderRadius: BorderRadius.circular(15),
-                  // ),
                   tabs: [
-                    // SizedBox(
-                    //   height: 30,
-                    //   child: Center(
-                    //     child: state == 0
-                    //         ? Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-
-                    //             children: [
-                    //               Icon(Icons.check, size: 20),
-                    //               Text("Cost", style: TextStyle(fontSize: 13)),
-                    //               SizedBox(width: 4),
-                    //             ],
-                    //           )
-                    //         : Text("Cost"),
-                    //   ),
-                    // ),
-                    // // SizedBox(width: 5),
-                    // SizedBox(
-                    //   height: 30,
-                    //   child: Center(
-                    //     child: state == 1
-                    //         ? Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Icon(Icons.check, size: 20),
-                    //               Text("Add", style: TextStyle(fontSize: 13)),
-                    //               SizedBox(width: 4),
-                    //             ],
-                    //           )
-                    //         : Text("Add"),
-                    //   ),
-                    // ),
-                    // TabBuilder(isSelected: state == 0, label: "Cost"),
-                    // TabBuilder(isSelected: state == 1, label: "Add"),
                     Text(
                       "Cost",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       "Add",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -135,77 +94,83 @@ class _AddExpenceDialogueState extends State<AddExpenceDialogue>
                     physics: NeverScrollableScrollPhysics(),
                     controller: tabController,
                     children: [
-                      ExpenceTab(
+                      ExpenseTab(
                         reasonController: reasonCost,
-                        amountcontroller: amountCost,
+                        amountController: amountCost,
                       ),
                       AddIncoming(
                         reasonController: reasonAdd,
-                        amountcontroller: amountAdd,
+                        amountController: amountAdd,
                       ),
                     ],
                   ),
                 ),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    FilledButton(
-                      onPressed: () {
-                        if (state == 1) {
-                          var data = TransectionModel(
-                            amount: double.tryParse(amountAdd.text) ?? 0.0,
-                            addedAt: DateTime.now(),
-                            sourceDetails: reasonAdd.text.isEmpty
-                                ? "Unknown Src"
-                                : reasonAdd.text,
-                            isexpense: false,
-                          );
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    spacing: 15,
+                    children: [
+                      DownloadUploadButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          context.read<DialogueTabController>().changeTab(0);
+                        },
+                        buttonName: "Cancel",
+                      ),
+                      DownloadUploadButton(
+                        onPressed: () {
+                          if (state == 1) {
+                            var data = TransactionModel(
+                              amount: double.tryParse(amountAdd.text) ?? 0.0,
+                              addedAt: DateTime.now(),
+                              sourceDetails: reasonAdd.text.isEmpty
+                                  ? "Unknown Src"
+                                  : reasonAdd.text,
+                              isExpense: false,
+                            );
 
-                          if (_formKey.currentState!.validate()) {
-                            context
-                                .read<UpdateIncomingOutgingData>()
-                                .addTransaction(data, context);
-                            Navigator.pop(context);
-                            context.read<DialogueTabController>().changeTab(0);
+                            if (_formKey.currentState!.validate()) {
+                              context
+                                  .read<UpdateIncomingOutgoingData>()
+                                  .addTransaction(data, context);
+                              Navigator.pop(context);
+                              context.read<DialogueTabController>().changeTab(
+                                0,
+                              );
+                            }
                           }
-                        }
 
-                        if (state == 0) {
-                          final StringBuffer finalAmount = StringBuffer();
-                          finalAmount.write("-");
-                          finalAmount.write(amountCost.text);
-                          var data2 = TransectionModel(
-                            amount:
-                                double.tryParse(finalAmount.toString()) ?? 0.0,
-                            addedAt: DateTime.now(),
-                            sourceDetails: reasonCost.text.isEmpty
-                                ? "Unknown"
-                                : reasonCost.text,
-                            isexpense: true,
-                          );
+                          if (state == 0) {
+                            final StringBuffer finalAmount = StringBuffer();
+                            finalAmount.write("-");
+                            finalAmount.write(amountCost.text);
+                            var data2 = TransactionModel(
+                              amount:
+                                  double.tryParse(finalAmount.toString()) ??
+                                  0.0,
+                              addedAt: DateTime.now(),
+                              sourceDetails: reasonCost.text.isEmpty
+                                  ? "Unknown"
+                                  : reasonCost.text,
+                              isExpense: true,
+                            );
 
-                          if (_formKey.currentState!.validate()) {
-                            context
-                                .read<UpdateIncomingOutgingData>()
-                                .addTransaction(data2, context);
-                            Navigator.pop(context);
-                            context.read<DialogueTabController>().changeTab(0);
-                            // log("0");
+                            if (_formKey.currentState!.validate()) {
+                              context
+                                  .read<UpdateIncomingOutgoingData>()
+                                  .addTransaction(data2, context);
+                              Navigator.pop(context);
+                              context.read<DialogueTabController>().changeTab(
+                                0,
+                              );
+                            }
                           }
-                        }
-                      },
-                      child: Text("Ok"),
-                    ),
-
-                    FilledButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        context.read<DialogueTabController>().changeTab(0);
-                      },
-                      child: Text("Cancel"),
-                    ),
-                  ],
+                        },
+                        buttonName: " Ok ",
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 10),
               ],

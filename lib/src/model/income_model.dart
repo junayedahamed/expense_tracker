@@ -1,27 +1,27 @@
-class TransectionModel {
+class TransactionModel {
   final double amount;
   final String sourceDetails;
   final DateTime addedAt;
-  final bool isexpense;
+  final bool isExpense;
 
-  TransectionModel({
+  TransactionModel({
     required this.amount,
     required this.sourceDetails,
     required this.addedAt,
-    required this.isexpense,
+    required this.isExpense,
   });
 
-  TransectionModel copyWith(
+  TransactionModel copyWith(
     double? amounttk,
     String? sourceDetailscp,
     DateTime? addedAtcp,
     bool? isexpensecp,
   ) {
-    return TransectionModel(
+    return TransactionModel(
       amount: amounttk ?? amount,
       sourceDetails: sourceDetailscp ?? sourceDetails,
       addedAt: addedAtcp ?? addedAt,
-      isexpense: isexpensecp ?? isexpense,
+      isExpense: isexpensecp ?? isExpense,
     );
   }
 

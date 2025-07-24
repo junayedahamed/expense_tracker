@@ -4,7 +4,7 @@ part of 'database.dart';
 
 // ignore_for_file: type=lint
 class $TransectionItemsTable extends TransectionItems
-    with TableInfo<$TransectionItemsTable, TransectionItem> {
+    with TableInfo<$TransectionItemsTable, TransactionItem> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -12,48 +12,77 @@ class $TransectionItemsTable extends TransectionItems
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
-  static const VerificationMeta _sourceDetailsMeta =
-      const VerificationMeta('sourceDetails');
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _sourceDetailsMeta = const VerificationMeta(
+    'sourceDetails',
+  );
   @override
   late final GeneratedColumn<String> sourceDetails = GeneratedColumn<String>(
-      'source_details', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'source_details',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _amountMeta = const VerificationMeta('amount');
   @override
   late final GeneratedColumn<double> amount = GeneratedColumn<double>(
-      'amount', aliasedName, false,
-      type: DriftSqlType.double, requiredDuringInsert: true);
+    'amount',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _isExpMeta = const VerificationMeta('isExp');
   @override
   late final GeneratedColumn<bool> isExp = GeneratedColumn<bool>(
-      'is_exp', aliasedName, false,
-      type: DriftSqlType.bool,
-      requiredDuringInsert: true,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('CHECK ("is_exp" IN (0, 1))'));
-  static const VerificationMeta _createdAtMeta =
-      const VerificationMeta('createdAt');
+    'is_exp',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_exp" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
   @override
   late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-      'created_at', aliasedName, true,
-      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, sourceDetails, amount, isExp, createdAt];
+  List<GeneratedColumn> get $columns => [
+    id,
+    sourceDetails,
+    amount,
+    isExp,
+    createdAt,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'transection_items';
   @override
-  VerificationContext validateIntegrity(Insertable<TransectionItem> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<TransactionItem> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -61,27 +90,36 @@ class $TransectionItemsTable extends TransectionItems
     }
     if (data.containsKey('source_details')) {
       context.handle(
+        _sourceDetailsMeta,
+        sourceDetails.isAcceptableOrUnknown(
+          data['source_details']!,
           _sourceDetailsMeta,
-          sourceDetails.isAcceptableOrUnknown(
-              data['source_details']!, _sourceDetailsMeta));
+        ),
+      );
     } else if (isInserting) {
       context.missing(_sourceDetailsMeta);
     }
     if (data.containsKey('amount')) {
-      context.handle(_amountMeta,
-          amount.isAcceptableOrUnknown(data['amount']!, _amountMeta));
+      context.handle(
+        _amountMeta,
+        amount.isAcceptableOrUnknown(data['amount']!, _amountMeta),
+      );
     } else if (isInserting) {
       context.missing(_amountMeta);
     }
     if (data.containsKey('is_exp')) {
       context.handle(
-          _isExpMeta, isExp.isAcceptableOrUnknown(data['is_exp']!, _isExpMeta));
+        _isExpMeta,
+        isExp.isAcceptableOrUnknown(data['is_exp']!, _isExpMeta),
+      );
     } else if (isInserting) {
       context.missing(_isExpMeta);
     }
     if (data.containsKey('created_at')) {
-      context.handle(_createdAtMeta,
-          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
     }
     return context;
   }
@@ -89,19 +127,29 @@ class $TransectionItemsTable extends TransectionItems
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  TransectionItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+  TransactionItem map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return TransectionItem(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      sourceDetails: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}source_details'])!,
-      amount: attachedDatabase.typeMapping
-          .read(DriftSqlType.double, data['${effectivePrefix}amount'])!,
-      isExp: attachedDatabase.typeMapping
-          .read(DriftSqlType.bool, data['${effectivePrefix}is_exp'])!,
-      createdAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at']),
+    return TransactionItem(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      sourceDetails: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}source_details'],
+      )!,
+      amount: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}amount'],
+      )!,
+      isExp: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_exp'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      ),
     );
   }
 
@@ -111,18 +159,19 @@ class $TransectionItemsTable extends TransectionItems
   }
 }
 
-class TransectionItem extends DataClass implements Insertable<TransectionItem> {
+class TransactionItem extends DataClass implements Insertable<TransactionItem> {
   final int id;
   final String sourceDetails;
   final double amount;
   final bool isExp;
   final DateTime? createdAt;
-  const TransectionItem(
-      {required this.id,
-      required this.sourceDetails,
-      required this.amount,
-      required this.isExp,
-      this.createdAt});
+  const TransactionItem({
+    required this.id,
+    required this.sourceDetails,
+    required this.amount,
+    required this.isExp,
+    this.createdAt,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -148,10 +197,12 @@ class TransectionItem extends DataClass implements Insertable<TransectionItem> {
     );
   }
 
-  factory TransectionItem.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory TransactionItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return TransectionItem(
+    return TransactionItem(
       id: serializer.fromJson<int>(json['id']),
       sourceDetails: serializer.fromJson<String>(json['sourceDetails']),
       amount: serializer.fromJson<double>(json['amount']),
@@ -171,21 +222,21 @@ class TransectionItem extends DataClass implements Insertable<TransectionItem> {
     };
   }
 
-  TransectionItem copyWith(
-          {int? id,
-          String? sourceDetails,
-          double? amount,
-          bool? isExp,
-          Value<DateTime?> createdAt = const Value.absent()}) =>
-      TransectionItem(
-        id: id ?? this.id,
-        sourceDetails: sourceDetails ?? this.sourceDetails,
-        amount: amount ?? this.amount,
-        isExp: isExp ?? this.isExp,
-        createdAt: createdAt.present ? createdAt.value : this.createdAt,
-      );
-  TransectionItem copyWithCompanion(TransectionItemsCompanion data) {
-    return TransectionItem(
+  TransactionItem copyWith({
+    int? id,
+    String? sourceDetails,
+    double? amount,
+    bool? isExp,
+    Value<DateTime?> createdAt = const Value.absent(),
+  }) => TransactionItem(
+    id: id ?? this.id,
+    sourceDetails: sourceDetails ?? this.sourceDetails,
+    amount: amount ?? this.amount,
+    isExp: isExp ?? this.isExp,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
+  );
+  TransactionItem copyWithCompanion(TransectionItemsCompanion data) {
+    return TransactionItem(
       id: data.id.present ? data.id.value : this.id,
       sourceDetails: data.sourceDetails.present
           ? data.sourceDetails.value
@@ -213,7 +264,7 @@ class TransectionItem extends DataClass implements Insertable<TransectionItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is TransectionItem &&
+      (other is TransactionItem &&
           other.id == this.id &&
           other.sourceDetails == this.sourceDetails &&
           other.amount == this.amount &&
@@ -221,7 +272,7 @@ class TransectionItem extends DataClass implements Insertable<TransectionItem> {
           other.createdAt == this.createdAt);
 }
 
-class TransectionItemsCompanion extends UpdateCompanion<TransectionItem> {
+class TransectionItemsCompanion extends UpdateCompanion<TransactionItem> {
   final Value<int> id;
   final Value<String> sourceDetails;
   final Value<double> amount;
@@ -240,10 +291,10 @@ class TransectionItemsCompanion extends UpdateCompanion<TransectionItem> {
     required double amount,
     required bool isExp,
     this.createdAt = const Value.absent(),
-  })  : sourceDetails = Value(sourceDetails),
-        amount = Value(amount),
-        isExp = Value(isExp);
-  static Insertable<TransectionItem> custom({
+  }) : sourceDetails = Value(sourceDetails),
+       amount = Value(amount),
+       isExp = Value(isExp);
+  static Insertable<TransactionItem> custom({
     Expression<int>? id,
     Expression<String>? sourceDetails,
     Expression<double>? amount,
@@ -259,12 +310,13 @@ class TransectionItemsCompanion extends UpdateCompanion<TransectionItem> {
     });
   }
 
-  TransectionItemsCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? sourceDetails,
-      Value<double>? amount,
-      Value<bool>? isExp,
-      Value<DateTime?>? createdAt}) {
+  TransectionItemsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? sourceDetails,
+    Value<double>? amount,
+    Value<bool>? isExp,
+    Value<DateTime?>? createdAt,
+  }) {
     return TransectionItemsCompanion(
       id: id ?? this.id,
       sourceDetails: sourceDetails ?? this.sourceDetails,
@@ -311,8 +363,9 @@ class TransectionItemsCompanion extends UpdateCompanion<TransectionItem> {
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
-  late final $TransectionItemsTable transectionItems =
-      $TransectionItemsTable(this);
+  late final $TransectionItemsTable transectionItems = $TransectionItemsTable(
+    this,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -320,22 +373,22 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [transectionItems];
 }
 
-typedef $$TransectionItemsTableCreateCompanionBuilder
-    = TransectionItemsCompanion Function({
-  Value<int> id,
-  required String sourceDetails,
-  required double amount,
-  required bool isExp,
-  Value<DateTime?> createdAt,
-});
-typedef $$TransectionItemsTableUpdateCompanionBuilder
-    = TransectionItemsCompanion Function({
-  Value<int> id,
-  Value<String> sourceDetails,
-  Value<double> amount,
-  Value<bool> isExp,
-  Value<DateTime?> createdAt,
-});
+typedef $$TransectionItemsTableCreateCompanionBuilder =
+    TransectionItemsCompanion Function({
+      Value<int> id,
+      required String sourceDetails,
+      required double amount,
+      required bool isExp,
+      Value<DateTime?> createdAt,
+    });
+typedef $$TransectionItemsTableUpdateCompanionBuilder =
+    TransectionItemsCompanion Function({
+      Value<int> id,
+      Value<String> sourceDetails,
+      Value<double> amount,
+      Value<bool> isExp,
+      Value<DateTime?> createdAt,
+    });
 
 class $$TransectionItemsTableFilterComposer
     extends Composer<_$AppDatabase, $TransectionItemsTable> {
@@ -347,19 +400,29 @@ class $$TransectionItemsTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnFilters(column));
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get sourceDetails => $composableBuilder(
-      column: $table.sourceDetails, builder: (column) => ColumnFilters(column));
+    column: $table.sourceDetails,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<double> get amount => $composableBuilder(
-      column: $table.amount, builder: (column) => ColumnFilters(column));
+    column: $table.amount,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<bool> get isExp => $composableBuilder(
-      column: $table.isExp, builder: (column) => ColumnFilters(column));
+    column: $table.isExp,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
-      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$TransectionItemsTableOrderingComposer
@@ -372,20 +435,29 @@ class $$TransectionItemsTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnOrderings(column));
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get sourceDetails => $composableBuilder(
-      column: $table.sourceDetails,
-      builder: (column) => ColumnOrderings(column));
+    column: $table.sourceDetails,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<double> get amount => $composableBuilder(
-      column: $table.amount, builder: (column) => ColumnOrderings(column));
+    column: $table.amount,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<bool> get isExp => $composableBuilder(
-      column: $table.isExp, builder: (column) => ColumnOrderings(column));
+    column: $table.isExp,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$TransectionItemsTableAnnotationComposer
@@ -401,7 +473,9 @@ class $$TransectionItemsTableAnnotationComposer
       $composableBuilder(column: $table.id, builder: (column) => column);
 
   GeneratedColumn<String> get sourceDetails => $composableBuilder(
-      column: $table.sourceDetails, builder: (column) => column);
+    column: $table.sourceDetails,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<double> get amount =>
       $composableBuilder(column: $table.amount, builder: (column) => column);
@@ -413,24 +487,33 @@ class $$TransectionItemsTableAnnotationComposer
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
 }
 
-class $$TransectionItemsTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $TransectionItemsTable,
-    TransectionItem,
-    $$TransectionItemsTableFilterComposer,
-    $$TransectionItemsTableOrderingComposer,
-    $$TransectionItemsTableAnnotationComposer,
-    $$TransectionItemsTableCreateCompanionBuilder,
-    $$TransectionItemsTableUpdateCompanionBuilder,
-    (
-      TransectionItem,
-      BaseReferences<_$AppDatabase, $TransectionItemsTable, TransectionItem>
-    ),
-    TransectionItem,
-    PrefetchHooks Function()> {
+class $$TransectionItemsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $TransectionItemsTable,
+          TransactionItem,
+          $$TransectionItemsTableFilterComposer,
+          $$TransectionItemsTableOrderingComposer,
+          $$TransectionItemsTableAnnotationComposer,
+          $$TransectionItemsTableCreateCompanionBuilder,
+          $$TransectionItemsTableUpdateCompanionBuilder,
+          (
+            TransactionItem,
+            BaseReferences<
+              _$AppDatabase,
+              $TransectionItemsTable,
+              TransactionItem
+            >,
+          ),
+          TransactionItem,
+          PrefetchHooks Function()
+        > {
   $$TransectionItemsTableTableManager(
-      _$AppDatabase db, $TransectionItemsTable table)
-      : super(TableManagerState(
+    _$AppDatabase db,
+    $TransectionItemsTable table,
+  ) : super(
+        TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
@@ -439,56 +522,59 @@ class $$TransectionItemsTableTableManager extends RootTableManager<
               $$TransectionItemsTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$TransectionItemsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> sourceDetails = const Value.absent(),
-            Value<double> amount = const Value.absent(),
-            Value<bool> isExp = const Value.absent(),
-            Value<DateTime?> createdAt = const Value.absent(),
-          }) =>
-              TransectionItemsCompanion(
-            id: id,
-            sourceDetails: sourceDetails,
-            amount: amount,
-            isExp: isExp,
-            createdAt: createdAt,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required String sourceDetails,
-            required double amount,
-            required bool isExp,
-            Value<DateTime?> createdAt = const Value.absent(),
-          }) =>
-              TransectionItemsCompanion.insert(
-            id: id,
-            sourceDetails: sourceDetails,
-            amount: amount,
-            isExp: isExp,
-            createdAt: createdAt,
-          ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> sourceDetails = const Value.absent(),
+                Value<double> amount = const Value.absent(),
+                Value<bool> isExp = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+              }) => TransectionItemsCompanion(
+                id: id,
+                sourceDetails: sourceDetails,
+                amount: amount,
+                isExp: isExp,
+                createdAt: createdAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String sourceDetails,
+                required double amount,
+                required bool isExp,
+                Value<DateTime?> createdAt = const Value.absent(),
+              }) => TransectionItemsCompanion.insert(
+                id: id,
+                sourceDetails: sourceDetails,
+                amount: amount,
+                isExp: isExp,
+                createdAt: createdAt,
+              ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
               .toList(),
           prefetchHooksCallback: null,
-        ));
+        ),
+      );
 }
 
-typedef $$TransectionItemsTableProcessedTableManager = ProcessedTableManager<
-    _$AppDatabase,
-    $TransectionItemsTable,
-    TransectionItem,
-    $$TransectionItemsTableFilterComposer,
-    $$TransectionItemsTableOrderingComposer,
-    $$TransectionItemsTableAnnotationComposer,
-    $$TransectionItemsTableCreateCompanionBuilder,
-    $$TransectionItemsTableUpdateCompanionBuilder,
-    (
-      TransectionItem,
-      BaseReferences<_$AppDatabase, $TransectionItemsTable, TransectionItem>
-    ),
-    TransectionItem,
-    PrefetchHooks Function()>;
+typedef $$TransectionItemsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $TransectionItemsTable,
+      TransactionItem,
+      $$TransectionItemsTableFilterComposer,
+      $$TransectionItemsTableOrderingComposer,
+      $$TransectionItemsTableAnnotationComposer,
+      $$TransectionItemsTableCreateCompanionBuilder,
+      $$TransectionItemsTableUpdateCompanionBuilder,
+      (
+        TransactionItem,
+        BaseReferences<_$AppDatabase, $TransectionItemsTable, TransactionItem>,
+      ),
+      TransactionItem,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;

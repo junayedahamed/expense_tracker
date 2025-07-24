@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ExpenceTab extends StatelessWidget {
-  const ExpenceTab({
+class ExpenseTab extends StatelessWidget {
+  const ExpenseTab({
     super.key,
     required this.reasonController,
-    required this.amountcontroller,
+    required this.amountController,
   });
   final TextEditingController reasonController;
-  final TextEditingController amountcontroller;
+  final TextEditingController amountController;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class ExpenceTab extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: TextFormField(
-              controller: amountcontroller,
+              controller: amountController,
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || value.isEmpty) {

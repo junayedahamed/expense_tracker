@@ -1,5 +1,4 @@
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
-import 'package:expence_tracker/src/view/home/home_search_on_history/home_search_bar_on_history.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
@@ -17,7 +16,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
-  final TextEditingController searchcontroller = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
   bool search = false;
 
@@ -76,11 +75,9 @@ class _HomeViewState extends State<HomeView>
                       controller: tabController,
                       onTap: (value) {
                         context.read<MyTabIndexController>().changeTab(value);
+                        // context.read<SearchBarState>().showSearchIcon();
                       },
                       tabs: [
-                        // TabBuilder(isSelected: state == 0, label: "All"),
-                        // TabBuilder(isSelected: state == 1, label: "In"),
-                        // TabBuilder(isSelected: state == 2, label: "Out"),\
                         Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Text(
@@ -115,8 +112,6 @@ class _HomeViewState extends State<HomeView>
                     ),
                   ),
                 ),
-                //search bar and search icons
-                HomeSearchBarOnHistory(searchcontroller: searchcontroller),
               ],
             ),
           ),
@@ -126,7 +121,13 @@ class _HomeViewState extends State<HomeView>
               physics: NeverScrollableScrollPhysics(),
               controller: tabController,
               children: [
-                Tab(child: AllTabPage()),
+                Tab(
+                  child: AllTabPage(
+                    query: context.read<MyTabIndexController>().current == 0
+                        ? searchController.text
+                        : '',
+                  ),
+                ),
                 Tab(child: InComingTab()),
                 Tab(child: OutGoingTab()),
               ],

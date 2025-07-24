@@ -4,10 +4,10 @@ class AddIncoming extends StatelessWidget {
   const AddIncoming({
     super.key,
     required this.reasonController,
-    required this.amountcontroller,
+    required this.amountController,
   });
   final TextEditingController reasonController;
-  final TextEditingController amountcontroller;
+  final TextEditingController amountController;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class AddIncoming extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextFormField(
-              controller: amountcontroller,
+              controller: amountController,
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || value.isEmpty) {

@@ -9,7 +9,7 @@ class InComingTab extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<TransectionItem>>(
+    return StreamBuilder<List<TransactionItem>>(
       stream: context.read<TransactionsDao>().watchAllTransectionItems(),
       builder: (context, snapshot) {
         final allData = snapshot.data?.reversed.toList();
@@ -41,6 +41,7 @@ class InComingTab extends StatelessWidget {
             // log(scrollController.position.pixels.toString());
             final dataUnit = filteredData[index];
             return HistoryCard(
+              idOfTransaction: dataUnit.id,
               amount: dataUnit.amount.toString(),
               isexp: dataUnit.isExp,
               time:
