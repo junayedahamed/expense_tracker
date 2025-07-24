@@ -1,4 +1,4 @@
-import 'package:expence_tracker/src/model/income_model.dart';
+import 'package:expence_tracker/src/model/transaction_model.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_control_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/view/add_dialogue/add_incoming.dart';
