@@ -4,6 +4,7 @@ import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/dialogue_control_repo/dialogue_tab_controller.dart';
 import 'package:expence_tracker/src/repositories/home_search_bar_controller/home_search_bar_show_controller.dart';
 import 'package:expence_tracker/src/repositories/money_show_card_gradient_handler/card_gradient_handler.dart';
+import 'package:expence_tracker/src/repositories/stream_view_controller/stream_view_controller.dart';
 import 'package:expence_tracker/src/view/home/bottom_nav_bar/bottom_nav.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
 import 'package:expence_tracker/src/view/theme/theme_changer.dart';
@@ -18,6 +19,7 @@ void main() {
     MultiProvider(
       providers: [
         Provider<AppDatabase>(create: (context) => AppDatabase()),
+
         Provider<TransactionsDao>(
           create: (context) => TransactionsDao(context.read<AppDatabase>()),
         ),
@@ -25,6 +27,7 @@ void main() {
           create: (context) =>
               UpdateIncomingOutgoingData(context.read<TransactionsDao>()),
         ),
+        // ChangeNotifierProvider(create: (_) => StreamViewController()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -32,6 +35,9 @@ void main() {
           BlocProvider<SearchBarState>(create: (_) => SearchBarState()),
           BlocProvider<MyTabIndexController>(
             create: (_) => MyTabIndexController(),
+          ),
+          BlocProvider<StreamViewController>(
+            create: (_) => StreamViewController(),
           ),
           BlocProvider<DialogueTabController>(
             create: (_) => DialogueTabController(),

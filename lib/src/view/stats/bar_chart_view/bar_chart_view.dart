@@ -1,6 +1,8 @@
+import 'package:expence_tracker/src/repositories/stream_view_controller/stream_view_controller.dart';
 import 'package:expence_tracker/src/view/pdf/download_ui/download_pdf.dart';
-import 'package:expence_tracker/src/view/stats/widgets/daily_chart.dart';
+import 'package:expence_tracker/src/view/stats/bar_chart_view/stream/stream_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BarChartView extends StatelessWidget {
   BarChartView({super.key});
@@ -9,7 +11,8 @@ class BarChartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String selected = "Daily";
+    // final controller = context.watch<StreamViewController>();
+    // String selected = "Daily";
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -28,10 +31,10 @@ class BarChartView extends StatelessWidget {
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                     ),
-                    value: selected,
+                    value: context.read<StreamViewController>().state,
                     items: viewType.map((String value) {
                       return DropdownMenuItem<String>(
-                        value: value,
+                        value: value.toLowerCase(),
                         child: Text(
                           value,
                           style: TextStyle(
@@ -43,10 +46,7 @@ class BarChartView extends StatelessWidget {
                     }).toList(),
                     onChanged: (String? newValue) {
                       if (newValue != null) {
-                        // setState(() {
-                        //   selected = newValue;
-                        // });
-                        // log(selected);
+                        context.read<StreamViewController>().selector(newValue);
                       }
                     },
                   ),
@@ -58,7 +58,17 @@ class BarChartView extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
             ),
             SizedBox(height: 20),
-            DailyChart(),
+
+            //chart view
+            //chart view
+            //chart view
+            //chart view
+            StreamViewer(),
+
+            //chart view
+            //chart view
+            //chart view
+            //chart view
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
