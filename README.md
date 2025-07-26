@@ -34,21 +34,24 @@ with real time update on spent or add money
 
 
 # Upcoming Updates ⚒️
-
-## Chart 📊
+## Can be able to download PDF of  transaction 📄 (done)
+## Chart 📊  (done)
    ### Users can Select chart type from a dropdown
    <br>
 
+
+
+ ## (not done yet)
   - **Daily :**    This section were show daily spent  & add of money on a graph  chart 
   - **Weekly :**  This section were show weekly spent  & add of money on a graph  chart 
   - **Monthly :**  This section were show monthly spent  & add of money on a graph  chart 
   - **Yearly :**  This section were show yearly spent  & add of money on a graph  chart 
 
-  ## Data Backup ⬆️
+  ## Data Backup ⬆️ (not done yet)
 
 ###  Users can backup there data on a online db 
 
-  ## Taking Backup ⬇️
+  ## Taking Backup ⬇️  (not done yet)
 
  ### Users can take a backup there previous data if they needed
 

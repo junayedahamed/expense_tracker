@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:drift/drift.dart';
 import 'package:expence_tracker/src/database/database.dart';
-import 'package:expence_tracker/src/model/income_model.dart';
+import 'package:expence_tracker/src/model/transaction_model.dart';
 
 part 'transaction_dao.g.dart';
 

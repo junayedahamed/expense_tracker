@@ -37,7 +37,7 @@
 // // }
 
 import 'package:expence_tracker/src/database/transaction_dao.dart';
-import 'package:expence_tracker/src/model/income_model.dart';
+import 'package:expence_tracker/src/model/transaction_model.dart';
 import 'package:flutter/material.dart';
 
 class UpdateIncomingOutgoingData {
