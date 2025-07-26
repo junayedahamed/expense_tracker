@@ -31,7 +31,7 @@ class PdfDownloadFunctionalities {
     }
   }
 
-  Future<void> downloadPDF(List<TransactionItem> data, context) async {
+  Future<void> downloadPDF(List<AllTableData> data, context) async {
     final pdf = pw.Document();
 
     // Load Unicode font

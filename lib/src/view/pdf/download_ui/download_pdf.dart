@@ -53,7 +53,7 @@ class PdfDownloadUi extends StatelessWidget {
 
               final dao = context.read<TransactionsDao>();
 
-              final data = await dao.getAllTransectionItems();
+              final data = await dao.getAlltransactionItems();
 
               if (data.isEmpty) {
                 // if (Platform.isAndroid) {
