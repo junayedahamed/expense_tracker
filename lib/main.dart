@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:workmanager/workmanager.dart';
 
 void disPatcher() {
+  // this is for background task
   Workmanager().executeTask((taskName, inputData) async {
     final db = AppDatabase();
     final transaction = TransactionsDao(db);
