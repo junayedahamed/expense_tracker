@@ -9,8 +9,8 @@ class InComingTab extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<TransactionItem>>(
-      stream: context.read<TransactionsDao>().watchAllTransectionItems(),
+    return StreamBuilder<List<AllTableData>>(
+      stream: context.read<TransactionsDao>().watchAlltransactionItems(),
       builder: (context, snapshot) {
         final allData = snapshot.data?.reversed.toList();
         if (snapshot.hasError) {

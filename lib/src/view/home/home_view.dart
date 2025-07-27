@@ -1,4 +1,5 @@
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
+import 'package:expence_tracker/src/view/home/home_search_on_history/home_search_bar_on_history.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
@@ -30,6 +31,7 @@ class _HomeViewState extends State<HomeView>
   @override
   void dispose() {
     tabController.dispose();
+    searchController.dispose();
     super.dispose();
   }
 
@@ -112,6 +114,7 @@ class _HomeViewState extends State<HomeView>
                     ),
                   ),
                 ),
+                HomeSearchBarOnHistory(searchController: searchController),
               ],
             ),
           ),

@@ -31,7 +31,7 @@ class PdfDownloadFunctionalities {
     }
   }
 
-  Future<void> downloadPDF(List<TransactionItem> data, context) async {
+  Future<void> downloadPDF(List<AllTableData> data, context) async {
     final pdf = pw.Document();
 
     // Load Unicode font
@@ -137,16 +137,16 @@ class PdfDownloadFunctionalities {
                   pw.TableRow(
                     children: [
                       pw.Center(
-                        child: pw.Text("Name", style: pw.TextStyle(font: ttf)),
-                      ),
-                      pw.Center(
-                        child: pw.Text("Id", style: pw.TextStyle(font: ttf)),
+                        child: pw.Text("ID", style: pw.TextStyle(font: ttf)),
                       ),
                       pw.Center(
                         child: pw.Text(
-                          "Address",
+                          "Amount",
                           style: pw.TextStyle(font: ttf),
                         ),
+                      ),
+                      pw.Center(
+                        child: pw.Text("Date", style: pw.TextStyle(font: ttf)),
                       ),
                     ],
                   ),
@@ -154,13 +154,19 @@ class PdfDownloadFunctionalities {
                   ...List.generate(data.length, (index) {
                     return pw.TableRow(
                       decoration: pw.BoxDecoration(
-                        color: data[index].isExp ? null : PdfColors.redAccent,
+                        color: data[index].isExp
+                            ? PdfColors.redAccent200
+                            : null,
                       ),
                       children: [
-                        pw.Text(data[index].sourceDetails),
-                        pw.Text(data[index].amount.toString()),
-                        pw.Text(
-                          '${data[index].createdAt?.day.toString()}-${data[index].createdAt?.month.toString()}-${data[index].createdAt?.year.toString()}',
+                        pw.Center(child: pw.Text(data[index].sourceDetails)),
+                        pw.Center(
+                          child: pw.Text(data[index].amount.toString()),
+                        ),
+                        pw.Center(
+                          child: pw.Text(
+                            '${data[index].createdAt?.day.toString()}-${data[index].createdAt?.month.toString()}-${data[index].createdAt?.year.toString()}',
+                          ),
                         ),
                       ],
                     );

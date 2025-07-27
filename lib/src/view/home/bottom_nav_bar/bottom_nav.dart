@@ -41,7 +41,9 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           ),
         ],
       ),
-      body: views[currentIndex],
+      body: Center(
+        child: IndexedStack(index: currentIndex, children: views),
+      ),
       floatingActionButton: GestureDetector(
         onTap: () {
           showDialog(

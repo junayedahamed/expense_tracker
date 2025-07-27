@@ -41,17 +41,17 @@ test
 
 
 
- ## (not done yet)
-  - **Daily :**    This section were show daily spent  & add of money on a graph  chart 
-  - **Weekly :**  This section were show weekly spent  & add of money on a graph  chart 
-  - **Monthly :**  This section were show monthly spent  & add of money on a graph  chart 
-  - **Yearly :**  This section were show yearly spent  & add of money on a graph  chart 
+ ## (Almost done)
+  - **Daily :**    This section were show daily spent  & add of money on a graph  chart ✅
+  - **Weekly :**  This section were show weekly spent  & add of money on a graph  chart (graph ui reman)
+  - **Monthly :**  This section were show monthly spent  & add of money on a graph  chart (graph ui reman)
+  - **Yearly :**  This section were show yearly spent  & add of money on a graph  chart (graph ui reman)
 
-  ## Data Backup ⬆️ (not done yet)
+  ## Data Backup ⬆️ (yet to come  ......)
 
 ###  Users can backup there data on a online db 
 
-  ## Taking Backup ⬇️  (not done yet)
+  ## Taking Backup ⬇️  (yet to come  ......)
 
  ### Users can take a backup there previous data if they needed
 
