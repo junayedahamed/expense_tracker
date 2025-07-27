@@ -12,9 +12,40 @@ import 'package:expence_tracker/src/view/theme/theme_data_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:workmanager/workmanager.dart';
 
-void main() {
+void disPatcher() {
+  Workmanager().executeTask((taskName, inputData) async {
+    final db = AppDatabase();
+    final transaction = TransactionsDao(db);
+    if (taskName == 'autoArchive') {
+      await transaction.dailyToWeeklyArchive(db);
+      await transaction.archiveWeeklyToMonthly(db);
+      await transaction.archiveMonthlyToYearly(db);
+      await db.close();
+    }
+
+    return Future.value(true);
+  });
+}
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Workmanager().initialize(isInDebugMode: false, disPatcher);
+
+  final now = DateTime.now();
+  final nextMidNight = DateTime(now.year, now.month, now.day + 1);
+  final intialDelay = nextMidNight.difference(now);
+
+  await Workmanager().registerPeriodicTask(
+    "daily_archive_task",
+    "autoArchive",
+    frequency: Duration(hours: 24),
+    initialDelay: intialDelay,
+    constraints: Constraints(networkType: NetworkType.notRequired),
+  );
+
   runApp(
     MultiProvider(
       providers: [

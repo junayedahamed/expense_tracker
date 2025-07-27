@@ -9,6 +9,7 @@ class ThemeDataSection {
       textColor: Colors.black,
       style: ListTileStyle.drawer,
     ),
+
     textTheme: TextTheme(
       bodySmall: const TextStyle(color: Colors.black),
       bodyMedium: const TextStyle(color: Colors.black),
@@ -50,6 +51,7 @@ class ThemeDataSection {
 
     appBarTheme: AppBarTheme(
       titleTextStyle: const TextStyle(color: Colors.black),
+      backgroundColor: Colors.white,
       shape: BeveledRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(10),
       ),
@@ -62,6 +64,7 @@ class ThemeDataSection {
       textColor: Colors.white,
       style: ListTileStyle.list,
     ),
+    appBarTheme: AppBarTheme(backgroundColor: Colors.black),
     cardTheme: const CardThemeData(
       surfaceTintColor: Colors.limeAccent,
       clipBehavior: Clip.antiAliasWithSaveLayer,
