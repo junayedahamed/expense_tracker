@@ -9,6 +9,7 @@ class ThemeDataSection {
       textColor: Colors.black,
       style: ListTileStyle.drawer,
     ),
+    scaffoldBackgroundColor: Colors.white,
 
     textTheme: TextTheme(
       bodySmall: const TextStyle(color: Colors.black),
@@ -24,7 +25,7 @@ class ThemeDataSection {
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       // backgroundColor: Color(0xffF5F5F5),
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: Colors.white,
 
       selectedIconTheme: IconThemeData(
         color: Colors.teal,
@@ -59,6 +60,7 @@ class ThemeDataSection {
   );
 
   static final darkTheme = ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: Colors.black,
     brightness: Brightness.dark,
     listTileTheme: ListTileThemeData(
       textColor: Colors.white,
@@ -71,7 +73,7 @@ class ThemeDataSection {
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       // backgroundColor: Colors.black12,
-      backgroundColor: Color(0xff1E1E1F),
+      backgroundColor: Colors.black,
       selectedIconTheme: IconThemeData(color: Colors.lightGreenAccent),
       selectedItemColor: Colors.lightGreenAccent,
 

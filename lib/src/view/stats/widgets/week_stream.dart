@@ -61,7 +61,7 @@ class WeekStream extends StatelessWidget {
         // );
 
         // log(allData.toString());
-        return Text("  week data");
+        return Text("  week data  found");
       },
     );
   }

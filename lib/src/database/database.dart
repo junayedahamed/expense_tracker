@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 part 'database.g.dart';
 
@@ -50,12 +54,12 @@ class AppDatabase extends _$AppDatabase {
   int get schemaVersion => 1; //version during first table
 
   static QueryExecutor _openConnection() {
-    return NativeDatabase.memory();
-    // return LazyDatabase(() async {
-    //   final dbFolder = await getApplicationDocumentsDirectory();
-    //   final file = File(p.join(dbFolder.path, 'DB_name'));
+    // return NativeDatabase.memory();
+    return LazyDatabase(() async {
+      final dbFolder = await getApplicationDocumentsDirectory();
+      final file = File(p.join(dbFolder.path, 'j_Expence_tracker'));
 
-    //   return NativeDatabase.createInBackground(file);
-    // });
+      return NativeDatabase.createInBackground(file);
+    });
   }
 }
