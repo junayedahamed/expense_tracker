@@ -1,5 +1,4 @@
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
-import 'package:expence_tracker/src/view/home/home_search_on_history/home_search_bar_on_history.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
@@ -62,62 +61,91 @@ class _HomeViewState extends State<HomeView>
           Divider(),
           SizedBox(height: 5),
 
-          BlocBuilder<MyTabIndexController, int>(
-            builder: (context, state) => Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: TabBar(
-                      labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                      tabAlignment: TabAlignment.start,
-                      isScrollable: true,
-                      automaticIndicatorColorAdjustment: true,
-                      physics: BouncingScrollPhysics(),
-                      controller: tabController,
-                      onTap: (value) {
-                        context.read<MyTabIndexController>().changeTab(value);
-                        // context.read<SearchBarState>().showSearchIcon();
-                      },
-                      tabs: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            "All",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
+          // BlocBuilder<MyTabIndexController, int>(
+          //   builder: (context, state) =>
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: TabBar(
+                    labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                    tabAlignment: TabAlignment.start,
+                    isScrollable: true,
+                    automaticIndicatorColorAdjustment: true,
+                    physics: BouncingScrollPhysics(),
+                    controller: tabController,
+                    onTap: (value) {
+                      context.read<MyTabIndexController>().changeTab(value);
+                      // context.read<SearchBarState>().showSearchIcon();
+                    },
+                    tabs: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          "All",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            "In",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          "In",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            "Out",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          "Out",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // HomeSearchBarOnHistory(searchController: searchController),
+              GestureDetector(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 2,
+                      color: Theme.of(context).highlightColor,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add, size: 18),
+                        Text(
+                          "ADD",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(width: 4),
                       ],
                     ),
                   ),
                 ),
-                HomeSearchBarOnHistory(searchController: searchController),
-              ],
-            ),
+              ),
+              SizedBox(width: 15),
+            ],
           ),
+          // ),
           Divider(),
           Expanded(
             child: TabBarView(

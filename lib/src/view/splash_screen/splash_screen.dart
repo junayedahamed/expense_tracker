@@ -1,4 +1,5 @@
 import 'package:expence_tracker/src/view/home/bottom_nav_bar/bottom_nav.dart';
+import 'package:expence_tracker/src/view/splash_screen/custom_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -37,7 +38,27 @@ class _SplashScreenWalletState extends State<SplashScreenWallet>
     if (mounted) {
       Navigator.of(
         context,
-      ).push(MaterialPageRoute(builder: (context) => MyNavigationBar()));
+      ).push(CustomTransition.createRoute(MyNavigationBar(), Offset(1.0, 0.0)));
+      // Navigator.of(context).push(
+      //   PageRouteBuilder(
+      //     transitionDuration: Duration(milliseconds: 500),
+      //     pageBuilder: (context, animation, secondaryAnimation) =>
+      //         MyNavigationBar(),
+      //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      //       const begin = Offset(1.0, 0.0); // Slide from right
+      //       const end = Offset.zero;
+      //       const curve = Curves.easeInOut;
+
+      //       final tween = Tween(
+      //         begin: begin,
+      //         end: end,
+      //       ).chain(CurveTween(curve: curve));
+      //       final offsetAnimation = animation.drive(tween);
+
+      //       return SlideTransition(position: offsetAnimation, child: child);
+      //     },
+      //   ),
+      // );
     }
   }
 
