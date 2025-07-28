@@ -7,6 +7,7 @@ import 'package:expence_tracker/src/repositories/money_show_card_gradient_handle
 import 'package:expence_tracker/src/repositories/stream_view_controller/stream_view_controller.dart';
 import 'package:expence_tracker/src/view/home/bottom_nav_bar/bottom_nav.dart';
 import 'package:expence_tracker/src/repositories/tab_controller/my_tab_index_controller.dart';
+import 'package:expence_tracker/src/view/splash_screen/splash_screen.dart';
 import 'package:expence_tracker/src/view/theme/theme_changer.dart';
 import 'package:expence_tracker/src/view/theme/theme_data_section.dart';
 import 'package:flutter/material.dart';
@@ -96,8 +97,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeDataSection.lightTheme,
         darkTheme: ThemeDataSection.darkTheme,
         themeMode: state,
-        // home: HomeView(),
-        home: MyNavigationBar(),
+        home: SplashScreenWallet(),
+        // home: MyNavigationBar(),
       ),
     );
   }

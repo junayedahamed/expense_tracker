@@ -21,37 +21,24 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase>
     return data;
   }
 
-  Stream<List<AllTableData>> watchAlltransactionItems({String? query}) {
+  Stream<List<AllTableData>> watchAlltransactionItems() {
     // log("message");
     final result = allTable.select().watch();
-    if (query != null && query.isNotEmpty) {
-      // log("message2");
-      // notifyListeners();
-      return result.map(
-        (items) => items.where((item) {
-          final lowerQuery = query.toLowerCase();
-
-          // You can change this depending on your model fields
-          return item.sourceDetails.toLowerCase().contains(lowerQuery) ||
-              item.amount.toString().contains(lowerQuery);
-        }).toList(),
-      );
-    }
 
     return result;
   }
 
   Stream<double> averageItemLength() {
-    final avgLength = transactionItems.amount.sum();
+    final avgLength = allTable.amount.sum();
 
-    final query = selectOnly(transactionItems)..addColumns([avgLength]);
+    final query = selectOnly(allTable)..addColumns([avgLength]);
 
     return query.map((row) => row.read(avgLength)!).watchSingle();
   }
   // delete the id given task
 
   Future deleteTransaction(int id) {
-    return (delete(transactionItems)..where((t) => t.id.equals(id))).go();
+    return (delete(allTable)..where((t) => t.id.equals(id))).go();
   }
 
   Stream<double> expenceValues() {
@@ -66,9 +53,9 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase>
   }
 
   Future<double> currentAvailableAmount() async {
-    final sumAmount = transactionItems.amount.sum();
+    final sumAmount = allTable.amount.sum();
 
-    final query = selectOnly(transactionItems)..addColumns([sumAmount]);
+    final query = selectOnly(allTable)..addColumns([sumAmount]);
 
     final result = await query.map((row) => row.read(sumAmount)).getSingle();
 
