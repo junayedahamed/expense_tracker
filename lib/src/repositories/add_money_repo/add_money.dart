@@ -50,26 +50,26 @@ class UpdateIncomingOutgoingData {
   // List<TransactionModel> transactionList = [];
 
   double costedMoneyOnApp = 0;
-  void addTransaction(TransactionModel income, context) async {
+  Future<bool> addTransaction(TransactionModel income, context) async {
     if (income.isExpense) {
       var curr = await transactions.currentAvailableAmount();
       // log(curr.toString());
       if (income.amount.abs() == 0) {
         showAnimatedTopSnackbar(context, "Amount should be greater that 0");
-        return;
+        return false;
       }
       if ((income.amount.abs()) > curr) {
         showAnimatedTopSnackbar(
           context,
           "Choosen amount greater current Amount",
         );
-        return;
+        return false;
       }
       // log("${(income.amount)} ");
     } else {
       if (income.amount <= 0) {
         showAnimatedTopSnackbar(context, "Amount should be greater that 0");
-        return;
+        return false;
       }
 
       // log(income.amount.toString());
@@ -80,6 +80,7 @@ class UpdateIncomingOutgoingData {
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text("Transaction added successfully")));
+    return true;
   }
 
   void showAnimatedTopSnackbar(BuildContext context, String message) {

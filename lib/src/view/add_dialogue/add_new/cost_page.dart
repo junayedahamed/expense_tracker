@@ -74,7 +74,7 @@ class CostPage extends StatelessWidget {
                 SizedBox(height: 35),
                 Center(
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       final StringBuffer finalAmount = StringBuffer();
                       finalAmount.write("-");
                       finalAmount.write(amountController.text);
@@ -92,11 +92,13 @@ class CostPage extends StatelessWidget {
                       // log(finalAmount.toString());
 
                       if (_formKey.currentState!.validate()) {
-                        context
+                        var value = await context
                             .read<UpdateIncomingOutgoingData>()
                             .addTransaction(data2, context);
-                        reasonController.clear();
-                        amountController.clear();
+                        if (value) {
+                          reasonController.clear();
+                          amountController.clear();
+                        }
                         // Navigator.pop(context);
 
                         // context.read<DialogueTabController>().changeTab(0);

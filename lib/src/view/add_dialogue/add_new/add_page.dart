@@ -74,7 +74,7 @@ class AddPage extends StatelessWidget {
                 SizedBox(height: 70),
                 Center(
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       final StringBuffer finalAmount = StringBuffer();
                       // finalAmount.write("-");
                       finalAmount.write(amountController.text);
@@ -91,12 +91,13 @@ class AddPage extends StatelessWidget {
                       // log(data2.category.toString());
 
                       if (_formKey.currentState!.validate()) {
-                        context
+                        var val = await context
                             .read<UpdateIncomingOutgoingData>()
                             .addTransaction(data2, context);
-                        reasonController.clear();
-                        amountController.clear();
-
+                        if (val) {
+                          reasonController.clear();
+                          amountController.clear();
+                        }
                         // Navigator.pop(context);
                         // context.read<DialogueTabController>().changeTab(0);
                       }
