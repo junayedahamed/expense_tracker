@@ -1,5 +1,6 @@
 import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/repositories/pdf_functionalities/pdf_download_functionalities.dart';
+import 'package:expence_tracker/src/view/pdf/download_ui/delete_all_confirmation.dart';
 import 'package:expence_tracker/src/view/pdf/widgets/my_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,10 +22,24 @@ class PdfDownloadUi extends StatelessWidget {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           DownloadUploadButton(
-            buttonName: "Upload",
-            iconpath: "assets/icons/upload_cloud.svg",
+            buttonName: "Delte all",
+            iccolor: Colors.red,
+            textcolor: Colors.red,
+            iconpath: "assets/icons/delete.svg",
             onPressed: () {
-              // log(transations.toString());
+              var conf = showDialog(
+                context: context,
+                builder: (context) => DeleteAllConfirmation(),
+              );
+
+              conf.then((v) {
+                if (!v) {
+                  return;
+                }
+
+                // ignore: use_build_context_synchronously
+                context.read<TransactionsDao>().deleteAlltransaction();
+              });
             },
           ),
           DownloadUploadButton(

@@ -7,10 +7,14 @@ class DownloadUploadButton extends StatelessWidget {
     required this.buttonName,
     this.iconpath,
     required this.onPressed,
+    this.iccolor,
+    this.textcolor,
   });
   final String buttonName;
   final String? iconpath;
   final VoidCallback onPressed;
+  final Color? iccolor;
+  final Color? textcolor;
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +49,17 @@ class DownloadUploadButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 5,
             children: [
-              Text(buttonName, style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                buttonName,
+                style: TextStyle(fontWeight: FontWeight.w700, color: textcolor),
+              ),
               iconpath != null
                   ? SvgPicture.asset(
                       iconpath ?? '',
                       colorFilter: ColorFilter.mode(
-                        Theme.of(context).iconTheme.color ?? Colors.white,
+                        iccolor ??
+                            Theme.of(context).iconTheme.color ??
+                            Colors.white,
                         BlendMode.srcIn,
                       ),
                     )

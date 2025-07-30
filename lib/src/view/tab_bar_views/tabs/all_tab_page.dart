@@ -14,9 +14,7 @@ class AllTabPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<AllTableData>>(
-      stream: context.read<TransactionsDao>().watchAlltransactionItems(
-        query: query,
-      ),
+      stream: context.read<TransactionsDao>().watchAlltransactionItems(),
       builder: (context, snapshot) {
         final allData = snapshot.data?.reversed.toList();
 
