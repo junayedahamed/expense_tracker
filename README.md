@@ -1,58 +1,91 @@
-# Expence_tracker 💰
+# 💰 Expense Tracker
 
-A project to track users expence 
+A mobile app to track your 💵 income and 💸 expenses. Built with **Flutter**, it helps you manage your money smarter with charts, filters, and reports.
 
-## Incoming 
+---
 
-User added the amount that he/she get from any source  with particular date 
+## 🚀 Features
 
-## Expence 
-User spent amount of money with a reason with particular date
+- 💸 Add income and expense entries with date & notes
+- 📄 Export your transaction history as a PDF ✅
+- 📊 Pie chart visualization by category ✅
+- 🌓 Light/Dark theme with system preference
+- 💰 Real-time balance updates
 
-## All section
+---
 
-it will show all the incoming and outgoing history
+## 🛠️ Getting Started
 
+### ✅ Requirements
 
-## Theme 
+- [Flutter SDK](https://docs.flutter.dev/get-started/install)
+- [Git](https://git-scm.com/)
 
-initaly it will follow system theme and users can change theme with there preference in (dark/light)
+---
 
-## money show card
-
-it will show the balance avilable among the the user were added 
-
-with real time update on spent or add money
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-test
-
-# Upcoming Updates ⚒️
-## Can be able to download PDF of  transaction 📄 (done)
-## Chart 📊  (done)
-   ### Users can Select chart type from a dropdown
-   <br>
+### 📥 Setup Project Locally
 
 
+## 1️⃣ Clone the repository
+```bash
+git clone https://github.com/junayedahamed/expense_tracker
+```
+## 2️⃣ Move into the project folder
+```
+cd expence_tracker
+```
 
- ## (Almost done)
-  - **Daily :**    This section were show daily spent  & add of money on a graph  chart ✅
-  - **Weekly :**  This section were show weekly spent  & add of money on a graph  chart (graph ui reman)
-  - **Monthly :**  This section were show monthly spent  & add of money on a graph  chart (graph ui reman)
-  - **Yearly :**  This section were show yearly spent  & add of money on a graph  chart (graph ui reman)
+# 3️⃣ Get Flutter dependencies
+```
+flutter pub get
+```
 
-  ## Data Backup ⬆️ (yet to come  ......)
+# 4️⃣ Run the app
+```
+flutter run
+```
+# 🌱 Working on a New Feature?
+```
+git checkout -b feature/your-feature-name
+```
+# 📤 Submitting a Pull Request
+```
+#Stage your changes
+git add .
+```
+# Commit with a meaningful message
+```
+git commit -m "Add: Your feature description"
+```
+# Push your branch
+```
+git push origin feature/your-feature-name
 
-###  Users can backup there data on a online db 
+```
+#
 
-  ## Taking Backup ⬇️  (yet to come  ......)
+# 🔗 Helpful Resources
+<a href='https://flutter.dev/'> 🛠️ Flutter Install Guide </a>
 
- ### Users can take a backup there previous data if they needed
+<a href='https://pub.dev/'> 📚 Dart Packages</a>
 
-    
+<a href='https://www.geeksforgeeks.org/git/what-is-github-and-how-to-use-it/'>📘 Git Handbook</a>
+
+# 📤 How to Make a Pull Request
+
+```
+# Fork the repository 🍴
+# Clone it locally 💻
+# Create a feature branch 🌿
+# Make your changes 💡
+# Push and create a pull request 🚀
+```
+
+## 👏 Thanks for Visiting!
+<h3> If you like this project, don’t forget to ⭐️ star the repo! </h3>
+
+Made with ❤️ by the community. <a href='https://www.linkedin.com/in/junayed-ahamed/'>linkedin</a>
+
+
+# some picture of project
+
