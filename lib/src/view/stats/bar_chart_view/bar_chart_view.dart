@@ -1,5 +1,6 @@
 import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/view/pdf/download_ui/download_pdf.dart';
+import 'package:expence_tracker/src/view/stats/bar_chart_view/dev/dev_tile_builder.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -191,63 +192,10 @@ class BarChartView extends StatelessWidget {
             ),
             SizedBox(height: 10),
             PdfDownloadUi(),
-            SizedBox(height: 20),
+            SizedBox(height: 40),
 
             //Dev Info
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(16),
-            //       border: Border.all(
-            //         width: 2,
-            //         color: Theme.of(context).iconTheme.color ?? Colors.black,
-            //       ),
-            //       color:
-            //           MediaQuery.of(context).platformBrightness ==
-            //               Brightness.light
-            //           ? Colors.blueGrey
-            //           : Colors.transparent,
-            //     ),
-            //     child: Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         Padding(
-            //           padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            //           child: Text(
-            //             "Developer Info",
-            //             style: TextStyle(
-            //               fontSize: 20,
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //         ),
-            //         ExpansionTile(
-            //           leading: SvgPicture.asset(
-            //             'assets/icons/dev.svg',
-            //             colorFilter: ColorFilter.mode(
-            //               Theme.of(context).iconTheme.color ?? Colors.white,
-            //               BlendMode.srcIn,
-            //             ),
-            //           ),
-            //           shape: RoundedRectangleBorder(
-            //             // borderRadius: BorderRadiusGeometry.circular(16),
-            //           ),
-            //           title: Text("About Developer"),
-
-            //           children: [
-            //             Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-
-            //               ],
-            //             )
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+            DeveloperInformation(),
           ],
         ),
       ),
