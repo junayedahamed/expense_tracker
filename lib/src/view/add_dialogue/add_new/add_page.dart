@@ -23,14 +23,24 @@ class AddPage extends StatelessWidget {
                 SizedBox(height: 15),
                 Text(
                   "Please Fill all the field",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: 15),
                 Text("Reason", style: TextStyle(fontWeight: FontWeight.w600)),
 
-                TextFormField(
-                  controller: reasonController,
-                  decoration: InputDecoration(border: OutlineInputBorder()),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: reasonController,
+                        decoration: InputDecoration(
+                          hintText: "Write a message here",
+                          // icon: Icon(Icons.message),
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 5),
 
@@ -45,14 +55,18 @@ class AddPage extends StatelessWidget {
                       return null;
                     }
                   },
-                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+
+                    // icon: Icon(Icons.money),
+                  ),
                 ),
                 SizedBox(height: 280),
                 Center(
                   child: GestureDetector(
                     onTap: () {
                       final StringBuffer finalAmount = StringBuffer();
-                      finalAmount.write("-");
+                      // finalAmount.write("-");
                       finalAmount.write(amountController.text);
                       var data2 = TransactionModel(
                         category: "Add",
@@ -64,12 +78,14 @@ class AddPage extends StatelessWidget {
                         isExpense: false,
                       );
 
-                      // log(finalAmount.toString());
+                      // log(data2.category.toString());
 
                       if (_formKey.currentState!.validate()) {
                         context
                             .read<UpdateIncomingOutgoingData>()
                             .addTransaction(data2, context);
+                        reasonController.clear();
+                        amountController.clear();
                         // Navigator.pop(context);
                         // context.read<DialogueTabController>().changeTab(0);
                       }

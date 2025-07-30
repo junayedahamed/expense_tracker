@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/view/pdf/download_ui/download_pdf.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class BarChartView extends StatelessWidget {
   const BarChartView({super.key});
@@ -54,9 +54,22 @@ class BarChartView extends StatelessWidget {
             //     ),
             //   ],
             // ),
-            Text(
-              "Transaction History 📊",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+            Row(
+              children: [
+                Text(
+                  "Transaction History ",
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                ),
+                SvgPicture.asset(
+                  'assets/icons/pie.svg',
+                  height: 25,
+                  width: 25,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).iconTheme.color ?? Colors.white,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 20),
 
@@ -71,7 +84,7 @@ class BarChartView extends StatelessWidget {
                   return Center(child: Text("Error occoured"));
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 }
 
                 if (allData == null) {
@@ -123,8 +136,48 @@ class BarChartView extends StatelessWidget {
                     .fold(0.0, (previousValue, element) {
                       return previousValue + element.amount;
                     });
-                log("$food ,$medicine, $entertainment, $others, $add, $cloth");
-                return SizedBox(height: 500, child: Text("ok"));
+                // log(add.toString());
+                final Map<double, Color> data = {
+                  food: Colors.orange,
+                  add: Colors.green,
+                  medicine: Colors.red,
+                  entertainment: Colors.purple,
+                  others: Colors.grey,
+                  cloth: Colors.yellow,
+                };
+                final List<String> categories = [
+                  "Food",
+                  "Add",
+                  "Medicine",
+                  "Entertainment",
+                  "Others",
+
+                  "Cloth",
+                ];
+                return SizedBox(
+                  height: 250,
+                  child: PieChart(
+                    PieChartData(
+                      centerSpaceRadius: 0,
+
+                      titleSunbeamLayout: true,
+                      sections: List.generate(data.length, (index) {
+                        // log(
+                        //   "${categories[index]} ${data.keys.toList()[index].abs()}",
+                        // );
+                        // log(index.toString());
+                        return PieChartSectionData(
+                          titleStyle: TextStyle(color: Colors.black),
+                          radius: 120,
+                          color: data.values.toList()[index],
+
+                          title: categories[index],
+                          value: data.keys.toList()[index].abs(),
+                        );
+                      }),
+                    ),
+                  ),
+                );
                 // log(allData.toString());
                 // return Text("data");
               },

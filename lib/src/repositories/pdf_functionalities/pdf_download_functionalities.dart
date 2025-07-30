@@ -125,12 +125,6 @@ class PdfDownloadFunctionalities {
               ),
               pw.Divider(),
 
-              // pw.ListView.builder(
-              //   itemBuilder: (context, index) {
-              //     return
-              //   },
-              //   itemCount: data.length,
-              // ),
               pw.Table(
                 border: pw.TableBorder.all(color: PdfColors.black),
                 children: [
@@ -141,7 +135,19 @@ class PdfDownloadFunctionalities {
                       ),
                       pw.Center(
                         child: pw.Text(
+                          "Description",
+                          style: pw.TextStyle(font: ttf),
+                        ),
+                      ),
+                      pw.Center(
+                        child: pw.Text(
                           "Amount",
+                          style: pw.TextStyle(font: ttf),
+                        ),
+                      ),
+                      pw.Center(
+                        child: pw.Text(
+                          "Category",
                           style: pw.TextStyle(font: ttf),
                         ),
                       ),
@@ -159,10 +165,12 @@ class PdfDownloadFunctionalities {
                             : null,
                       ),
                       children: [
+                        pw.Center(child: pw.Text(data[index].id.toString())),
                         pw.Center(child: pw.Text(data[index].sourceDetails)),
                         pw.Center(
                           child: pw.Text(data[index].amount.toString()),
                         ),
+                        pw.Center(child: pw.Text(data[index].categoty)),
                         pw.Center(
                           child: pw.Text(
                             '${data[index].createdAt?.day.toString()}-${data[index].createdAt?.month.toString()}-${data[index].createdAt?.year.toString()}',

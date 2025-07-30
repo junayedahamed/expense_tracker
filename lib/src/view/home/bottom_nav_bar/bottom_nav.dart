@@ -1,8 +1,10 @@
 import 'package:expence_tracker/src/view/home/home_view.dart';
+import 'package:expence_tracker/src/view/home/pop_dialogue/pop_dialogue.dart';
 import 'package:expence_tracker/src/view/stats/bar_chart_view/bar_chart_view.dart';
 import 'package:expence_tracker/src/view/theme/theme_changer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyNavigationBar extends StatefulWidget {
@@ -20,32 +22,23 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     final brightness = MediaQuery.platformBrightnessOf(context);
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        showCupertinoDialog(
+      onPopInvokedWithResult: (didPop, result) async {
+        var ok = await showCupertinoDialog(
           barrierDismissible: true,
           context: context,
           builder: (context) {
-            return CupertinoAlertDialog(
-              // content: Column(
-              //   spacing: 15,
-              //   children: [
-
-              //   ],
-              // ),
-              content: Text(
-                "Are you sure you want to exit?",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-              ),
-              actions: [
-                TextButton(onPressed: () {}, child: Text("No")),
-                TextButton(onPressed: () {}, child: Text("Yes")),
-              ],
-            );
+            return PopDialogue();
           },
         );
+
+        if (!ok) {
+          return;
+        }
+        SystemNavigator.pop();
       },
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(
             "ExP Tracker",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),

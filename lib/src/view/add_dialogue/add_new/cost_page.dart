@@ -32,7 +32,7 @@ class CostPage extends StatelessWidget {
                 SizedBox(height: 15),
                 Text(
                   "Please Fill all the field",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: 15),
                 Text("Reason", style: TextStyle(fontWeight: FontWeight.w600)),
@@ -44,7 +44,7 @@ class CostPage extends StatelessWidget {
                 SizedBox(height: 15),
                 //categories
                 Text(
-                  "Select a category : ",
+                  "Select your category : ",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 Categories(),
@@ -61,7 +61,7 @@ class CostPage extends StatelessWidget {
                   },
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
-                SizedBox(height: 150),
+                SizedBox(height: 90),
                 Center(
                   child: GestureDetector(
                     onTap: () {
@@ -85,7 +85,9 @@ class CostPage extends StatelessWidget {
                         context
                             .read<UpdateIncomingOutgoingData>()
                             .addTransaction(data2, context);
-                        // Navigator.pop(context);
+                        reasonController.clear();
+                        amountController.clear();
+                        Navigator.pop(context);
                         // context.read<DialogueTabController>().changeTab(0);
                       }
                     },

@@ -52,20 +52,24 @@ class Categories extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: state == index
                       ? HSLColor.fromColor(
-                          Colors.greenAccent,
-                        ).withLightness(0.7).toColor()
+                          Theme.of(context).brightness == Brightness.light
+                              ? Colors.greenAccent
+                              : Colors.grey,
+                        ).withLightness(0.45).toColor()
                       : null,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: state == index
-                        ? Colors.indigo
+                        ? Theme.of(context).brightness == Brightness.light
+                              ? Colors.indigo
+                              : Colors.cyanAccent
                         : Colors.grey.shade400,
                     width: 1.6,
                   ),
                 ),
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  spacing: 2,
+                  spacing: 5,
                   children: [
                     SizedBox(),
                     SvgPicture.asset(
