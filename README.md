@@ -81,6 +81,30 @@ git push origin feature/your-feature-name
 # Push and create a pull request 🚀
 ```
 
+# Packages used
+
+```
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^9.1.1
+  fl_chart: ^1.0.0
+  flutter_svg: ^2.2.0
+  drift: ^2.26.1
+  drift_flutter: ^0.2.4
+  path_provider: ^2.1.5
+  provider: ^6.1.5
+  permission_handler: ^12.0.1
+  pdf: ^3.11.3
+  file_saver: ^0.3.1
+  shared_preferences: ^2.5.3
+  path: ^1.9.1
+  device_info_plus: ^11.5.0
+  # workmanager: ^0.8.0
+  lottie: ^3.3.1
+  url_launcher: ^6.3.2
+  animated_text_kit: ^4.2.3
+
+  ```
+
 ## 👏 Thanks for Visiting!
 <h3> If you like this project, don’t forget to ⭐️ star the repo! </h3>
 
