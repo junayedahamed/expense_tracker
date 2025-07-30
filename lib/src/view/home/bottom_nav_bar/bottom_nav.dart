@@ -40,7 +40,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
-            "ExP Tracker",
+            "XPENSO",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ),
           actions: [

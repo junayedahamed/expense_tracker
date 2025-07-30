@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<ThemeChanger, ThemeMode>(
       builder: (context, state) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'ExP Tracker',
+        title: 'J_XPENSO',
         theme: ThemeDataSection.lightTheme,
         darkTheme: ThemeDataSection.darkTheme,
         themeMode: state,
