@@ -65,6 +65,13 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
   drift_dev: ^2.26.0
+  flutter_launcher_icons: ^0.14.4
+
+
+flutter_icons:
+  android: true
+  iOS: true
+  image_path: "assets/icons/final_ic.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
