@@ -56,18 +56,29 @@ class BarChartView extends StatelessWidget {
             //   ],
             // ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  "Transaction History ",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-                ),
-                SvgPicture.asset(
-                  'assets/icons/pie.svg',
-                  height: 25,
-                  width: 25,
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).iconTheme.color ?? Colors.white,
-                    BlendMode.srcIn,
+                Expanded(
+                  child: Row(
+                    spacing: 5,
+                    children: [
+                      Text(
+                        "Transaction History",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SvgPicture.asset(
+                        'assets/icons/pie.svg',
+                        height: 25,
+                        width: 25,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).iconTheme.color ?? Colors.white,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

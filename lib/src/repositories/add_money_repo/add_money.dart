@@ -47,7 +47,7 @@ class UpdateIncomingOutgoingData {
   UpdateIncomingOutgoingData(this.transactions);
   final TransactionsDao transactions;
 
-  List<TransactionModel> transactionList = [];
+  // List<TransactionModel> transactionList = [];
 
   double costedMoneyOnApp = 0;
   void addTransaction(TransactionModel income, context) async {
@@ -74,7 +74,12 @@ class UpdateIncomingOutgoingData {
 
       // log(income.amount.toString());
     }
+
     await transactions.insertTransection(income);
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Transaction added successfully")));
   }
 
   void showAnimatedTopSnackbar(BuildContext context, String message) {

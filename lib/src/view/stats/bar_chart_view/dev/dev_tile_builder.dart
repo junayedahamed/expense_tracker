@@ -53,6 +53,7 @@ class DeveloperInformation extends StatelessWidget {
               children: [
                 ListView.separated(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () async {
@@ -92,12 +93,13 @@ class DeveloperInformation extends StatelessWidget {
                                 BlendMode.srcIn,
                               ),
                             ),
-                            Text(
-                              data.values.toList()[index],
-                              maxLines: 2,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
+                            Expanded(
+                              child: Text(
+                                softWrap: true,
+                                overflow: TextOverflow.visible,
+                                data.values.toList()[index],
+                                maxLines: 5,
+                                style: TextStyle(fontSize: 14),
                               ),
                             ),
                           ],

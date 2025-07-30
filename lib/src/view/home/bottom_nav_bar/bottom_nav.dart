@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({super.key});
@@ -149,7 +150,22 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             BottomNavigationBarItem(
               icon: Padding(
                 padding: const EdgeInsets.only(left: 56.0),
-                child: Icon(Icons.graphic_eq, size: 30),
+                child: SvgPicture.asset(
+                  'assets/icons/pie.svg',
+                  height: 30,
+                  width: 30,
+                  colorFilter: Theme.of(context).brightness == Brightness.dark
+                      ? ColorFilter.mode(
+                          currentIndex == 1
+                              ? Colors.lightGreenAccent
+                              : Colors.white,
+                          BlendMode.srcIn,
+                        )
+                      : ColorFilter.mode(
+                          currentIndex == 1 ? Colors.teal : Colors.black,
+                          BlendMode.srcIn,
+                        ),
+                ),
               ),
               label: '',
             ),

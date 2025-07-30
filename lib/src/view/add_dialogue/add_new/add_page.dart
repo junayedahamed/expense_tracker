@@ -64,7 +64,14 @@ class AddPage extends StatelessWidget {
                     // icon: Icon(Icons.money),
                   ),
                 ),
-                SizedBox(height: 280),
+                SizedBox(height: 200),
+                Center(
+                  child: Text(
+                    "<< Slide left to add expence ",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                SizedBox(height: 70),
                 Center(
                   child: GestureDetector(
                     onTap: () {
@@ -89,9 +96,7 @@ class AddPage extends StatelessWidget {
                             .addTransaction(data2, context);
                         reasonController.clear();
                         amountController.clear();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Money added successfully")),
-                        );
+
                         // Navigator.pop(context);
                         // context.read<DialogueTabController>().changeTab(0);
                       }
