@@ -28,6 +28,15 @@ class _PageViewAddExpenceState extends State<PageViewAddExpence> {
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ),
         ),
+        actions: [
+          BlocBuilder<PageViewTitleController, int>(
+            builder: (context, state) => Text(
+              state == 0 ? "1/2" : "2/2",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+            ),
+          ),
+          SizedBox(width: 8),
+        ],
       ),
       body: PageView(
         onPageChanged: (value) {
