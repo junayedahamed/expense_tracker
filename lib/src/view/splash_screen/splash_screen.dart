@@ -37,7 +37,7 @@ class _SplashScreenWalletState extends State<SplashScreenWallet>
 
     if (mounted) {
       Navigator.of(context).push(
-        CustomTransition.createRoute(MyNavigationBar(), Offset(1.0, 0.0), 1700),
+        CustomTransition.createRoute(MyNavigationBar(), Offset(1.0, 0.0), 1500),
       );
       // Navigator.of(context).push(
       //   PageRouteBuilder(

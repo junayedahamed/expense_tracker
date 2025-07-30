@@ -26,7 +26,10 @@ class AddPage extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: 15),
-                Text("Reason", style: TextStyle(fontWeight: FontWeight.w600)),
+                Text(
+                  "Description",
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
 
                 Row(
                   children: [

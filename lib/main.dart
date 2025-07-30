@@ -1,5 +1,6 @@
 import 'package:expence_tracker/src/database/database.dart';
 import 'package:expence_tracker/src/database/transaction_dao.dart';
+import 'package:expence_tracker/src/repositories/add_exp_money_title_controller/page_view_title_controller.dart';
 import 'package:expence_tracker/src/repositories/add_money_repo/add_money.dart';
 import 'package:expence_tracker/src/repositories/category_selection_repo/category_selection.dart';
 import 'package:expence_tracker/src/repositories/dialogue_control_repo/dialogue_tab_controller.dart';
@@ -66,6 +67,9 @@ void main() async {
           // BlocProvider<AddMoneyBloc>(create: (_) => AddMoneyBloc()),
           BlocProvider<SearchBarState>(create: (_) => SearchBarState()),
           BlocProvider<CategorySelection>(create: (_) => CategorySelection()),
+          BlocProvider<PageViewTitleController>(
+            create: (_) => PageViewTitleController(),
+          ),
           BlocProvider<MyTabIndexController>(
             create: (_) => MyTabIndexController(),
           ),
