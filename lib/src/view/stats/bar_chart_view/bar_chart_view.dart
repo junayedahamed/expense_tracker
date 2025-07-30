@@ -145,15 +145,15 @@ class BarChartView extends StatelessWidget {
                   others: Colors.grey,
                   cloth: Colors.yellow,
                 };
-                final List<String> categories = [
-                  "Food",
-                  "Add",
-                  "Medicine",
-                  "Entertainment",
-                  "Others",
+                final Map<double, String> categories = {
+                  food: "Food",
+                  add: "Add",
+                  medicine: "Medicine",
+                  entertainment: "Entertainment",
+                  others: "Others",
 
-                  "Cloth",
-                ];
+                  cloth: "Cloth",
+                };
                 return SizedBox(
                   height: 250,
                   child: PieChart(
@@ -171,7 +171,7 @@ class BarChartView extends StatelessWidget {
                           radius: 120,
                           color: data.values.toList()[index],
 
-                          title: categories[index],
+                          title: categories.values.toList()[index],
                           value: data.keys.toList()[index].abs(),
                         );
                       }),

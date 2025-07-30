@@ -86,6 +86,9 @@ class AddPage extends StatelessWidget {
                             .addTransaction(data2, context);
                         reasonController.clear();
                         amountController.clear();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Money added successfully")),
+                        );
                         // Navigator.pop(context);
                         // context.read<DialogueTabController>().changeTab(0);
                       }

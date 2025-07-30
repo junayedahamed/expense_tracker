@@ -87,7 +87,10 @@ class CostPage extends StatelessWidget {
                             .addTransaction(data2, context);
                         reasonController.clear();
                         amountController.clear();
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Cost Inserted")),
+                        );
                         // context.read<DialogueTabController>().changeTab(0);
                       }
                     },
