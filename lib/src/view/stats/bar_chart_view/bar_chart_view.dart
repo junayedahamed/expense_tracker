@@ -1,13 +1,14 @@
-import 'package:expence_tracker/src/repositories/stream_view_controller/stream_view_controller.dart';
+import 'dart:developer';
+
+import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/view/pdf/download_ui/download_pdf.dart';
-import 'package:expence_tracker/src/view/stats/bar_chart_view/stream/stream_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BarChartView extends StatelessWidget {
-  BarChartView({super.key});
+  const BarChartView({super.key});
 
-  final List<String> viewType = ["Daily", "Weekly", "Monthly", "Yearly"];
+  // final List<String> viewType = ["Daily", "Weekly", "Monthly", "Yearly"];
 
   @override
   Widget build(BuildContext context) {
@@ -19,56 +20,117 @@ class BarChartView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // SizedBox(height: 200),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Choose View Type"),
-                SizedBox(
-                  width: 130,
-                  height: 40,
-                  child: DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    ),
-                    value: context.read<StreamViewController>().state,
-                    items: viewType.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value.toLowerCase(),
-                        child: Text(
-                          value,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      if (newValue != null) {
-                        context.read<StreamViewController>().selector(newValue);
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Text("Choose View Type"),
+            //     SizedBox(
+            //       width: 130,
+            //       height: 40,
+            //       child: DropdownButtonFormField<String>(
+            //         decoration: InputDecoration(
+            //           border: OutlineInputBorder(),
+            //           contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            //         ),
+            //         value: context.read<StreamViewController>().state,
+            //         items: viewType.map((String value) {
+            //           return DropdownMenuItem<String>(
+            //             value: value.toLowerCase(),
+            //             child: Text(
+            //               value,
+            //               style: TextStyle(
+            //                 fontSize: 12,
+            //                 fontWeight: FontWeight.w500,
+            //               ),
+            //             ),
+            //           );
+            //         }).toList(),
+            //         onChanged: (String? newValue) {
+            //           if (newValue != null) {
+            //             context.read<StreamViewController>().selector(newValue);
+            //           }
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
             Text(
-              "History 📊",
+              "Transaction History 📊",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
             ),
             SizedBox(height: 20),
 
-            //chart view
-            //chart view
-            //chart view
-            //chart view
-            StreamViewer(),
+            //pie chart  view
+            StreamBuilder(
+              stream: context
+                  .read<TransactionsDao>()
+                  .watchAlltransactionItems(),
+              builder: (context, snapshot) {
+                final allData = snapshot.data;
+                if (snapshot.hasError) {
+                  return Center(child: Text("Error occoured"));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
 
-            //chart view
-            //chart view
-            //chart view
-            //chart view
+                if (allData == null) {
+                  return Center(child: Text("No Data found"));
+                }
+                if (allData.isEmpty) {
+                  return Center(child: Text("No Data found"));
+                }
+
+                final add = allData
+                    .where((item) {
+                      return item.categoty.toLowerCase() == 'add';
+                    })
+                    .fold(0.0, (previousValue, element) {
+                      return previousValue + element.amount;
+                    });
+                final cloth = allData
+                    .where((item) {
+                      return item.categoty.toLowerCase() == 'cloth';
+                    })
+                    .fold(0.0, (previousValue, element) {
+                      return previousValue + element.amount;
+                    });
+                final medicine = allData
+                    .where((item) {
+                      return item.categoty.toLowerCase() == 'medicine';
+                    })
+                    .fold(0.0, (previousValue, element) {
+                      return previousValue + element.amount;
+                    });
+                final entertainment = allData
+                    .where((item) {
+                      return item.categoty.toLowerCase() == 'entertainment';
+                    })
+                    .fold(0.0, (previousValue, element) {
+                      return previousValue + element.amount;
+                    });
+                final others = allData
+                    .where((item) {
+                      return item.categoty.toLowerCase() == 'others';
+                    })
+                    .fold(0.0, (previousValue, element) {
+                      return previousValue + element.amount;
+                    });
+                final food = allData
+                    .where((item) {
+                      return item.categoty.toLowerCase() == 'food';
+                    })
+                    .fold(0.0, (previousValue, element) {
+                      return previousValue + element.amount;
+                    });
+                log("$food ,$medicine, $entertainment, $others, $add, $cloth");
+                return SizedBox(height: 500, child: Text("ok"));
+                // log(allData.toString());
+                // return Text("data");
+              },
+            ),
+
+            //
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),

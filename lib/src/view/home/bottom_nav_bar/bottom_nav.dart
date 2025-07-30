@@ -1,4 +1,3 @@
-import 'package:expence_tracker/src/view/add_dialogue/add_expence_dialogue.dart';
 import 'package:expence_tracker/src/view/home/home_view.dart';
 import 'package:expence_tracker/src/view/stats/bar_chart_view/bar_chart_view.dart';
 import 'package:expence_tracker/src/view/theme/theme_changer.dart';

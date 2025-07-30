@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomTransition {
-  static Route createRoute(Widget page, Offset offset) {
+  static Route createRoute(
+    Widget page,
+    Offset offset,
+    int transititionDurationMs,
+  ) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionDuration: Duration(milliseconds: 1700),
+      transitionDuration: Duration(milliseconds: transititionDurationMs),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         final begin = offset;
         const end = Offset.zero;

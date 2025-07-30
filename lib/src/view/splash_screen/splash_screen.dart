@@ -36,9 +36,9 @@ class _SplashScreenWalletState extends State<SplashScreenWallet>
     await Future.delayed(Duration(milliseconds: 1500));
 
     if (mounted) {
-      Navigator.of(
-        context,
-      ).push(CustomTransition.createRoute(MyNavigationBar(), Offset(1.0, 0.0)));
+      Navigator.of(context).push(
+        CustomTransition.createRoute(MyNavigationBar(), Offset(1.0, 0.0), 1700),
+      );
       // Navigator.of(context).push(
       //   PageRouteBuilder(
       //     transitionDuration: Duration(milliseconds: 500),

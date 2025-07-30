@@ -47,7 +47,7 @@ dependencies:
   shared_preferences: ^2.5.3
   path: ^1.9.1
   device_info_plus: ^11.5.0
-  workmanager: ^0.8.0
+  # workmanager: ^0.8.0
   lottie: ^3.3.1
 
 dev_dependencies:
@@ -77,13 +77,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/icons/wallet.svg
-    - assets/icons/bg_tag.svg
-    - assets/icons/dev.svg
-    - assets/icons/dpf_download.svg
-    - assets/icons/upload_cloud.svg
-    - assets/icons/verified.png
-    - assets/icons/Wallet.json
+    - assets/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

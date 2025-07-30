@@ -1,4 +1,6 @@
+import 'package:expence_tracker/src/view/add_dialogue/add_new/page_view_add_expence.dart';
 import 'package:expence_tracker/src/view/cards/money_show_card/money_show_card.dart';
+import 'package:expence_tracker/src/view/splash_screen/custom_transition.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/all_tab_page.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/incoming.dart';
 import 'package:expence_tracker/src/view/tab_bar_views/tabs/outgoing.dart';
@@ -116,6 +118,23 @@ class _HomeViewState extends State<HomeView>
               ),
               // HomeSearchBarOnHistory(searchController: searchController),
               GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CustomTransition.createRoute(
+                      PageViewAddExpence(),
+                      Offset(1, 0.0),
+                      300,
+                    ),
+                  );
+
+                  ///[ if  use dialogue]
+
+                  // showDialog(
+                  //   context: context,
+                  //   builder: (context) => AddExpenseDialogue(),
+                  // );
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
