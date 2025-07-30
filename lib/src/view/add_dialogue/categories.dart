@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:expence_tracker/src/repositories/category_selection_repo/category_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +23,7 @@ class Categories extends StatelessWidget {
   Widget build(BuildContext context) {
     int crossCount = 3;
     final width = MediaQuery.of(context).size.width;
-    log(width.toString());
+    // log(width.toString());
     if (width < 400 && width > 300) {
       crossCount = 2;
     } else if (width < 300) {

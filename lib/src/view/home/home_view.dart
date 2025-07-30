@@ -149,7 +149,7 @@ class _HomeViewState extends State<HomeView>
                       children: [
                         Icon(Icons.add, size: 18),
                         Text(
-                          "ADD",
+                          "Transact",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
