@@ -39,6 +39,10 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase>
     return (delete(allTable)..where((t) => t.id.equals(id))).go();
   }
 
+  Future deleteAlltransaction() {
+    return (delete(allTable).go());
+  }
+
   Stream<double> expenceValues() {
     final avgLength = allTable.amount.sum();
 
