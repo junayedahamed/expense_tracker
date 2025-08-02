@@ -26,32 +26,32 @@ class StarAndCustomerType extends StatelessWidget {
                     color: Colors.amber,
                   ),
                   Icon(
-                    value >= 5000
+                    value >= 8000
                         ? CupertinoIcons.star_fill
                         : CupertinoIcons.star,
                     size: 18,
-                    color: value >= 5000 ? Colors.amber : Colors.black,
+                    color: value >= 8000 ? Colors.amber : Colors.black,
                   ),
                   Icon(
-                    value >= 10000
+                    value >= 15000
                         ? CupertinoIcons.star_fill
                         : CupertinoIcons.star,
                     size: 18,
-                    color: value >= 10000 ? Colors.amber : Colors.black,
+                    color: value >= 15000 ? Colors.amber : Colors.black,
                   ),
                   Icon(
-                    value >= 20000
+                    value >= 25000
                         ? CupertinoIcons.star_fill
                         : CupertinoIcons.star,
                     size: 18,
-                    color: value >= 20000 ? Colors.amber : Colors.black,
+                    color: value >= 25000 ? Colors.amber : Colors.black,
                   ),
                   Icon(
-                    value >= 35000
+                    value >= 50000
                         ? CupertinoIcons.star_fill
                         : CupertinoIcons.star,
                     size: 18,
-                    color: value >= 35000 ? Colors.amber : Colors.black,
+                    color: value >= 50000 ? Colors.amber : Colors.black,
                   ),
                 ],
               ),

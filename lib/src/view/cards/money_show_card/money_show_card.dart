@@ -1,5 +1,4 @@
 import 'package:expence_tracker/src/database/transaction_dao.dart';
-import 'package:expence_tracker/src/repositories/money_show_card_gradient_handler/card_gradient_handler.dart';
 import 'package:expence_tracker/src/view/cards/money_show_card/widget/star_and_customer_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class MoneyShowCard extends StatelessWidget {
 
               return GestureDetector(
                 onHorizontalDragEnd: (details) {
-                  context.read<CardGradientHandler>().changeGradient(details);
+                  // context.read<CardGradientHandler>().changeGradient(details);
                 },
                 child: Container(
                   decoration: BoxDecoration(

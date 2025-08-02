@@ -21,7 +21,7 @@ class _SplashScreenWalletState extends State<SplashScreenWallet>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1, milliseconds: 500),
+      duration: Duration(seconds: 1, milliseconds: 300),
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -36,11 +36,11 @@ class _SplashScreenWalletState extends State<SplashScreenWallet>
   }
 
   void navigate() async {
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future.delayed(Duration(milliseconds: 1300));
 
     if (mounted) {
       Navigator.of(context).push(
-        CustomTransition.createRoute(MyNavigationBar(), Offset(1.0, 0.0), 1500),
+        CustomTransition.createRoute(MyNavigationBar(), Offset(1.0, 0.0), 1300),
       );
       // Navigator.of(context).push(
       //   PageRouteBuilder(
@@ -95,7 +95,7 @@ class _SplashScreenWalletState extends State<SplashScreenWallet>
                   isRepeatingAnimation: false,
                   animatedTexts: [
                     TypewriterAnimatedText(
-                      "ExP Tracker",
+                      "XPENSO",
 
                       speed: Duration(milliseconds: 80),
                       textStyle: TextStyle(

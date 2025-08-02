@@ -42,7 +42,12 @@ class _HomeViewState extends State<HomeView>
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Center(child: MoneyShowCard()),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: MoneyShowCard(),
+            ),
+          ),
 
           SizedBox(height: 15),
           Row(

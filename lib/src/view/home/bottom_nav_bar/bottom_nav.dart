@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:expence_tracker/src/view/home/home_view.dart';
 import 'package:expence_tracker/src/view/home/pop_dialogue/pop_dialogue.dart';
 import 'package:expence_tracker/src/view/stats/bar_chart_view/bar_chart_view.dart';
@@ -31,7 +33,8 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             return PopDialogue();
           },
         );
-
+        log(ok.toString());
+        ok ??= false;
         if (!ok) {
           return;
         }
