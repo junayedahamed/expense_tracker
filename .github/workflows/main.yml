@@ -7,9 +7,8 @@ on:
       - master
   push:
     branches:
-      - main
-      - auth
-      - notification
+      - junayed
+      - data
 
 jobs:
   build:
