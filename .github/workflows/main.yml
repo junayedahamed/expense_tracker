@@ -3,8 +3,8 @@ name: Build and Release
 on:
   pull_request:
     branches:
-      - main
-      - master
+      - junayed
+      - data
   push:
     branches:
       - junayed
