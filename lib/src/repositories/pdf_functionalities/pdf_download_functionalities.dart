@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:expence_tracker/src/database/database.dart';
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
@@ -219,13 +218,13 @@ class PdfDownloadFunctionalities {
 
     // ios document save
 
-    if (Platform.isIOS) {
-      await FileSaver.instance.saveFile(
-        name: "J_ExP_All_Transaction.pdf",
-        bytes: pdfBytes,
-        fileExtension: "pdf",
-        mimeType: MimeType.pdf,
-      );
-    }
+    // if (Platform.isIOS) {
+    //   await FileSaver.instance.saveFile(
+    //     name: "J_ExP_All_Transaction.pdf",
+    //     bytes: pdfBytes,
+    //     fileExtension: "pdf",
+    //     mimeType: MimeType.pdf,
+    //   );
+    // }
   }
 }
