@@ -3,12 +3,13 @@ name: Build and Release
 on:
   pull_request:
     branches:
-      - junayed
-      - data
+      - main
+      - master
   push:
     branches:
-      - junayed
-      - data
+      - main
+      - auth
+      - notification
 
 jobs:
   build:
@@ -34,5 +35,6 @@ jobs:
       - name: Push to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/flutter-apk/*.apk"
+          artifacts: "build/app/outputs/apk/release/*.apk"
           tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}
