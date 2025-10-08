@@ -46,7 +46,7 @@ dependencies:
   # file_saver: ^0.3.1
   shared_preferences: ^2.5.3
   path: ^1.9.1
-  device_info_plus: ^11.5.0
+  device_info_plus: ^12.1.0
   # workmanager: ^0.8.0
   lottie: ^3.3.1
   url_launcher: ^6.3.2
