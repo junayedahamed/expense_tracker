@@ -38,6 +38,7 @@ class DeveloperInformation extends StatelessWidget {
             //   ),
             // ),
             ExpansionTile(
+              backgroundColor: Theme.of(context).colorScheme.surface,
               leading: SvgPicture.asset(
                 'assets/icons/dev.svg',
                 colorFilter: ColorFilter.mode(
