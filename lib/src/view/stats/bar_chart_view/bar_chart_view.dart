@@ -1,6 +1,5 @@
 import 'package:expence_tracker/src/database/transaction_dao.dart';
 import 'package:expence_tracker/src/view/pdf/download_ui/download_pdf.dart';
-import 'package:expence_tracker/src/view/stats/bar_chart_view/dev/dev_tile_builder.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -206,7 +205,7 @@ class BarChartView extends StatelessWidget {
             SizedBox(height: 40),
 
             //Dev Info
-            DeveloperInformation(),
+            // DeveloperInformation(),
           ],
         ),
       ),
